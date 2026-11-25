@@ -8,7 +8,7 @@ export const bannerVariants = cva(
   {
     variants: {
       position: {
-        /** No fluxo da página: aviso de envio, informação de campanha. */
+        /** No fluxo da página: aviso de prazo, informação de campanha. */
         inline: "w-full bg-muted px-4 py-3",
         /** Fixa no rodapé da janela: aviso de cookies. */
         bottom:

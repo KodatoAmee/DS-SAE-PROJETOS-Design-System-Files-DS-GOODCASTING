@@ -58,7 +58,7 @@ const sections = [
   {
     id: "ajuda",
     label: "Ajuda",
-    items: ["Perguntas frequentes", "Contacto"].map((l) => ({ label: l, href: "#" })),
+    items: ["Perguntas frequentes", "Contato"].map((l) => ({ label: l, href: "#" })),
   },
 ];
 
@@ -73,12 +73,12 @@ const castings: {
   status?: CandidacyStatus;
   expired?: boolean;
 }[] = [
-  { title: "Campanha de verão — marca de cosméticos", category: "Publicidade", location: "Lisboa", roles: 3, slots: 6, deadline: { text: "Encerra em 5 dias" }, fee: 2500, status: "analise" },
-  { title: "Longa-metragem: elenco de apoio", category: "Cinema", location: "Porto", roles: 8, slots: 12, deadline: { text: "Encerra hoje às 18h", urgent: true }, fee: 8000 },
-  { title: "Desfile da semana de moda", category: "Moda", location: "Lisboa", roles: 1, slots: 20, deadline: { text: "Encerra em 12 dias" }, fee: 1200, status: "selecionado" },
+  { title: "Campanha de verão — marca de cosméticos", category: "Publicidade", location: "São Paulo", roles: 3, slots: 6, deadline: { text: "Encerra em 5 dias" }, fee: 2500, status: "analise" },
+  { title: "Longa-metragem: elenco de apoio", category: "Cinema", location: "Rio de Janeiro", roles: 8, slots: 12, deadline: { text: "Encerra hoje às 18h", urgent: true }, fee: 8000 },
+  { title: "Desfile da semana de moda", category: "Moda", location: "São Paulo", roles: 1, slots: 20, deadline: { text: "Encerra em 12 dias" }, fee: 1200, status: "selecionado" },
   { title: "Série de TV: participação especial", category: "Televisão", location: "Remoto", roles: 2, slots: 2, deadline: { text: "Encerra em 3 dias" }, fee: "a-definir" },
-  { title: "Videoclipe de banda independente", category: "Videoclipe", location: "Coimbra", roles: 4, slots: 10, deadline: { text: "" }, fee: 400, expired: true },
-  { title: "Peça de teatro infantil", category: "Teatro", location: "Braga", roles: 5, slots: 5, deadline: { text: "Encerra em 20 dias" }, fee: 1800, status: "convite" },
+  { title: "Videoclipe de banda independente", category: "Videoclipe", location: "Belo Horizonte", roles: 4, slots: 10, deadline: { text: "" }, fee: 400, expired: true },
+  { title: "Peça de teatro infantil", category: "Teatro", location: "Curitiba", roles: 5, slots: 5, deadline: { text: "Encerra em 20 dias" }, fee: 1800, status: "convite" },
 ];
 
 const footerColumns = [
@@ -165,7 +165,7 @@ function Timeline() {
 
       <Footer
         columns={footerColumns}
-        region={{ country: "Portugal", language: "Português" }}
+        region={{ country: "Brasil", language: "Português" }}
         legal="© 2026 Good Casting. Exemplo para documentação."
       />
 
@@ -183,7 +183,7 @@ function Timeline() {
           <ChipSelector
             label="Localização"
             multiple
-            options={["Lisboa", "Porto", "Coimbra", "Braga", "Remoto"].map((value) => ({ value }))}
+            options={["São Paulo", "Rio de Janeiro", "Belo Horizonte", "Curitiba", "Remoto"].map((value) => ({ value }))}
           />
           <ChipSelector
             label="Cachê"
@@ -224,7 +224,7 @@ export const DetalheDoCasting: Story = {
           <div className="space-y-3">
             <StatusBadge status="enviada" />
             <h1 className="font-display text-display">Campanha de verão — marca de cosméticos</h1>
-            <p className="text-body text-content-mid">Produtora Luz Norte · Lisboa · Gravação 12–14 de março</p>
+            <p className="text-body text-content-mid">Produtora Luz Norte · São Paulo · Gravação 12–14 de março</p>
           </div>
           <Tabs
             label="Secções do casting"
@@ -236,7 +236,7 @@ export const DetalheDoCasting: Story = {
                   <p className="max-w-[640px] pt-4 text-body">
                     Campanha nacional para televisão e redes sociais. Procuramos uma família natural e
                     luminosa para um dia de praia. Gravação em exteriores, com direitos de imagem por 12
-                    meses em Portugal.
+                    meses no Brasil.
                   </p>
                 ),
               },
@@ -256,7 +256,7 @@ export const DetalheDoCasting: Story = {
                   </Accordion>
                 ),
               },
-              { id: "produtora", label: "Produtora", content: <p className="pt-4 text-body">Luz Norte Produções, Lisboa.</p> },
+              { id: "produtora", label: "Produtora", content: <p className="pt-4 text-body">Luz Norte Produções, São Paulo.</p> },
             ]}
           />
         </div>
@@ -266,7 +266,7 @@ export const DetalheDoCasting: Story = {
           <ul className="space-y-2 text-body">
             <li className="flex justify-between"><span className="text-content-mid">Prazo</span><span>até 20 de fevereiro</span></li>
             <li className="flex justify-between"><span className="text-content-mid">Vagas</span><span>6</span></li>
-            <li className="flex justify-between"><span className="text-content-mid">Local</span><span>Lisboa</span></li>
+            <li className="flex justify-between"><span className="text-content-mid">Local</span><span>São Paulo</span></li>
           </ul>
           <Button variant="brand" size="l" fullWidth>
             Candidatar-me
@@ -281,12 +281,12 @@ export const DetalheDoCasting: Story = {
 };
 
 const talentos = [
-  { name: "Ana Ribeiro", age: 38, location: "Lisboa", skills: ["Atriz", "Modelo"], match: 96, verified: true },
-  { name: "Beatriz Costa", age: 41, location: "Porto", skills: ["Atriz", "Locução", "Inglês"], match: 91 },
-  { name: "Carla Mendes", age: 36, location: "Lisboa", skills: ["Modelo"], match: 88, verified: true },
+  { name: "Ana Ribeiro", age: 38, location: "São Paulo", skills: ["Atriz", "Modelo"], match: 96, verified: true },
+  { name: "Beatriz Costa", age: 41, location: "Rio de Janeiro", skills: ["Atriz", "Locução", "Inglês"], match: 91 },
+  { name: "Carla Mendes", age: 36, location: "São Paulo", skills: ["Modelo"], match: 88, verified: true },
   { name: "Diana Alves", age: 44, location: "Setúbal", skills: ["Atriz", "Dança", "Canto", "Francês"], match: 84 },
   { name: "Eva Martins", age: 39, location: "Cascais", skills: ["Atriz"], match: 80 },
-  { name: "Filipa Rocha", age: 42, location: "Lisboa", skills: ["Modelo", "Influencer"], match: 77 },
+  { name: "Filipa Rocha", age: 42, location: "São Paulo", skills: ["Modelo", "Influencer"], match: 77 },
 ];
 
 function Shortlist() {
@@ -366,7 +366,7 @@ export const CompletarPerfil: Story = {
 };
 
 export const IniciarSessao: Story = {
-  name: "Iniciar sessão",
+  name: "Entrar",
   parameters: { layout: "padded" },
   render: () => (
     <form className="mx-auto mt-10 max-w-[398px] space-y-6" onSubmit={(e) => e.preventDefault()}>

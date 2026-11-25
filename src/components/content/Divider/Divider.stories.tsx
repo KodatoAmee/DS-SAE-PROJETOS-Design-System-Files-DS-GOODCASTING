@@ -17,9 +17,9 @@ const meta = {
         component: `
 **O que é.** Linha de 1px. \`subtle\` (\`line-subtle\`, cinza claro) por padrão; \`strong\` (\`line\`, cor do texto) para separações fortes. Horizontal ou vertical.
 
-**Quando usar.** Separar grupos dentro de gavetas, resumos de compra, rodapés e barras de ferramentas (vertical).
+**Quando usar.** Separar grupos dentro de gavetas, resumos de candidatura, rodapés e barras de ferramentas (vertical).
 
-**Quando não usar.** Entre cartões da grelha (o espaço já separa) ou como decoração de títulos. Se o espaço resolve, não use linha.
+**Quando não usar.** Entre cartões da grade (o espaço já separa) ou como decoração de títulos. Se o espaço resolve, não use linha.
 
 **Anatomia.** Um elemento de 1px de espessura.
 

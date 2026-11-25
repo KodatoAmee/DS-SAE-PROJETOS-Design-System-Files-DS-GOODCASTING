@@ -1,6 +1,6 @@
 # DS-GoodCasting
 
-Design system da **Good Casting** em React 19 + Tailwind v4, documentado no Storybook 10. Estrutura clonada do [DS-Zara](https://kodatoamee.github.io/DS-SAE-PROJETOS-Design-System-Files-DS-ZARA/) (mesmos componentes, contrato e governança); identidade do brandbook Good Casting: preto, branco e Azul Tiffany `#81D8D0`, Playfair Display + Inter, logótipo oficial. Tons de apoio e feedback vêm do GC-DS2 e do app (`goodcasting-app`).
+Design system da **Good Casting** em React 19 + Tailwind v4, documentado no Storybook 10. Estrutura clonada do [DS-Zara](https://kodatoamee.github.io/DS-SAE-PROJETOS-Design-System-Files-DS-ZARA/) (mesmos componentes, contrato e governança); identidade do brandbook Good Casting: preto, branco e Azul Tiffany `#81D8D0`, Playfair Display + Inter, logotipo oficial. Tons de apoio e feedback vêm do GC-DS2 e do app (`goodcasting-app`).
 
 ## Rodar
 
@@ -20,7 +20,7 @@ src/styles/theme.css       tema: primitivas -> semânticas [data-theme] -> @them
 src/lib/cn.ts              cn() e focusRing
 src/lib/overlay.ts         pilha de sobreposições, trava de scroll, foco preso (Modal, Drawer, MenuDrawer)
 src/components/icon        Icon (traço 1px, 20x20)
-src/components/brand       Logo (ficheiros oficiais em src/assets/brand)
+src/components/brand       Logo (arquivos oficiais em src/assets/brand)
 src/components/actions     Button, IconButton, Link, ViewSelector, ButtonGroup
 src/components/form        TextField, TextArea, Select, SearchField, Checkbox, Radio, Switch, ChipSelector, NumberStepper
 src/components/nav         Header, MenuDrawer, Tabs, Breadcrumbs, Pagination, Footer, SkipLink

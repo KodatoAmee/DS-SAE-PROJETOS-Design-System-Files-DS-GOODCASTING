@@ -65,7 +65,7 @@ export function IconButton({
   return (
     <button
       type={type}
-      aria-label={hasBadge ? `${label}, ${badge}` : label}
+      aria-label={hasBadge ? `${label}, ${badgeText}` : label}
       className={cn(iconButtonVariants({ variant, size, withBadge: hasBadge }), className)}
       {...rest}
     >

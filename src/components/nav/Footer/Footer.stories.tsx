@@ -6,10 +6,10 @@ const columns: FooterColumn[] = [
   {
     title: "Ajuda",
     links: [
-      { label: "Comprar", href: "#" },
-      { label: "Pagamento", href: "#" },
-      { label: "Envio", href: "#" },
-      { label: "Trocas e devoluções", href: "#" },
+      { label: "Como funciona", href: "#" },
+      { label: "Perguntas frequentes", href: "#" },
+      { label: "Pagamento de cachês", href: "#" },
+      { label: "Fale conosco", href: "#" },
     ],
   },
   {
@@ -24,7 +24,7 @@ const columns: FooterColumn[] = [
     title: "Empresa",
     links: [
       { label: "Sobre nós", href: "#" },
-      { label: "Lojas", href: "#" },
+      { label: "Imprensa", href: "#" },
       { label: "Trabalhe conosco", href: "#" },
     ],
   },
@@ -59,7 +59,7 @@ const meta = {
 
 **Quando usar.** No fim de todas as páginas, para links institucionais, ajuda e políticas.
 
-**Quando não usar.** Para navegação principal de compra (use \`Header\`/\`MenuDrawer\`). Não repita aqui ações de checkout.
+**Quando não usar.** Para a navegação principal (use \`Header\`/\`MenuDrawer\`). Não repita aqui ações como candidatar-se ou publicar casting.
 
 **Anatomia.** \`newsletter\` (slot) · \`nav\` com grade de colunas (1 coluna no mobile, 2 em \`md\`, 4 em \`lg\`) · título da coluna (\`content-low\`) · links · linha 1px \`line-subtle\` · país / idioma · texto legal.
 

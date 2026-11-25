@@ -53,7 +53,7 @@ export const Estados: Story = {
     <div className="flex flex-wrap items-center gap-4">
       <Button disabled>Desabilitado</Button>
       <Button variant="secondary" disabled>Desabilitado</Button>
-      <Button loading>A processar</Button>
+      <Button loading>Processando</Button>
       <Button variant="secondary" iconEnd="arrow-right">Continuar</Button>
       <Button variant="tertiary" iconStart="filter">Filtros</Button>
     </div>

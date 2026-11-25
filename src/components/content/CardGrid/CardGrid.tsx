@@ -5,7 +5,7 @@ import { cn } from "../../../lib/cn";
 export type CardGridView = 1 | 2 | 3;
 
 /**
- * Densidades da grelha. `castings` usa cartões largos (1 / 2 / 3 colunas);
+ * Densidades da grade. `castings` usa cartões largos (1 / 2 / 3 colunas);
  * `talents` usa retratos (2 / 4 / 6 colunas).
  */
 export const cardGridVariants = cva("grid list-none p-0", {

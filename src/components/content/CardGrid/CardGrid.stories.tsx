@@ -14,7 +14,7 @@ const meta = {
     docs: {
       description: {
         component: `
-**O que é.** Grelha responsiva de cartões, em lista semântica (\`<ul>\`/\`<li>\`). Dois tipos: \`castings\` (cartões largos, 1–3 colunas) e \`talents\` (retratos, 2–6 colunas). Três densidades com \`view\`.
+**O que é.** Grade responsiva de cartões, em lista semântica (\`<ul>\`/\`<li>\`). Dois tipos: \`castings\` (cartões largos, 1–3 colunas) e \`talents\` (retratos, 2–6 colunas). Três densidades com \`view\`.
 
 **Quando usar.** Timeline e busca de castings; busca, shortlist e candidatos de talentos. Combine com \`ViewSelector\` para trocar a densidade.
 
@@ -31,18 +31,18 @@ export default meta;
 type Story = StoryObj;
 
 const talents = [
-  { name: "Ana Ribeiro", age: 28, location: "Porto", skills: ["Atriz", "Modelo"] },
-  { name: "Bruno Costa", age: 34, location: "Lisboa", skills: ["Ator", "Locução"] },
-  { name: "Carla Mendes", age: 22, location: "Coimbra", skills: ["Dança", "Modelo"] },
-  { name: "Diego Alves", age: 41, location: "Braga", skills: ["Ator"] },
+  { name: "Ana Ribeiro", age: 28, location: "Rio de Janeiro", skills: ["Atriz", "Modelo"] },
+  { name: "Bruno Costa", age: 34, location: "São Paulo", skills: ["Ator", "Locução"] },
+  { name: "Carla Mendes", age: 22, location: "Belo Horizonte", skills: ["Dança", "Modelo"] },
+  { name: "Diego Alves", age: 41, location: "Curitiba", skills: ["Ator"] },
   { name: "Eva Martins", age: 19, location: "Faro", skills: ["Modelo", "Influencer"] },
-  { name: "Filipe Rocha", age: 30, location: "Lisboa", skills: ["Ator", "Canto"] },
+  { name: "Filipe Rocha", age: 30, location: "São Paulo", skills: ["Ator", "Canto"] },
 ];
 
 const castings = [
-  { title: "Campanha de verão — cosméticos", category: "Publicidade", location: "Lisboa", fee: 2500 },
-  { title: "Longa-metragem: elenco de apoio", category: "Cinema", location: "Porto", fee: 8000 },
-  { title: "Desfile semana de moda", category: "Moda", location: "Lisboa", fee: 1200 },
+  { title: "Campanha de verão — cosméticos", category: "Publicidade", location: "São Paulo", fee: 2500 },
+  { title: "Longa-metragem: elenco de apoio", category: "Cinema", location: "Rio de Janeiro", fee: 8000 },
+  { title: "Desfile semana de moda", category: "Moda", location: "São Paulo", fee: 1200 },
 ];
 
 export const Talentos: Story = {

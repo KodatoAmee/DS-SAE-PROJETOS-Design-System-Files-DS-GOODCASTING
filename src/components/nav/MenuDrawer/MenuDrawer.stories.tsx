@@ -5,46 +5,46 @@ import { MenuDrawer, type MenuDrawerProps, type MenuDrawerSection } from "./Menu
 
 const sections: MenuDrawerSection[] = [
   {
-    id: "mulher",
-    label: "Mulher",
+    id: "castings",
+    label: "Castings",
     items: [
-      { label: "Novidades", href: "#" },
-      { label: "Mais vendidos", href: "#" },
-      { label: "Vestidos", href: "#" },
-      { label: "Camisas", href: "#" },
-      { label: "Calças", href: "#" },
-      { label: "Casacos", href: "#" },
-      { label: "Sapatos", href: "#" },
-      { label: "Bolsas", href: "#" },
+      { label: "Novos", href: "#" },
+      { label: "Publicidade", href: "#" },
+      { label: "Cinema", href: "#" },
+      { label: "Televisão", href: "#" },
+      { label: "Moda", href: "#" },
+      { label: "Teatro", href: "#" },
+      { label: "Videoclipe", href: "#" },
+      { label: "Encerrando hoje", href: "#" },
     ],
   },
   {
-    id: "homem",
-    label: "Homem",
+    id: "talentos",
+    label: "Talentos",
     items: [
-      { label: "Novidades", href: "#" },
-      { label: "Casacos", href: "#" },
-      { label: "Malhas", href: "#" },
-      { label: "Calças", href: "#" },
-      { label: "Sapatos", href: "#" },
+      { label: "Atores e atrizes", href: "#" },
+      { label: "Modelos", href: "#" },
+      { label: "Locutores", href: "#" },
+      { label: "Figurantes", href: "#" },
+      { label: "Bailarinos", href: "#" },
     ],
   },
   {
-    id: "criancas",
-    label: "Crianças",
+    id: "produtoras",
+    label: "Produtoras",
     items: [
-      { label: "Bebê", href: "#" },
-      { label: "Menina", href: "#" },
-      { label: "Menino", href: "#" },
+      { label: "Publicar casting", href: "#" },
+      { label: "Planos", href: "#" },
+      { label: "Casos de sucesso", href: "#" },
     ],
   },
   {
-    id: "casa",
-    label: "Casa",
+    id: "ajuda",
+    label: "Ajuda",
     items: [
-      { label: "Quarto", href: "#" },
-      { label: "Banho", href: "#" },
-      { label: "Mesa", href: "#" },
+      { label: "Como funciona", href: "#" },
+      { label: "Perguntas frequentes", href: "#" },
+      { label: "Fale conosco", href: "#" },
     ],
   },
 ];
@@ -60,9 +60,9 @@ const meta = {
     docs: {
       description: {
         component: `
-**O que é.** Gaveta lateral esquerda com o menu principal: abas verticais de seção (Mulher, Homem, Crianças…) e a lista de links da seção selecionada, em 13px maiúsculas. Tela cheia no mobile, metade em \`md\` e 1/3 a partir de \`lg\`.
+**O que é.** Gaveta lateral esquerda com o menu principal: abas verticais de seção (Castings, Talentos, Produtoras…) e a lista de links da seção selecionada, em 13px maiúsculas. Tela cheia no mobile, metade em \`md\` e 1/3 a partir de \`lg\`.
 
-**Quando usar.** Como destino do botão de menu do \`Header\`, para a árvore de categorias da loja.
+**Quando usar.** Como destino do botão de menu do \`Header\`, para a árvore de seções da plataforma.
 
 **Quando não usar.** Para filtros ou detalhes de casting use um painel genérico (Drawer/Modal). Para 2 ou 3 links, prefira ações diretas no \`Header\`.
 
@@ -102,7 +102,7 @@ export const ComRodape: Story = {
       <ul className="flex flex-col gap-2 text-action font-normal">
         <li>
           <a href="#" className="hover:underline">
-            Iniciar sessão
+            Entrar
           </a>
         </li>
         <li>
@@ -118,8 +118,8 @@ export const ComRodape: Story = {
 };
 
 export const SecaoInicial: Story = {
-  name: "Seção inicial (Homem)",
-  args: { defaultSection: "homem" },
+  name: "Seção inicial (Talentos)",
+  args: { defaultSection: "talentos" },
   render: (args) => <Demo {...args} />,
 };
 

@@ -4,7 +4,7 @@ import { Logo } from "../../brand";
 import { MenuDrawer } from "../MenuDrawer";
 import { Header, type HeaderAction, type HeaderProps } from "./Header";
 
-/** Logótipo oficial Good Casting. */
+/** Logotipo oficial Good Casting. */
 const logo = (
   <a href="#" aria-label="Good Casting, início">
     <Logo width={120} alt="" />
@@ -13,7 +13,7 @@ const logo = (
 
 const actions: HeaderAction[] = [
   { label: "Notificações", icon: "info", count: 0, href: "#notificacoes" },
-  { label: "Iniciar sessão", icon: "user", href: "#entrar" },
+  { label: "Entrar", icon: "user", href: "#entrar" },
   { label: "Ajuda", icon: "help", href: "#ajuda" },
 ];
 
@@ -44,7 +44,7 @@ const meta = {
         component: `
 **O que é.** Cabeçalho global editorial. À esquerda, "ombro" de 80px (desktop) com o botão de menu (hambúrguer de 2 linhas, 20x7, traço 1px) e a área do logotipo. À direita, a pesquisa (link com sublinhado inferior, 135px) e as ações em texto (13px/22, maiúsculas, peso 300, gap 8).
 
-**Quando usar.** No topo de todas as páginas da loja. \`transparent\` sobre mídia editorial (hero, campanha); \`solid\` (\`bg-base\`) sobre listagens e quando o conteúdo rola por baixo com \`sticky\`.
+**Quando usar.** No topo de todas as páginas da plataforma. \`transparent\` sobre mídia editorial (hero, campanha); \`solid\` (\`bg-base\`) sobre listagens e quando o conteúdo rola por baixo com \`sticky\`.
 
 **Quando não usar.** Para navegação dentro de uma seção use \`Tabs\` ou \`Breadcrumbs\`. Não coloque mais de 3 ou 4 ações: o resto vai para o \`MenuDrawer\`.
 
@@ -121,31 +121,32 @@ function HeaderComMenu(props: HeaderProps) {
         onOpenChange={setOpen}
         sections={[
           {
-            id: "mulher",
-            label: "Mulher",
+            id: "castings",
+            label: "Castings",
             items: [
-              { label: "Novidades", href: "#" },
-              { label: "Vestidos", href: "#" },
-              { label: "Camisas", href: "#" },
-              { label: "Calças", href: "#" },
+              { label: "Novos", href: "#" },
+              { label: "Publicidade", href: "#" },
+              { label: "Cinema", href: "#" },
+              { label: "Televisão", href: "#" },
             ],
           },
           {
-            id: "homem",
-            label: "Homem",
+            id: "talentos",
+            label: "Talentos",
             items: [
-              { label: "Novidades", href: "#" },
-              { label: "Casacos", href: "#" },
-              { label: "Malhas", href: "#" },
+              { label: "Atores e atrizes", href: "#" },
+              { label: "Modelos", href: "#" },
+              { label: "Locutores", href: "#" },
+              { label: "Figurantes", href: "#" },
             ],
           },
           {
-            id: "criancas",
-            label: "Crianças",
+            id: "produtoras",
+            label: "Produtoras",
             items: [
-              { label: "Bebê", href: "#" },
-              { label: "Menina", href: "#" },
-              { label: "Menino", href: "#" },
+              { label: "Publicar casting", href: "#" },
+              { label: "Planos", href: "#" },
+              { label: "Casos de sucesso", href: "#" },
             ],
           },
         ]}

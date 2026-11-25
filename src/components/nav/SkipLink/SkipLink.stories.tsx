@@ -37,9 +37,9 @@ export const Padrao: Story = {
         Clique aqui e pressione Tab para revelar o link.
       </p>
       <nav aria-label="Exemplo" className="mb-8 flex gap-4 text-action">
-        <a href="#">Mulher</a>
-        <a href="#">Homem</a>
-        <a href="#">Crianças</a>
+        <a href="#">Castings</a>
+        <a href="#">Talentos</a>
+        <a href="#">Produtoras</a>
       </nav>
       <main id="conteudo-principal" className="outline-none">
         <p className="text-body">Conteúdo principal.</p>

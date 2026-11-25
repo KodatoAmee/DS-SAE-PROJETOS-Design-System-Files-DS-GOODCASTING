@@ -41,7 +41,7 @@ export const ComDescricao: Story = {
   name: "Com descrição",
   args: {
     label: "Modo escuro",
-    description: "Aplica o tema escuro em toda a loja.",
+    description: "Aplica o tema escuro em toda a plataforma.",
   },
 };
 

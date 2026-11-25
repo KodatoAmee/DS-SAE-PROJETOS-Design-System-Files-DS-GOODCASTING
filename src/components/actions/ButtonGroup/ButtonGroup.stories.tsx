@@ -16,7 +16,7 @@ const meta = {
   render: (args) => (
     <ButtonGroup {...args}>
       <Button variant="secondary">Cancelar</Button>
-      <Button variant="secondary">Guardar</Button>
+      <Button variant="secondary">Salvar</Button>
       <Button>Adicionar</Button>
     </ButtonGroup>
   ),

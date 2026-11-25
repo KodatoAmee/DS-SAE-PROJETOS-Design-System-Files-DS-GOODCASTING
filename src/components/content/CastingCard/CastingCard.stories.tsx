@@ -11,7 +11,7 @@ const meta = {
     title: "Campanha de verão — marca de cosméticos",
     href: "#",
     category: "Publicidade",
-    location: "Lisboa",
+    location: "São Paulo",
     roles: 3,
     slots: 6,
     deadline: { text: "Encerra em 5 dias" },

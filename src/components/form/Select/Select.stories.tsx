@@ -63,7 +63,7 @@ export const ComOptionsFilhos: Story = {
 export const Estados: Story = {
   render: (args) => (
     <div className="flex flex-col gap-6">
-      <Select {...args} label="Com ajuda" helperText="Usado para calcular o frete." />
+      <Select {...args} label="Com ajuda" helperText="Usado para contato da produtora." />
       <Select {...args} label="Com erro" required error="Selecione um estado." />
       <Select {...args} label="Desabilitado" defaultValue="SP" disabled />
     </div>

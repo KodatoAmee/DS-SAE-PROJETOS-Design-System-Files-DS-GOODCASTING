@@ -43,7 +43,7 @@ const meta = {
   render: (args) => (
     <Carousel {...args}>
       {nomes.map((nome, i) => (
-        <TalentCard key={nome} name={nome} href="#" age={22 + i} location="Lisboa" match={i === 0 ? 95 : undefined} />
+        <TalentCard key={nome} name={nome} href="#" age={22 + i} location="São Paulo" match={i === 0 ? 95 : undefined} />
       ))}
     </Carousel>
   ),

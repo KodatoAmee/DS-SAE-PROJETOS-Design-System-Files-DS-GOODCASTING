@@ -8,7 +8,7 @@ const meta = {
   tags: ["autodocs"],
   args: {
     position: "inline",
-    children: "Envio gratuito em compras acima de 50 € para entrega em loja.",
+    children: "Novos castings de publicidade toda semana. Complete o perfil para receber convites.",
   },
   argTypes: {
     position: { control: "inline-radio", options: ["inline", "bottom"] },
@@ -20,7 +20,7 @@ const meta = {
         component: `
 **O que é.** Barra de aviso com texto de 12px e um espaço para ações. \`inline\` fica no fluxo da página (fundo \`muted\`); \`bottom\` fica fixa no rodapé da janela (fundo \`surface\`, linha superior de 1px), como o aviso de cookies com dois botões (secundário e primário).
 
-**Quando usar.** Informação persistente que não bloqueia a navegação: condições de envio, aviso de cookies, mudança de política, falha parcial de serviço.
+**Quando usar.** Informação persistente que não bloqueia a navegação: prazo de inscrição, aviso de cookies, mudança de política, falha parcial de serviço.
 
 **Quando não usar.** Confirmação passageira de ação: \`Toast\`. Decisão obrigatória antes de continuar: \`Modal\`. Erro de campo: mensagem do campo.
 
@@ -42,7 +42,7 @@ export const ComTituloEFechar: Story = {
   name: "Com título e fechar",
   args: {
     title: "Envio",
-    children: "Os pedidos feitos hoje são entregues em 2 a 4 dias úteis.",
+    children: "As candidaturas enviadas hoje são analisadas em até 3 dias úteis.",
     onClose: () => {},
   },
 };

@@ -21,7 +21,7 @@ const meta = {
         component: `
 **O que é.** Campo de texto de várias linhas com o mesmo visual do \`TextField\`: só a linha inferior, rótulo flutuante, texto 13/20 peso 300.
 
-**Quando usar.** Texto livre longo: mensagem ao apoio ao cliente, nota de presente, observações de entrega.
+**Quando usar.** Texto livre longo: apresentação do talento, mensagem à produtora, observações da candidatura.
 
 **Quando não usar.** Dados de uma linha (use \`TextField\`).
 
@@ -52,7 +52,7 @@ export const Controlado: Story = {
     return (
       <TextArea
         {...args}
-        label="Observações de entrega"
+        label="Observações da candidatura"
         maxLength={200}
         value={value}
         onChange={(e) => setValue(e.target.value)}

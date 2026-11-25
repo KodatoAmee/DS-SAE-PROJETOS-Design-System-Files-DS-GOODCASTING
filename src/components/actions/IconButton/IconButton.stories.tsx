@@ -26,7 +26,7 @@ const meta = {
 
 **Anatomia.** Contêiner (32 / 40 / 44px, borda 1px em \`outline\`) · ícone 16 ou 20px · contador opcional (\`text-label-s\`, números tabulares).
 
-**Acessibilidade.** \`label\` é obrigatório e vira \`aria-label\`; o ícone é decorativo. Com \`badge\` o nome acessível inclui o número ("Salvos, 2") e o contador visual fica \`aria-hidden\`. \`type="button"\` por padrão. Use \`size="l"\` (44px) em toque.
+**Acessibilidade.** \`label\` é obrigatório e vira \`aria-label\`; o ícone é decorativo. Com \`badge\` o nome acessível inclui o mesmo número exibido ("Salvos, 2"; acima de 99, "Salvos, 99+") e o contador visual fica \`aria-hidden\`. \`type="button"\` por padrão. Use \`size="l"\` (44px) em toque.
         `,
       },
     },

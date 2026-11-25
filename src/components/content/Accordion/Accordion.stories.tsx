@@ -4,19 +4,19 @@ import { Accordion, AccordionItem } from "./Accordion";
 
 const secoes = [
   {
-    value: "composicao",
-    title: "Composição e cuidados",
-    body: "Exterior: 70% lã, 30% poliamida. Lavagem à mão a 30 °C. Não usar secadora.",
+    value: "requisitos",
+    title: "Requisitos",
+    body: "Mulher entre 30 e 45 anos, naturalidade diante da câmera e boa dicção.",
   },
   {
-    value: "envio",
-    title: "Envio",
-    body: "Entrega em domicílio em 2 a 4 dias úteis. Retirada em loja gratuita.",
+    value: "agenda",
+    title: "Agenda",
+    body: "Testes em 3 de março. Gravação de 12 a 14 de março, em São Paulo.",
   },
   {
-    value: "devolucoes",
-    title: "Trocas e devoluções",
-    body: "Você tem 30 dias a partir da data de envio para devolver os artigos.",
+    value: "cache",
+    title: "Cachê e pagamento",
+    body: "R$ 2.500 por diária, pagos em até 30 dias após a gravação.",
   },
 ];
 
@@ -66,8 +66,8 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Single: Story = { name: "Único", args: { defaultValue: ["composicao"] } };
-export const Multiple: Story = { name: "Múltiplo", args: { type: "multiple", defaultValue: ["composicao", "envio"] } };
+export const Single: Story = { name: "Único", args: { defaultValue: ["requisitos"] } };
+export const Multiple: Story = { name: "Múltiplo", args: { type: "multiple", defaultValue: ["requisitos", "agenda"] } };
 export const SemLinhas: Story = { name: "Sem linhas", args: { divided: false } };
 
 export const Estados: Story = {
@@ -90,7 +90,7 @@ export const Estados: Story = {
 
 export const Controlado: Story = {
   render: function Render(args) {
-    const [value, setValue] = useState<string[]>(["envio"]);
+    const [value, setValue] = useState<string[]>(["agenda"]);
     return (
       <div className="flex max-w-[480px] flex-col gap-4">
         <p className="text-label text-content-low">Abertos: {value.join(", ") || "nenhum"}</p>

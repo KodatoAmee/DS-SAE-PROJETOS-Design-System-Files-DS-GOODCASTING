@@ -8,15 +8,15 @@ const meta = {
   subcomponents: { Radio },
   tags: ["autodocs"],
   args: {
-    legend: "Forma de entrega",
-    defaultValue: "casa",
+    legend: "Formato do teste",
+    defaultValue: "presencial",
     children: null,
   },
   render: (args) => (
     <RadioGroup {...args}>
-      <Radio value="casa" label="Entrega em casa" description="2 a 4 dias úteis" />
-      <Radio value="loja" label="Retirar na loja" description="Grátis" />
-      <Radio value="ponto" label="Ponto de retirada" description="3 a 5 dias úteis" />
+      <Radio value="presencial" label="Teste presencial" description="Na produtora, em São Paulo" />
+      <Radio value="selftape" label="Self-tape" description="Envie o vídeo em até 48h" />
+      <Radio value="online" label="Chamada de vídeo" description="Horário marcado pela produtora" />
     </RadioGroup>
   ),
   parameters: {
@@ -26,7 +26,7 @@ const meta = {
         component: `
 **O que é.** Escolha única entre opções. \`Radio\` é **quadrado** (raio 0 em tudo, por coerência com o sistema) com um ponto quadrado interno de 8px quando marcado. \`RadioGroup\` agrupa, dá \`name\` comum e controla o valor.
 
-**Quando usar.** De 2 a ~5 opções mutuamente exclusivas que valem a pena ver todas de uma vez (forma de entrega, pagamento).
+**Quando usar.** De 2 a ~5 opções mutuamente exclusivas que valem a pena ver todas de uma vez (formato do teste, disponibilidade).
 
 **Quando não usar.** Opções independentes (use \`Checkbox\`). Listas longas (use \`Select\`). Categorias e perfis (use \`ChipSelector\`).
 
@@ -74,7 +74,7 @@ export const Controlado: Story = {
 export const Estados: Story = {
   render: () => (
     <div className="flex flex-col gap-10">
-      <RadioGroup legend="Com erro" required error="Escolha uma forma de entrega.">
+      <RadioGroup legend="Com erro" required error="Escolha um formato de teste.">
         <Radio value="a" label="Opção A" />
         <Radio value="b" label="Opção B" />
       </RadioGroup>

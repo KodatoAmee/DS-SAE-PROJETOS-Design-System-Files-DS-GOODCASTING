@@ -12,7 +12,7 @@ export interface LogoProps extends Omit<ComponentPropsWithoutRef<"img">, "src" |
   alt?: string;
 }
 
-/** Logótipo oficial Good Casting. Não alterar cor, proporção nem aplicar efeitos (brandbook, p. 19). */
+/** Logotipo oficial Good Casting. Não alterar cor, proporção nem aplicar efeitos (brandbook, p. 19). */
 export function Logo({ tone = "principal", width = 200, alt = "Good Casting", className, ...rest }: LogoProps) {
   return (
     <img

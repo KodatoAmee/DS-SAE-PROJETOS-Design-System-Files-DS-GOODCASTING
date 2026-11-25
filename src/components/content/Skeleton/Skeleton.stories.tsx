@@ -18,7 +18,7 @@ const meta = {
         component: `
 **O que é.** Blocos \`bg-muted\` pulsando (\`animate-gc-pulse\`) que reservam o lugar do conteúdo enquanto carrega. Variantes \`text\` (linhas), \`media\` (proporção do \`MediaPlaceholder\`) e \`block\` (tamanho livre). \`CastingCardSkeleton\` e \`TalentCardSkeleton\` reproduzem a geometria dos cartões de casting e de talento.
 
-**Quando usar.** Carregamento inicial de grelhas, carrosséis e fichas, quando a forma do conteúdo é conhecida.
+**Quando usar.** Carregamento inicial de grades, carrosséis e páginas de detalhe, quando a forma do conteúdo é conhecida.
 
 **Quando não usar.** Para ações curtas (botão enviando) use \`loading\` do \`Button\`. Para carregamentos de menos de ~300ms, não mostre nada.
 

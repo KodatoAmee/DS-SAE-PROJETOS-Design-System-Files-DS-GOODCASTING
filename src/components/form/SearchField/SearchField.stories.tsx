@@ -33,7 +33,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Padrao: Story = { name: "Padrão" };
 
-export const ComValor: Story = { name: "Com valor", args: { defaultValue: "vestido de linho" } };
+export const ComValor: Story = { name: "Com valor", args: { defaultValue: "atriz São Paulo" } };
 
 export const Controlado: Story = {
   render: (args) => {
@@ -58,6 +58,6 @@ export const Controlado: Story = {
   },
 };
 
-export const Desabilitado: Story = { args: { disabled: true, defaultValue: "camisa" } };
+export const Desabilitado: Story = { args: { disabled: true, defaultValue: "modelo" } };
 
 export const Playground: Story = { name: "Área de testes" };

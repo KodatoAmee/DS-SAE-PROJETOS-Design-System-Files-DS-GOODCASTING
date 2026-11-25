@@ -23,7 +23,7 @@ function Disparadores() {
       </Button>
       <Button
         variant="secondary"
-        onClick={() => toast({ tone: "error", message: "Não foi possível adicionar o artigo. Tente novamente." })}
+        onClick={() => toast({ tone: "error", message: "Não foi possível enviar a candidatura. Tente novamente." })}
       >
         Erro
       </Button>
@@ -58,7 +58,7 @@ const meta = {
 
 **Quando usar.** Confirmar uma ação concluída ("Candidatura enviada"), oferecer "Desfazer", avisar de uma falha recuperável.
 
-**Quando não usar.** Para informação que precisa permanecer (avisos de envio, cookies) use \`Banner\`. Para erros de campo use a mensagem do próprio campo. Para decisões, \`Modal\`.
+**Quando não usar.** Para informação que precisa permanecer (avisos de prazo, cookies) use \`Banner\`. Para erros de campo use a mensagem do próprio campo. Para decisões, \`Modal\`.
 
 **Anatomia.** Ícone (só em erro) · mensagem · ação opcional (sublinhada) · Fechar.
 
@@ -103,7 +103,7 @@ export const Erro: Story = {
   render: () => (
     <div className="max-w-[400px]">
       <Toast tone="error" onClose={() => {}}>
-        Não foi possível adicionar o artigo. Tente novamente.
+        Não foi possível enviar a candidatura. Tente novamente.
       </Toast>
     </div>
   ),

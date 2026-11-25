@@ -5,10 +5,10 @@ import { Tabs, type TabsItem } from "./Tabs";
 const panel = (text: string) => <p className="max-w-prose text-body font-normal">{text}</p>;
 
 const items: TabsItem[] = [
-  { id: "mulher", label: "Mulher", content: panel("Novidades, vestidos, camisas e calças.") },
-  { id: "homem", label: "Homem", content: panel("Casacos, malhas, calças e sapatos.") },
-  { id: "criancas", label: "Crianças", content: panel("Bebê, menina e menino.") },
-  { id: "casa", label: "Casa", content: panel("Quarto, banho e mesa.") },
+  { id: "sobre", label: "Sobre", content: panel("Campanha nacional de cosméticos para TV e redes sociais.") },
+  { id: "personagens", label: "Personagens", content: panel("Mãe, 30 a 45 anos; pai, 35 a 50; criança, 6 a 9.") },
+  { id: "agenda", label: "Agenda", content: panel("Testes em 3 de março. Gravação de 12 a 14 de março.") },
+  { id: "cache", label: "Cachê", content: panel("R$ 2.500 por diária, pagos em até 30 dias.") },
 ];
 
 const meta = {
@@ -52,7 +52,7 @@ export const Vertical: Story = {
 
 export const Estados: Story = {
   args: {
-    defaultValue: "homem",
+    defaultValue: "personagens",
     items: [items[0], items[1], { ...items[2], disabled: true }, items[3]],
   },
 };

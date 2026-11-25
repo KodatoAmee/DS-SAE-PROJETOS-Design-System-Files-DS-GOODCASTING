@@ -7,9 +7,9 @@ const meta = {
   tags: ["autodocs"],
   args: {
     items: [
-      { label: "Mulher", href: "#" },
-      { label: "Vestidos", href: "#" },
-      { label: "Vestido longo de linho" },
+      { label: "Castings", href: "#" },
+      { label: "Publicidade", href: "#" },
+      { label: "Campanha de verão" },
     ],
   },
   argTypes: { separator: { control: "text" } },
@@ -42,17 +42,17 @@ export const Profundo: Story = {
   args: {
     items: [
       { label: "Início", href: "#" },
-      { label: "Mulher", href: "#" },
-      { label: "Roupa", href: "#" },
-      { label: "Casacos", href: "#" },
-      { label: "Trench coat cintado" },
+      { label: "Castings", href: "#" },
+      { label: "Publicidade", href: "#" },
+      { label: "Campanha de verão", href: "#" },
+      { label: "Personagem: mãe" },
     ],
   },
 };
 
 export const DoisNiveis: Story = {
   name: "Dois níveis",
-  args: { items: [{ label: "Homem", href: "#" }, { label: "Malhas" }] },
+  args: { items: [{ label: "Talentos", href: "#" }, { label: "Modelos" }] },
 };
 
 export const Playground: Story = { name: "Área de testes" };

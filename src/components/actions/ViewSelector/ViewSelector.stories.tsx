@@ -17,9 +17,9 @@ const meta = {
     docs: {
       description: {
         component: `
-**O que é.** Seletor da densidade da grelha de castings ou talentos, no formato "VISTA 1 2 3": rótulo em maiúsculas seguido de opções numéricas. A opção ativa fica em \`font-medium\` e sublinhada.
+**O que é.** Seletor da densidade da grade de castings ou talentos, no formato "VISTA 1 2 3": rótulo em maiúsculas seguido de opções numéricas. A opção ativa fica em \`font-medium\` e sublinhada.
 
-**Quando usar.** Barras de listagem para trocar quantas colunas a grelha mostra. Funciona controlado (\`value\` + \`onValueChange\`) ou não controlado (\`defaultValue\`).
+**Quando usar.** Barras de listagem para trocar quantas colunas a grade mostra. Funciona controlado (\`value\` + \`onValueChange\`) ou não controlado (\`defaultValue\`).
 
 **Quando não usar.** Para escolhas que não são números de colunas, use um grupo de rádio do formulário ou abas. Para filtrar ou ordenar, use os componentes de filtro.
 
@@ -43,7 +43,7 @@ const gridCols: Record<number, string> = {
   3: "grid-cols-3",
 };
 
-function GrelhaControlada() {
+function GradeControlada() {
   const [value, setValue] = useState(3);
   return (
     <div className="flex flex-col gap-4">
@@ -58,7 +58,7 @@ function GrelhaControlada() {
 }
 
 export const Controlado: Story = {
-  render: () => <GrelhaControlada />,
+  render: () => <GradeControlada />,
 };
 
 export const MaisOpcoes: Story = { name: "Mais opções", args: { options: [2, 4, 6], defaultValue: 4 } };

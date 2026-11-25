@@ -43,7 +43,7 @@ export const Texto: Story = { args: { label: "Nome", type: "text", name: "nome" 
 
 export const Email: Story = {
   name: "E-mail",
-  args: { helperText: "Enviaremos a confirmação do pedido para este endereço.", autoComplete: "email" },
+  args: { helperText: "Enviaremos a confirmação da candidatura para este endereço.", autoComplete: "email" },
 };
 
 export const Senha: Story = {

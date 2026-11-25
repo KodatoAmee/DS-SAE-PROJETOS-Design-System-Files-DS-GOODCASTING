@@ -11,7 +11,7 @@ const meta = {
     name: "Ana Ribeiro",
     href: "#",
     age: 28,
-    location: "Porto",
+    location: "Rio de Janeiro",
     skills: ["Atriz", "Modelo", "Inglês fluente", "Dança"],
   },
   decorators: [

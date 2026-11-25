@@ -12,7 +12,7 @@ function Demo(props: Partial<ModalProps> & { trigger?: string }) {
         {trigger}
       </Button>
       <Modal
-        title="Guia de tamanhos"
+        title="Requisitos do personagem"
         {...rest}
         open={open}
         onOpenChange={(next) => {
@@ -29,9 +29,9 @@ const meta = {
   component: Modal,
   tags: ["autodocs"],
   args: {
-    title: "Guia de tamanhos",
+    title: "Requisitos do personagem",
     children:
-      "As medidas correspondem ao corpo, não à peça. Em caso de dúvida entre dois tamanhos, escolha o maior.",
+      "Mulher entre 30 e 45 anos, naturalidade e boa dicção. Disponibilidade para gravar de 12 a 14 de março.",
   },
   argTypes: {
     size: { control: "inline-radio", options: ["s", "m", "l"] },
@@ -43,7 +43,7 @@ const meta = {
         component: `
 **O que é.** Diálogo modal centrado: painel branco, sem sombra, sem raio, sobre backdrop \`rgba(0,0,0,.5)\`. Título de 15px em maiúsculas, botão Fechar e rodapé opcional para ações.
 
-**Quando usar.** Decisões curtas que bloqueiam o fluxo: confirmar remoção, guia de tamanhos, aviso legal, escolha de país.
+**Quando usar.** Decisões curtas que bloqueiam o fluxo: confirmar remoção, requisitos do personagem, aviso legal, escolha de país.
 
 **Quando não usar.** Para listas longas ou filtros use \`Drawer\`. Para avisos que não exigem resposta use \`Toast\` ou \`Banner\`.
 
@@ -65,7 +65,7 @@ export const Padrao: Story = { name: "Padrão" };
 export const ComRodape: Story = {
   name: "Com rodapé",
   args: {
-    title: "Remover artigo",
+    title: "Retirar candidatura",
     description: "A candidatura sai da lista do casting. Você pode se candidatar de novo enquanto o prazo estiver aberto.",
     children: undefined,
     size: "s",
@@ -100,14 +100,14 @@ export const ComRodape: Story = {
 export const ConteudoLongo: Story = {
   name: "Conteúdo longo",
   args: {
-    title: "Política de devoluções",
+    title: "Termos de uso de imagem",
     size: "l",
     children: (
       <div className="flex flex-col gap-4">
         {Array.from({ length: 12 }, (_, i) => (
           <p key={i}>
-            Parágrafo {i + 1}. Você tem 30 dias a partir da data de envio para devolver os artigos. As peças
-            devem estar em perfeito estado, com as etiquetas originais.
+            Parágrafo {i + 1}. Ao se candidatar, você autoriza a produtora a usar as fotos e vídeos enviados
+            apenas nesta seleção. Os materiais são apagados ao fim do processo.
           </p>
         ))}
       </div>

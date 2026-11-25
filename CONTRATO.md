@@ -8,11 +8,11 @@ Lido por todo agente antes de escrever componente. Fonte da verdade dos valores:
 - Ciano do circuito (`circuit`, `#00fefe`) só decorativo (traços, pontos). Azul noite (`night`) só como fundo da versão negativa.
 - Botão primário = preto sólido (`bg-inverse`). Destaque de marca = `variant="brand"` (Tiffany + texto preto). Secundário = contorno 1px `border-line`.
 - Raios: `rounded-xs`(4) checkbox · `rounded-sm`(6) · `rounded-md`(10) cartões e mídia · `rounded-control`(12) botões e controles · `rounded-lg`(16) modais e folhas · `rounded-xl`(24) · `rounded-full` pílulas, radio, switch.
-- Sombra só `shadow-card` (cartão elevado) e `shadow-overlay` (sobreposição). Nunca sombra no logótipo.
+- Sombra só `shadow-card` (cartão elevado) e `shadow-overlay` (sobreposição). Nunca sombra no logotipo.
 - Tipo: **Inter** (`font-sans`) em tudo; **Playfair Display** (`font-display`) só em títulos editoriais (`text-heading`, `text-display`). Pesos: 400 texto, 500 ações e selecionado, 600 títulos Inter. Caixa normal (sem maiúsculas forçadas).
 - Campo = só linha inferior 1px `border-line-field`, rótulo 13px `text-content-low`, altura 40.
 - Movimento: `duration-200` hover/opacidade, `duration-300`–`duration-500` painéis, `ease-gc` (ease-in-out).
-- Logótipo: só via componente `Logo` (ficheiros oficiais). Mínimo 120px no digital. Não distorcer, recolorir, rodar ou aplicar efeitos.
+- Logotipo: só via componente `Logo` (arquivos oficiais). Mínimo 120px no digital. Não distorcer, recolorir, girar ou aplicar efeitos.
 
 ## Classes Tailwind disponíveis (só estas — o resto da paleta foi zerado)
 

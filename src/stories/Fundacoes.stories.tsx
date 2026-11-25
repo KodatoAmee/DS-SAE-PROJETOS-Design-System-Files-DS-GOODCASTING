@@ -45,7 +45,7 @@ const semanticColors: { token: string; cls: string; use: string }[] = [
   { token: "brand", cls: "bg-brand", use: "Azul Tiffany #81D8D0: destaque, seleção, progresso" },
   { token: "brand-soft", cls: "bg-brand-soft", use: "Fundo de item selecionado" },
   { token: "brand-text", cls: "bg-brand-text", use: "Link e texto de marca (AA)" },
-  { token: "circuit", cls: "bg-circuit", use: "Circuito do logótipo. Só decorativo" },
+  { token: "circuit", cls: "bg-circuit", use: "Circuito do logotipo. Só decorativo" },
   { token: "night", cls: "bg-night", use: "Fundo da versão negativa" },
   { token: "sheet", cls: "bg-sheet", use: "Folha do app" },
   { token: "success", cls: "bg-success", use: "Sucesso" },
@@ -92,7 +92,7 @@ export const Tipografia: Story = {
   render: () => (
     <Section
       title="Tipografia"
-      note="Duas famílias, como no logótipo: Playfair Display (serifada clássica, GOOD: sofisticação, autoridade) em títulos; Inter (sem serifa, CASTING: clareza, modernidade) em todo o resto. 14px é a base; 400 texto, 500 ações, 600 títulos."
+      note="Duas famílias, como no logotipo: Playfair Display (serifada clássica, GOOD: sofisticação, autoridade) em títulos; Inter (sem serifa, CASTING: clareza, modernidade) em todo o resto. 14px é a base; 400 texto, 500 ações, 600 títulos."
     >
       <div className="divide-y divide-line-subtle border-y border-line-subtle">
         {typeScale.map((t) => (
@@ -176,9 +176,9 @@ export const Movimento: Story = {
   ),
 };
 
-export const Grelha: Story = {
+export const Grade: Story = {
   render: () => (
-    <Section title="Grelha e breakpoints" note="md 768 · lg 1024 · xl 1280 · 2xl 1920. Grelha de talentos e castings com 2/4/6 colunas.">
+    <Section title="Grade e breakpoints" note="md 768 · lg 1024 · xl 1280 · 2xl 1920. Grade de talentos e castings com 2/4/6 colunas.">
       <div className="grid grid-cols-2 gap-x-2 gap-y-6 md:grid-cols-4 lg:grid-cols-6 lg:gap-x-10">
         {Array.from({ length: 12 }).map((_, i) => (
           <div key={i}>
@@ -210,7 +210,7 @@ export const Marca: Story = {
   render: () => (
     <Section
       title="Marca"
-      note="Logótipo oficial (brandbook p. 10–21). Usar só os ficheiros oficiais; não distorcer, recolorir, rodar nem aplicar sombra. Área de proteção = altura do G. Mínimo digital 120px; recomendado 200px."
+      note="Logotipo oficial (brandbook p. 10–21). Usar só os arquivos oficiais; não distorcer, recolorir, girar nem aplicar sombra. Área de proteção = altura do G. Mínimo digital 120px; recomendado 200px."
     >
       <div className="grid gap-6 md:grid-cols-3">
         <div className="flex h-48 items-center justify-center rounded-lg border border-line-subtle bg-base p-8" data-theme="light">
