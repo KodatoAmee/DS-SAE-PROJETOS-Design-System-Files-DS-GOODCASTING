@@ -1,0 +1,260 @@
+/*
+ * DS-GoodCasting: tema. Espelha tokens/tokens.json.
+ * Camadas: primitivas (:root) -> semânticas por tema ([data-theme]) -> @theme (Tailwind v4).
+ * Marca: brandbook Good Casting (Azul Tiffany #81D8D0, preto, branco; Playfair Display + Inter).
+ * Tons de apoio e feedback: GC-DS2 / goodcasting-app.
+ */
+@import "tailwindcss";
+
+:root {
+  /* Marca (brandbook 2026): Azul Tiffany, preto, branco. */
+  --gc-tiffany: #81d8d0;
+  --gc-tiffany-soft: #d9f3f0;
+  --gc-tiffany-deep: #1f4f4b;
+  --gc-teal-text: #057571;
+  --gc-teal-text-dark: #81d8d0;
+  --gc-circuit: #00fefe;
+  --gc-navy: #0d2b3a;
+
+  /* Neutros */
+  --gc-black: #000000;
+  --gc-white: #ffffff;
+  --gc-ink: #121212;
+  --gc-ink-soft: #1b1b1b;
+  --gc-gray-050: #fafafa;
+  --gc-gray-100: #f5f5f5;
+  --gc-gray-150: #edf3f3;
+  --gc-gray-200: #e5ecec;
+  --gc-gray-300: #d3d3d3;
+  --gc-gray-500: #8b8b8b;
+  --gc-gray-600: #5f6767;
+  --gc-gray-800: #333333;
+  --gc-gray-dark-200: #262626;
+  --gc-gray-dark-300: #3a3a3a;
+  --gc-gray-dark-mid: #b7b7b7;
+
+  /* Feedback */
+  --gc-blue: #3a75e9;
+  --gc-blue-text: #2f62d0;
+  --gc-red: #dc3535;
+  --gc-red-text: #c62828;
+  --gc-red-text-dark: #ff6b63;
+  --gc-green: #2ca54e;
+  --gc-green-text: #1e7e3e;
+  --gc-yellow: #bcaa09;
+  --gc-yellow-text: #8a6d00;
+}
+
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+  --gc-base: var(--gc-white);
+  --gc-surface: var(--gc-white);
+  --gc-muted: var(--gc-gray-100);
+  --gc-sheet: var(--gc-gray-150);
+  --gc-canvas: var(--gc-gray-200);
+  --gc-content: var(--gc-ink);
+  --gc-content-mid: var(--gc-gray-600);
+  --gc-content-low: var(--gc-gray-600);
+  --gc-content-disabled: var(--gc-gray-500);
+  --gc-line: var(--gc-ink);
+  --gc-line-subtle: var(--gc-gray-300);
+  --gc-line-field: var(--gc-gray-500);
+  --gc-inverse: var(--gc-ink);
+  --gc-on-inverse: var(--gc-white);
+  --gc-inverse-hover: var(--gc-gray-800);
+  --gc-brand: var(--gc-tiffany);
+  --gc-on-brand: var(--gc-ink);
+  --gc-brand-soft: var(--gc-tiffany-soft);
+  --gc-brand-text: var(--gc-teal-text);
+  --gc-circuit: #00fefe;
+  --gc-night: var(--gc-navy);
+  --gc-info: var(--gc-blue);
+  --gc-info-text: var(--gc-blue-text);
+  --gc-success: var(--gc-green);
+  --gc-success-text: var(--gc-green-text);
+  --gc-warning: var(--gc-yellow);
+  --gc-warning-text: var(--gc-yellow-text);
+  --gc-danger: var(--gc-red);
+  --gc-danger-text: var(--gc-red-text);
+  --gc-overlay: rgb(0 0 0 / 0.5);
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --gc-base: var(--gc-black);
+  --gc-surface: var(--gc-ink);
+  --gc-muted: var(--gc-gray-dark-200);
+  --gc-sheet: var(--gc-ink-soft);
+  --gc-canvas: var(--gc-black);
+  --gc-content: var(--gc-white);
+  --gc-content-mid: var(--gc-gray-dark-mid);
+  --gc-content-low: var(--gc-gray-dark-mid);
+  --gc-content-disabled: var(--gc-gray-500);
+  --gc-line: var(--gc-white);
+  --gc-line-subtle: var(--gc-gray-dark-300);
+  --gc-line-field: var(--gc-gray-500);
+  --gc-inverse: var(--gc-white);
+  --gc-on-inverse: var(--gc-ink);
+  --gc-inverse-hover: var(--gc-tiffany-soft);
+  --gc-brand: var(--gc-tiffany);
+  --gc-on-brand: var(--gc-ink);
+  --gc-brand-soft: var(--gc-tiffany-deep);
+  --gc-brand-text: var(--gc-teal-text-dark);
+  --gc-circuit: #00fefe;
+  --gc-night: var(--gc-navy);
+  --gc-info: var(--gc-blue);
+  --gc-info-text: #7ebffd;
+  --gc-success: var(--gc-green);
+  --gc-success-text: var(--gc-green);
+  --gc-warning: var(--gc-yellow);
+  --gc-warning-text: var(--gc-yellow);
+  --gc-danger: var(--gc-red);
+  --gc-danger-text: var(--gc-red-text-dark);
+  --gc-overlay: rgb(0 0 0 / 0.7);
+}
+
+/* Cores trocam por tema: precisam de `inline` para não congelarem no build. */
+@theme inline {
+  --color-*: initial;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+  --color-base: var(--gc-base);
+  --color-surface: var(--gc-surface);
+  --color-muted: var(--gc-muted);
+  --color-sheet: var(--gc-sheet);
+  --color-canvas: var(--gc-canvas);
+  --color-content: var(--gc-content);
+  --color-content-mid: var(--gc-content-mid);
+  --color-content-low: var(--gc-content-low);
+  --color-content-disabled: var(--gc-content-disabled);
+  --color-line: var(--gc-line);
+  --color-line-subtle: var(--gc-line-subtle);
+  --color-line-field: var(--gc-line-field);
+  --color-inverse: var(--gc-inverse);
+  --color-on-inverse: var(--gc-on-inverse);
+  --color-inverse-hover: var(--gc-inverse-hover);
+  --color-brand: var(--gc-brand);
+  --color-on-brand: var(--gc-on-brand);
+  --color-brand-soft: var(--gc-brand-soft);
+  --color-circuit: var(--gc-circuit);
+  --color-night: var(--gc-night);
+  --color-black: var(--gc-black);
+  --color-white: var(--gc-white);
+  --color-brand-text: var(--gc-brand-text);
+  --color-info: var(--gc-info);
+  --color-info-text: var(--gc-info-text);
+  --color-success: var(--gc-success);
+  --color-success-text: var(--gc-success-text);
+  --color-warning: var(--gc-warning);
+  --color-warning-text: var(--gc-warning-text);
+  --color-danger: var(--gc-danger);
+  --color-danger-text: var(--gc-danger-text);
+  --color-overlay: var(--gc-overlay);
+}
+
+@theme {
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+
+  --text-*: initial;
+  --text-caption: 10px;
+  --text-caption--line-height: 14px;
+  --text-label-s: 12px;
+  --text-label-s--line-height: 16px;
+  --text-label: 13px;
+  --text-label--line-height: 18px;
+  --text-action: 15px;
+  --text-action--line-height: 20px;
+  --text-body: 14px;
+  --text-body--line-height: 20px;
+  --text-title-s: 16px;
+  --text-title-s--line-height: 24px;
+  --text-title: 18px;
+  --text-title--line-height: 24px;
+  --text-heading: 20px;
+  --text-heading--line-height: 28px;
+  --text-display: 28px;
+  --text-display--line-height: 34px;
+
+  --radius-*: initial;
+  --radius-none: 0px;
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-control: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  --shadow-*: initial;
+  --shadow-card: 0 2px 8px rgb(0 0 0 / 0.1);
+  --shadow-overlay: 0 8px 24px rgb(0 0 0 / 0.16);
+
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1920px;
+
+  --ease-gc: ease-in-out;
+
+  --z-index-overlay: 1200;
+  --z-index-toast: 1300;
+
+  --animate-gc-fade-in: gc-fade-in 200ms ease-in-out both;
+  --animate-gc-slide-up: gc-slide-up 300ms ease-in-out both;
+  --animate-gc-pulse: gc-pulse 1.6s ease-in-out infinite;
+
+  @keyframes gc-fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes gc-slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes gc-pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+}
+
+/* Fundo do brandbook: branco -> cinza. Decorativo. */
+@utility bg-brand-gradient {
+  background-image: linear-gradient(180deg, #ffffff 0%, #a3a3a3 100%);
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    background: var(--gc-base);
+    color: var(--gc-content);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
