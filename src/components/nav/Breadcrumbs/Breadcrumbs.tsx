@@ -10,7 +10,7 @@ export interface BreadcrumbsItem {
 
 export interface BreadcrumbsProps extends Omit<ComponentPropsWithoutRef<"nav">, "children"> {
   ref?: Ref<HTMLElement>;
-  /** Do mais geral ao atual. O último é a página atual. */
+  /** Do mais geral ao atual. O último é a página atual e nunca é clicável (`href`/`onClick` ignorados). */
   items: BreadcrumbsItem[];
   /** Padrão: "/". */
   separator?: ReactNode;
@@ -21,14 +21,15 @@ export interface BreadcrumbsProps extends Omit<ComponentPropsWithoutRef<"nav">, 
 const crumb = "inline-flex min-h-6 items-center";
 const crumbLink = cn(
   crumb,
-  "text-content-mid underline-offset-4 decoration-1 transition-colors duration-200 ease-gc hover:text-content hover:underline",
+  "text-content-mid underline-offset-4 decoration-1 transition-colors duration-200 ease-gc hover:text-content",
   focusRing,
 );
 
 function Crumb({ item, current }: { item: BreadcrumbsItem; current: boolean }) {
+  // Página atual: nunca clicável, mesmo que o item traga `href` ou `onClick`.
   if (current) {
     return (
-      <span aria-current="page" className={cn(crumb, "text-content")}>
+      <span aria-current="page" className={cn(crumb, "pointer-events-none cursor-default select-none text-content")}>
         {item.label}
       </span>
     );

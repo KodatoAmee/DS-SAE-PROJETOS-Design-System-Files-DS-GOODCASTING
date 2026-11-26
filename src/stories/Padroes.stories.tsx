@@ -72,8 +72,9 @@ const castings: {
   fee: number | "a-definir";
   status?: CandidacyStatus;
   expired?: boolean;
+  cover?: string;
 }[] = [
-  { title: "Campanha de verão — marca de cosméticos", category: "Publicidade", location: "São Paulo", roles: 3, slots: 6, deadline: { text: "Encerra em 5 dias" }, fee: 2500, status: "analise" },
+  { title: "Campanha de verão — marca de cosméticos", category: "Publicidade", location: "São Paulo", roles: 3, slots: 6, deadline: { text: "Encerra em 5 dias" }, fee: 2500, status: "analise", cover: "https://images.unsplash.com/photo-1646337429688-805ad5762d4e?w=800&h=450&fit=crop&crop=faces" },
   { title: "Longa-metragem: elenco de apoio", category: "Cinema", location: "Rio de Janeiro", roles: 8, slots: 12, deadline: { text: "Encerra hoje às 18h", urgent: true }, fee: 8000 },
   { title: "Desfile da semana de moda", category: "Moda", location: "São Paulo", roles: 1, slots: 20, deadline: { text: "Encerra em 12 dias" }, fee: 1200, status: "selecionado" },
   { title: "Série de TV: participação especial", category: "Televisão", location: "Remoto", roles: 2, slots: 2, deadline: { text: "Encerra em 3 dias" }, fee: "a-definir" },
@@ -98,11 +99,11 @@ function Timeline() {
   const list = castings.filter((c) => category[0] === "Todos" || c.category === category[0]);
 
   return (
-    <div className="-m-6 bg-canvas">
+    <div className="-m-6 bg-base">
       <Header
         variant="solid"
         sticky
-        logo={<Logo width={120} />}
+        logo={<Logo width={84} />}
         menuOpen={menu}
         menuId="menu-principal"
         onMenuClick={() => setMenu(true)}
@@ -154,6 +155,7 @@ function Timeline() {
               fee={{ amount: c.fee, upTo: typeof c.fee === "number" }}
               status={c.status}
               expired={c.expired}
+              cover={c.cover ? { src: c.cover, alt: "Modelo em plano americano diante de fundo azul" } : undefined}
               saved={saved.includes(c.title)}
               onSavedChange={(on) =>
                 setSaved((s) => (on ? [...s, c.title] : s.filter((t) => t !== c.title)))
@@ -220,7 +222,12 @@ export const DetalheDoCasting: Story = {
       <Breadcrumbs items={[{ label: "Castings", href: "#" }, { label: "Publicidade", href: "#" }, { label: "Campanha de verão" }]} />
       <div className="mt-6 grid gap-10 lg:grid-cols-[1fr_360px]">
         <div className="space-y-6">
-          <MediaPlaceholder aspect="16/9" label="Capa do casting" className="rounded-lg" />
+          <MediaPlaceholder
+            aspect="16/9"
+            src="https://images.unsplash.com/photo-1742360401311-b8a56a428dbc?w=1600&h=900&fit=crop"
+            alt="Imagem conceitual da campanha: mulher deitada sobre tecido coral, com uma flor cobrindo o rosto"
+            className="rounded-lg"
+          />
           <div className="space-y-3">
             <StatusBadge status="enviada" />
             <h1 className="font-display text-display">Campanha de verão — marca de cosméticos</h1>

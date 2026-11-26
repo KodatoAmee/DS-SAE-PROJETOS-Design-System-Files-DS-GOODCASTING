@@ -6,7 +6,7 @@ import logoWhite from "../../assets/brand/good-casting-logo-white.svg";
 export interface LogoProps extends Omit<ComponentPropsWithoutRef<"img">, "src" | "alt"> {
   /** `principal`: texto #121212 sobre fundo claro. `branco`: sobre fundo escuro ou de cor. */
   tone?: "principal" | "branco";
-  /** Largura em px. Mínimo digital do brandbook: 120. Recomendado: 200. */
+  /** Largura em px. Mínimo do DS: 84 (o brandbook pede 120; reduzido para o Header). Recomendado: 200. */
   width?: number;
   /** Texto alternativo. Vazio quando o logo é decorativo ao lado do nome. */
   alt?: string;
@@ -18,7 +18,7 @@ export function Logo({ tone = "principal", width = 200, alt = "Good Casting", cl
     <img
       src={tone === "branco" ? logoWhite : logoDark}
       alt={alt}
-      width={Math.max(width, 120)}
+      width={Math.max(width, 84)}
       className={cn("block h-auto select-none", className)}
       draggable={false}
       {...rest}

@@ -12,7 +12,7 @@ Lido por todo agente antes de escrever componente. Fonte da verdade dos valores:
 - Tipo: **Inter** (`font-sans`) em tudo; **Playfair Display** (`font-display`) só em títulos editoriais (`text-heading`, `text-display`). Pesos: 400 texto, 500 ações e selecionado, 600 títulos Inter. Caixa normal (sem maiúsculas forçadas).
 - Campo = só linha inferior 1px `border-line-field`, rótulo 13px `text-content-low`, altura 40.
 - Movimento: `duration-200` hover/opacidade, `duration-300`–`duration-500` painéis, `ease-gc` (ease-in-out).
-- Logotipo: só via componente `Logo` (arquivos oficiais). Mínimo 120px no digital. Não distorcer, recolorir, girar ou aplicar efeitos.
+- Logotipo: só via componente `Logo` (arquivos oficiais). Mínimo 84px no digital (o brandbook pede 120px; reduzido para caber no Header). Não distorcer, recolorir, girar ou aplicar efeitos.
 
 ## Classes Tailwind disponíveis (só estas — o resto da paleta foi zerado)
 

@@ -190,7 +190,7 @@ export function MenuDrawer({
             }}
             className={cn(
               "inline-flex min-h-8 items-center text-action font-normal",
-              "underline-offset-4 decoration-1 hover:underline",
+              "underline-offset-4 decoration-1",
               focusRing,
             )}
           >
@@ -225,8 +225,8 @@ export function MenuDrawer({
         {...rest}
       >
         {/* Mesma geometria do Header: o X cai onde estava o hambúrguer. */}
-        <div className="flex h-12 shrink-0 items-center pl-5 pr-3 md:h-16 md:pl-0">
-          <div className="-ml-2.5 flex md:ml-0 md:w-20 md:justify-center">
+        <div className="flex h-12 shrink-0 items-center pl-5 pr-3">
+          <div className="-ml-2.5 flex">
             <button
               ref={closeRef}
               type="button"

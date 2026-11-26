@@ -101,12 +101,12 @@ export const ComRodape: Story = {
     footer: (
       <ul className="flex flex-col gap-2 text-action font-normal">
         <li>
-          <a href="#" className="hover:underline">
+          <a href="#">
             Entrar
           </a>
         </li>
         <li>
-          <a href="#" className="hover:underline">
+          <a href="#">
             Ajuda
           </a>
         </li>

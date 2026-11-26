@@ -210,7 +210,7 @@ export const Marca: Story = {
   render: () => (
     <Section
       title="Marca"
-      note="Logotipo oficial (brandbook p. 10–21). Usar só os arquivos oficiais; não distorcer, recolorir, girar nem aplicar sombra. Área de proteção = altura do G. Mínimo digital 120px; recomendado 200px."
+      note="Logotipo oficial (brandbook p. 10–21). Usar só os arquivos oficiais; não distorcer, recolorir, girar nem aplicar sombra. Área de proteção = altura do G. Mínimo no DS 84px (o brandbook pede 120px); recomendado 200px."
     >
       <div className="grid gap-6 md:grid-cols-3">
         <div className="flex h-48 items-center justify-center rounded-lg border border-line-subtle bg-base p-8" data-theme="light">

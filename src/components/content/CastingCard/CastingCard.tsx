@@ -70,7 +70,7 @@ export function CastingCard({
     <article
       aria-labelledby={titleId}
       className={cn(
-        "relative flex flex-col overflow-hidden rounded-lg border border-line-subtle bg-surface text-content",
+        "group/card relative flex flex-col overflow-hidden rounded-lg border border-line-subtle bg-surface text-content",
         "transition-shadow duration-200 ease-gc hover:shadow-card",
         className,
       )}
@@ -95,7 +95,7 @@ export function CastingCard({
         {status && <StatusBadge status={status} className="self-start" />}
 
         <TitleEl id={titleId} className="line-clamp-2 text-title-s font-semibold">
-          <a href={href} {...linkProps} className={cn(stretchedLink, "hover:underline underline-offset-2", linkProps?.className)}>
+          <a href={href} {...linkProps} className={cn(stretchedLink, "underline-offset-2", linkProps?.className)}>
             {title}
           </a>
         </TitleEl>

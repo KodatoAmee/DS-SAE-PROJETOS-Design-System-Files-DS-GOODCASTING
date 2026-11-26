@@ -10,9 +10,9 @@ export const tagVariants = cva(
         /** Só texto, como "Novo" ao lado do título do casting. */
         plain: "text-content",
         /** Contorno 1px. */
-        outline: "border border-line px-1.5 text-content",
+        outline: "border border-line px-2.5 py-0.5 text-content",
         /** Fundo invertido (preto no tema claro). */
-        solid: "border border-inverse bg-inverse px-1.5 text-on-inverse",
+        solid: "border border-inverse bg-inverse px-2.5 py-0.5 text-on-inverse",
       },
       size: {
         /** 10/16. */

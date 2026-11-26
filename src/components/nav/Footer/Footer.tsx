@@ -37,7 +37,7 @@ export interface FooterProps extends Omit<ComponentPropsWithoutRef<"footer">, "c
 }
 
 const linkClass = cn(
-  "inline-flex min-h-6 items-center text-label-s font-normal underline-offset-4 decoration-1 hover:underline",
+  "inline-flex min-h-6 items-center text-label-s font-normal underline-offset-4 decoration-1",
   focusRing,
 );
 

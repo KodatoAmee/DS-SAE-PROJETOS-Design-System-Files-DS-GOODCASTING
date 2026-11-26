@@ -7,7 +7,7 @@ import { Header, type HeaderAction, type HeaderProps } from "./Header";
 /** Logotipo oficial Good Casting. */
 const logo = (
   <a href="#" aria-label="Good Casting, início">
-    <Logo width={120} alt="" />
+    <Logo width={84} alt="" />
   </a>
 );
 
@@ -42,7 +42,7 @@ const meta = {
     docs: {
       description: {
         component: `
-**O que é.** Cabeçalho global editorial. À esquerda, "ombro" de 80px (desktop) com o botão de menu (hambúrguer de 2 linhas, 20x7, traço 1px) e a área do logotipo. À direita, a pesquisa (link com sublinhado inferior, 135px) e as ações em texto (13px/22, maiúsculas, peso 300, gap 8).
+**O que é.** Cabeçalho global editorial, com o mesmo layout em todos os breakpoints (altura 48px). À esquerda, o botão de menu (hambúrguer de 3 linhas, 20x13, traço 1px) e o logotipo logo ao lado. À direita, pesquisa e ações como ícones 20px em alvos 40x40 (ações sem \`icon\` aparecem em texto).
 
 **Quando usar.** No topo de todas as páginas da plataforma. \`transparent\` sobre mídia editorial (hero, campanha); \`solid\` (\`bg-base\`) sobre listagens e quando o conteúdo rola por baixo com \`sticky\`.
 

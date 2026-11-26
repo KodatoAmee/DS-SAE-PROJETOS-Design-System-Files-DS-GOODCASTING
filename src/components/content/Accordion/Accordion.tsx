@@ -147,7 +147,7 @@ export function AccordionItem({
           onClick={() => toggle(value)}
           className={cn(
             "flex min-h-11 w-full items-center justify-between gap-4 py-3 text-left",
-            "text-action font-normal",
+            "text-action font-normal aria-expanded:font-semibold",
             "transition-opacity duration-200 ease-gc hover:opacity-60",
             "disabled:text-content-disabled disabled:hover:opacity-100",
             focusRing,

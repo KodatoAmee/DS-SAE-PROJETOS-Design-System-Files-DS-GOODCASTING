@@ -42,7 +42,7 @@ export function MediaPlaceholder({
       role={empty && label ? "img" : undefined}
       aria-label={empty && label ? label : undefined}
       className={cn(
-        "relative w-full overflow-hidden rounded-md bg-muted",
+        "relative w-full overflow-hidden rounded-t-md rounded-b-none bg-muted",
         mediaAspectClasses[aspect],
         className,
       )}
@@ -56,7 +56,8 @@ export function MediaPlaceholder({
           alt={alt}
           loading="lazy"
           decoding="async"
-          className="absolute inset-0 size-full object-cover"
+          // Dentro de um cartão `group/card`, a imagem amplia 1,15× no hover (200ms, ease-in, volta ao sair).
+          className="absolute inset-0 size-full object-cover transition-transform duration-200 ease-in group-hover/card:scale-115 motion-reduce:transition-none"
         />
       ) : (
         label && (

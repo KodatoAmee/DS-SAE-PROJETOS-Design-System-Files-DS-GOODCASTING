@@ -67,7 +67,7 @@ export function TalentCard({
 
       <div className="flex flex-col gap-1.5 pt-3">
         <NameEl id={nameId} className="flex items-center gap-1 text-title-s font-semibold">
-          <a href={href} {...linkProps} className={cn(stretchedLink, "truncate hover:underline underline-offset-2", linkProps?.className)}>
+          <a href={href} {...linkProps} className={cn(stretchedLink, "truncate underline-offset-2", linkProps?.className)}>
             {name}
           </a>
           {verified && <Icon name="check" size={16} label="Perfil verificado" className="text-brand-text" />}

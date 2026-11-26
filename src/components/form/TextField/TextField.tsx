@@ -38,7 +38,7 @@ function AdornmentButton(props: ComponentPropsWithoutRef<"button">) {
       {...props}
       className={cn(
         "mb-0.5 inline-flex min-h-6 min-w-6 shrink-0 items-center justify-center",
-        "text-label font-normal text-content underline-offset-4 hover:underline",
+        "text-label font-normal text-content underline-offset-4",
         "disabled:pointer-events-none disabled:text-content-disabled",
         focusRing,
         props.className,

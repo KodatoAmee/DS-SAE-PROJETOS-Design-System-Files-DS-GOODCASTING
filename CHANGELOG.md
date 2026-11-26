@@ -10,6 +10,16 @@ Formato [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/), versão [Se
 ### Alterado
 - Textos de componentes, stories, docs e tokens revisados para PT-BR (logotipo, grade, arquivos, tela, Entrar; cidades brasileiras nos exemplos). A story Fundações › Grelha virou Fundações › Grade.
 - Exemplos de loja restantes (menus Mulher/Homem/Crianças, envio, devoluções, artigo) trocados por casting.
+- Ícones `menu`, `search`, `bag`, `user`, `help`, `bookmark`, `filter`, `info`, `pin`, `calendar`, `clock`, `users`, `heart` e `star` agora vêm do Circum Icons (`react-icons/ci`); `react-icons` entra como dependência e fica externo no build.
+- `Header`: mesmo layout em todos os breakpoints (menu, logo ao lado, ícones à direita, 48px); hambúrguer de 3 linhas. `MenuDrawer` acompanha a posição do X.
+- `Tabs` verticais (e `MenuDrawer`): a aba ativa ganha uma linha que corre até a linha vertical à esquerda do painel.
+- Textos clicáveis deixam de sublinhar no hover (Button de texto, Link padrão, cards, TextField, Breadcrumbs, Footer, Header, MenuDrawer, Pagination, Tabs).
+- `CastingCard`: no hover a capa amplia 1,15× (200ms, ease-in). `MediaPlaceholder`: cantos inferiores retos.
+- `Accordion`: título do item aberto em negrito (600).
+- `Tag`: padding igual ao do `StatusBadge` (`px-2.5 py-0.5`) nas variantes `outline` e `solid`.
+- `Breadcrumbs`: o item atual nunca é clicável (`href`/`onClick` ignorados, sem ponteiro).
+- `Logo`: mínimo de 120px para 84px (abaixo do brandbook) para o logo do Header.
+- Stories: foto de modelo no `CastingCard`, imagem conceitual no Detalhe do casting e fundo branco na Timeline.
 
 ## [0.1.0] — 2026-11-25
 

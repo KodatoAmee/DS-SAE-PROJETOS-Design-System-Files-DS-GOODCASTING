@@ -16,6 +16,7 @@ const meta = {
     slots: 6,
     deadline: { text: "Encerra em 5 dias" },
     fee: { amount: 2500, upTo: true },
+    cover: { src: "https://images.unsplash.com/photo-1646337429688-805ad5762d4e?w=800&h=450&fit=crop&crop=faces", alt: "Modelo em plano americano diante de fundo azul" },
   },
   decorators: [
     (Story) => (

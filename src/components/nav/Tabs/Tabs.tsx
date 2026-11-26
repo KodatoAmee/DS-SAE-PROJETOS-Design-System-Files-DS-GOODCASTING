@@ -20,15 +20,28 @@ export const tabVariants = cva(
   {
     variants: {
       selected: {
-        /** Selecionado: peso 500 + sublinhado 1px. */
-        true: "font-medium underline",
-        false: "hover:underline",
+        /** Selecionado: peso 500 (+ sublinhado ou linha, conforme a orientação). */
+        true: "font-medium",
+        false: "",
       },
       orientation: {
         horizontal: "py-2",
-        vertical: "py-1",
+        vertical: "relative py-1",
       },
     },
+    compoundVariants: [
+      /** Horizontal: sublinhado 1px no texto. */
+      { selected: true, orientation: "horizontal", className: "underline" },
+      /**
+       * Vertical: linha 1px sob a aba que corre até a linha vertical do painel
+       * (atravessa o `pr-8` da lista e encontra o `border-l` do painel).
+       */
+      {
+        selected: true,
+        orientation: "vertical",
+        className: "after:absolute after:bottom-0 after:left-0 after:-right-8 after:h-px after:bg-line after:content-['']",
+      },
+    ],
     defaultVariants: { selected: false, orientation: "horizontal" },
   },
 );
@@ -129,7 +142,7 @@ export function Tabs({
   return (
     <div
       ref={ref}
-      className={cn(vertical ? "flex items-start gap-8" : "flex flex-col gap-6", className)}
+      className={cn(vertical ? "flex items-stretch" : "flex flex-col gap-6", className)}
       {...rest}
     >
       <div
@@ -140,7 +153,7 @@ export function Tabs({
         className={cn(
           // Horizontal: `-m-1 p-1` dá respiro ao anel de foco (outline 1 + offset 2)
           // que o `overflow-x-auto` recortaria, sem mudar o alinhamento visual.
-          vertical ? "flex shrink-0 flex-col items-start gap-1" : "-m-1 flex gap-6 overflow-x-auto p-1",
+          vertical ? "flex shrink-0 flex-col items-stretch gap-1 self-start pr-8" : "-m-1 flex gap-6 overflow-x-auto p-1",
           listClassName,
         )}
       >
@@ -179,7 +192,7 @@ export function Tabs({
             aria-labelledby={tabId(index)}
             tabIndex={0}
             hidden={item.id !== selected}
-            className={cn("min-w-0 flex-1", focusRing, panelClassName)}
+            className={cn("min-w-0 flex-1", vertical && "border-l border-line pl-8", focusRing, panelClassName)}
           >
             {item.content}
           </div>

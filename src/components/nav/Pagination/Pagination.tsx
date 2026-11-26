@@ -105,7 +105,7 @@ function PageControl({
 }
 
 const textControl =
-  "inline-flex h-8 items-center justify-center px-2 text-action font-normal underline-offset-4 decoration-1 hover:underline aria-disabled:pointer-events-none aria-disabled:text-content-disabled";
+  "inline-flex h-8 items-center justify-center px-2 text-action font-normal underline-offset-4 decoration-1 aria-disabled:pointer-events-none aria-disabled:text-content-disabled";
 
 const iconControl =
   "inline-flex size-10 items-center justify-center transition-opacity duration-200 ease-gc hover:opacity-60 aria-disabled:pointer-events-none aria-disabled:text-content-disabled";
@@ -223,7 +223,7 @@ export function Pagination({
                 ariaLabel={getPageLabel(item, total)}
                 className={cn(
                   "inline-flex h-8 min-w-8 items-center justify-center px-1 text-action underline-offset-4 decoration-1",
-                  item === current ? "font-medium underline" : "font-normal hover:underline",
+                  item === current ? "font-medium underline" : "font-normal",
                 )}
               >
                 {item}

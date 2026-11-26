@@ -23,9 +23,9 @@ export const buttonVariants = cva(
         /** Contorno 1px, fundo da página. */
         secondary:
           "border border-line bg-transparent text-content hover:bg-muted disabled:border-content-disabled disabled:text-content-disabled",
-        /** Só texto, sublinha no hover. */
+        /** Só texto, sem sublinhado no hover. */
         tertiary:
-          "border border-transparent bg-transparent text-content underline-offset-4 hover:underline disabled:text-content-disabled",
+          "border border-transparent bg-transparent text-content underline-offset-4 disabled:text-content-disabled",
       },
       size: {
         /** 40px: ações compactas. */

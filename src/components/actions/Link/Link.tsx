@@ -11,8 +11,8 @@ export const linkVariants = cva(
   {
     variants: {
       variant: {
-        /** Sem sublinhado em repouso; sublinha no hover. */
-        default: "no-underline hover:underline",
+        /** Sem sublinhado, nem em repouso nem no hover. */
+        default: "no-underline",
         /** Sempre sublinhado; no hover perde opacidade. Use dentro de texto corrido. */
         underline: "underline hover:opacity-60",
       },
