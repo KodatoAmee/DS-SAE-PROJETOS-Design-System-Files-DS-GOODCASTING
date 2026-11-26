@@ -1,36 +1,46 @@
 import type { SVGProps } from "react";
+import type { IconType } from "react-icons";
+import {
+  CiBag1,
+  CiBookmark,
+  CiCalendar,
+  CiCircleInfo,
+  CiCircleQuestion,
+  CiClock1,
+  CiFilter,
+  CiHeart,
+  CiLocationOn,
+  CiMenuBurger,
+  CiSearch,
+  CiStar,
+  CiUser,
+} from "react-icons/ci";
 import { cn } from "../../lib/cn";
 
-/** Ícones de traço fino (1px), desenhados para o DS. Grade 20x20. */
+/** Ícones com par direto no Circum Icons (react-icons/ci). */
+const ciIcons = {
+  menu: CiMenuBurger,
+  search: CiSearch,
+  bag: CiBag1,
+  user: CiUser,
+  help: CiCircleQuestion,
+  bookmark: CiBookmark,
+  filter: CiFilter,
+  info: CiCircleInfo,
+  pin: CiLocationOn,
+  calendar: CiCalendar,
+  clock: CiClock1,
+  users: CiUser,
+  heart: CiHeart,
+  star: CiStar,
+} satisfies Record<string, IconType>;
+
+/**
+ * Ícones de traço fino (1px), desenhados para o DS. Grade 20x20.
+ * Mantidos porque o Circum Icons não tem versão sem moldura deles.
+ */
 const paths = {
-  menu: <path d="M2 7h16M2 13h16" />,
   close: <path d="M4 4l12 12M16 4L4 16" />,
-  search: (
-    <>
-      <circle cx="8.5" cy="8.5" r="5.5" />
-      <path d="M12.5 12.5L17 17" />
-    </>
-  ),
-  bag: (
-    <>
-      <path d="M4 6.5h12V17H4z" />
-      <path d="M7.5 6.5V5a2.5 2.5 0 015 0v1.5" />
-    </>
-  ),
-  user: (
-    <>
-      <circle cx="10" cy="6.5" r="3" />
-      <path d="M3.5 17c.6-3.2 3.2-5 6.5-5s5.9 1.8 6.5 5" />
-    </>
-  ),
-  help: (
-    <>
-      <circle cx="10" cy="10" r="7" />
-      <path d="M8 8a2 2 0 113 1.7c-.6.4-1 .8-1 1.6M10 13.6v.4" />
-    </>
-  ),
-  bookmark: <path d="M5.5 3h9v14L10 13.5 5.5 17z" />,
-  filter: <path d="M3 6h14M6 10h8M8.5 14h3" />,
   plus: <path d="M10 4v12M4 10h12" />,
   minus: <path d="M4 10h12" />,
   check: <path d="M4 10.5l4 4 8-9" />,
@@ -39,48 +49,20 @@ const paths = {
   "chevron-left": <path d="M12.5 5l-5 5 5 5" />,
   "chevron-right": <path d="M7.5 5l5 5-5 5" />,
   "arrow-right": <path d="M3 10h14M12 5l5 5-5 5" />,
-  info: (
-    <>
-      <circle cx="10" cy="10" r="7" />
-      <path d="M10 9v5M10 6v.5" />
-    </>
-  ),
-  pin: (
-    <>
-      <path d="M10 17.5s-5.5-5-5.5-9a5.5 5.5 0 0111 0c0 4-5.5 9-5.5 9z" />
-      <circle cx="10" cy="8.5" r="2" />
-    </>
-  ),
-  calendar: (
-    <>
-      <path d="M3.5 5h13v12h-13zM3.5 8.5h13M7 3v3M13 3v3" />
-    </>
-  ),
-  clock: (
-    <>
-      <circle cx="10" cy="10" r="7" />
-      <path d="M10 6v4l2.5 2.5" />
-    </>
-  ),
-  users: (
-    <>
-      <circle cx="7.5" cy="7" r="2.5" />
-      <path d="M2.5 16c.5-2.6 2.4-4 5-4s4.5 1.4 5 4" />
-      <path d="M12.5 4.6a2.5 2.5 0 010 4.8M14.5 12.3c1.6.5 2.7 1.7 3 3.7" />
-    </>
-  ),
-  heart: <path d="M10 16.5S3 12.3 3 7.6A3.6 3.6 0 0110 6a3.6 3.6 0 017 1.6c0 4.7-7 8.9-7 8.9z" />,
   mask: (
     <>
       <path d="M4 4.5c4 1.2 8 1.2 12 0v5.5a6 6 0 01-12 0z" />
       <path d="M7 9h1.5M11.5 9H13M8 12.5c1.2.8 2.8.8 4 0" />
     </>
   ),
-  star: <path d="M10 3l2.1 4.4 4.9.6-3.6 3.4.9 4.8L10 13.9l-4.3 2.3.9-4.8L3 8l4.9-.6z" />,
 } as const;
 
-export type IconName = keyof typeof paths;
-export const iconNames = Object.keys(paths) as IconName[];
+type CiName = keyof typeof ciIcons;
+type PathName = keyof typeof paths;
+export type IconName = CiName | PathName;
+export const iconNames = [...Object.keys(ciIcons), ...Object.keys(paths)] as IconName[];
+
+const isCi = (name: IconName): name is CiName => name in ciIcons;
 
 export interface IconProps extends Omit<SVGProps<SVGSVGElement>, "name"> {
   name: IconName;
@@ -91,6 +73,21 @@ export interface IconProps extends Omit<SVGProps<SVGSVGElement>, "name"> {
 }
 
 export function Icon({ name, size = 20, label, className, ...rest }: IconProps) {
+  if (isCi(name)) {
+    const CiIcon = ciIcons[name];
+    return (
+      <CiIcon
+        size={size}
+        role={label ? "img" : undefined}
+        aria-label={label}
+        aria-hidden={label ? undefined : true}
+        focusable="false"
+        className={cn("shrink-0", className)}
+        {...rest}
+      />
+    );
+  }
+
   return (
     <svg
       viewBox="0 0 20 20"
