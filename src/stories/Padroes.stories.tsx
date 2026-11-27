@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
-import { Logo } from "../components/brand";
+import { Logo, Monogram } from "../components/brand";
 import {
   Accordion,
   AccordionItem,
@@ -377,7 +377,7 @@ export const IniciarSessao: Story = {
   parameters: { layout: "padded" },
   render: () => (
     <form className="mx-auto mt-10 max-w-[398px] space-y-6" onSubmit={(e) => e.preventDefault()}>
-      <Logo width={160} className="mx-auto" />
+      <Monogram tone="preto" width={120} className="mx-auto" />
       <h1 className="pt-4 text-center font-display text-heading">Entrar na Good Casting</h1>
       <TextField label="E-mail" type="email" placeholder="Digite o seu e-mail" autoComplete="email" />
       <TextField label="Senha" type="password" autoComplete="current-password" />

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import type { CSSProperties, ReactNode } from "react";
-import { Logo } from "../components/brand";
+import { Logo, Monogram } from "../components/brand";
 import { cn } from "../lib/cn";
 import { Icon, circumIconNames, iconNames } from "../components/icon";
 
@@ -525,7 +525,14 @@ export const Marca: Story = {
             As iniciais G e D formam uma assinatura visual única, para comunicar simplicidade, inovação e confiança. É o
             elemento de reconhecimento imediato em espaços pequenos (avatar, favicon, ícone do app).
           </p>
-          <Pending label="Monograma GD · Casting®" />
+          <div className="grid grid-cols-2 gap-4">
+            <div className="flex h-36 items-center justify-center rounded-lg border border-line-subtle bg-base" data-theme="light">
+              <Monogram tone="preto" width={110} />
+            </div>
+            <div className="flex h-36 items-center justify-center rounded-lg bg-black">
+              <Monogram tone="branco" width={110} />
+            </div>
+          </div>
         </div>
       </BrandBlock>
 
@@ -639,8 +646,12 @@ export const Marca: Story = {
         <div className="mt-8">
           <BrandLabel>Monograma em branco</BrandLabel>
           <div className="grid gap-6 md:grid-cols-2">
-            <Pending label="Monograma sobre preto" />
-            <Pending label="Monograma sobre noite" />
+            <div className="flex h-44 items-center justify-center rounded-lg bg-black">
+              <Monogram tone="branco" width={150} />
+            </div>
+            <div className="flex h-44 items-center justify-center rounded-lg bg-night">
+              <Monogram tone="branco" width={150} />
+            </div>
           </div>
         </div>
         <BrandNote>Só sobre fundos escuros ou de cor que garantam contraste. Sem efeitos, contornos ou sombras.</BrandNote>
