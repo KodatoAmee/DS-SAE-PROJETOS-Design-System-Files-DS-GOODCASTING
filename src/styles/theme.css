@@ -1,7 +1,7 @@
 /*
  * DS-GoodCasting: tema. Espelha tokens/tokens.json.
  * Camadas: primitivas (:root) -> semânticas por tema ([data-theme]) -> @theme (Tailwind v4).
- * Marca: brandbook Good Casting (Azul Tiffany #81D8D0, preto, branco; Playfair Display + Inter).
+ * Marca: brandbook Good Casting (Azul Tiffany #81D8D0, preto, branco). Tipo do DS: Bodoni Moda + Public Sans.
  * Tons de apoio e feedback: GC-DS2 / goodcasting-app.
  */
 @import "tailwindcss";
@@ -157,8 +157,8 @@
 }
 
 @theme {
-  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
-  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-sans: "Public Sans", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --font-display: "Bodoni Moda", Georgia, "Times New Roman", serif;
 
   --text-*: initial;
   --text-caption: 10px;

@@ -26,6 +26,11 @@ Formato [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/), versão [Se
 - `Radio`: círculo e ponto com `border-radius: 100%`; legenda e descrições ficam na cor de desabilitado; story Desabilitado.
 - `Switch`: bolinha com `border-radius: 100%`.
 - `Select`: valor, rótulo e seta com 4px de recuo interno.
+- Ícones: todos do React Icons. Os que ainda eram desenhados à mão (`close`, `plus`, `minus`, `check`, `chevron-*`, `arrow-right`, `mask`) e `users` passam a Phosphor Light (`react-icons/pi`); o resto segue no Circum Icons.
+- `Icon`: catálogo completo do Circum Icons (288) disponível com prefixo `ci-` (ex.: `ci-bag-1`), exportado como `circumIconNames` e exibido em Fundações › Iconografia. Gerado em `src/components/icon/circum.ts`.
+- `Select`: linha inferior fica Azul Tiffany no hover (fora de erro e desabilitado).
+- Fundações › Marca reescrita a partir do brandbook (p. 10–21): logotipo, monograma, conceito, construção e área de proteção (X), dimensão mínima (impressão e digital), versões, versões em branco, usos incorretos e uso correto. Monograma e versões monocromática/horizontal/vertical/com símbolo aguardam os arquivos oficiais.
+- Tipografia do DS: **Bodoni Moda** (`font-display`, títulos) + **Public Sans** (`font-sans`, resto), no lugar de Playfair Display + Inter. Fundações ganha as comparações Tipografia - 1 a - 5.
 - `ButtonGroup` `attached`: vão de 4px entre os botões (antes bordas sobrepostas); story Quantidade sem borda no número.
 
 ## [0.1.0] — 2026-11-25

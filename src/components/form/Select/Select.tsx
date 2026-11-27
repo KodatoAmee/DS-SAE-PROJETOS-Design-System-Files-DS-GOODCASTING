@@ -57,7 +57,7 @@ export function Select({
 
   return (
     <div className={cn("w-full", className)}>
-      <div className={cn(fieldLine, "h-10", fieldLineState({ error: !!error, disabled }))}>
+      <div className={cn(fieldLine, "h-10", fieldLineState({ error: !!error, disabled }), !disabled && !error && "hover:border-brand")}>
         <select
           ref={ref}
           id={ids.controlId}

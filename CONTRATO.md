@@ -9,7 +9,7 @@ Lido por todo agente antes de escrever componente. Fonte da verdade dos valores:
 - Botão primário = preto sólido (`bg-inverse`). Destaque de marca = `variant="brand"` (Tiffany + texto preto). Secundário = contorno 1px `border-line`.
 - Raios: `rounded-xs`(4) checkbox · `rounded-sm`(6) · `rounded-md`(10) cartões e mídia · `rounded-control`(12) botões e controles · `rounded-lg`(16) modais e folhas · `rounded-xl`(24) · `rounded-full` pílulas, radio, switch.
 - Sombra só `shadow-card` (cartão elevado) e `shadow-overlay` (sobreposição). Nunca sombra no logotipo.
-- Tipo: **Inter** (`font-sans`) em tudo; **Playfair Display** (`font-display`) só em títulos editoriais (`text-heading`, `text-display`). Pesos: 400 texto, 500 ações e selecionado, 600 títulos Inter. Caixa normal (sem maiúsculas forçadas).
+- Tipo: **Public Sans** (`font-sans`) em tudo; **Bodoni Moda** (`font-display`) só em títulos editoriais (`text-heading`, `text-display`). Pesos: 400 texto, 500 ações e selecionado, 600 títulos Public Sans. Caixa normal (sem maiúsculas forçadas).
 - Campo = só linha inferior 1px `border-line-field`, rótulo 13px `text-content-low`, altura 40.
 - Movimento: `duration-200` hover/opacidade, `duration-300`–`duration-500` painéis, `ease-gc` (ease-in-out).
 - Logotipo: só via componente `Logo` (arquivos oficiais). Mínimo 84px no digital (o brandbook pede 120px; reduzido para caber no Header). Não distorcer, recolorir, girar ou aplicar efeitos.
@@ -18,7 +18,7 @@ Lido por todo agente antes de escrever componente. Fonte da verdade dos valores:
 
 - Cor: `base surface muted sheet canvas content content-mid content-low content-disabled line line-subtle line-field inverse on-inverse inverse-hover brand on-brand brand-soft brand-text circuit night info info-text success success-text warning warning-text danger danger-text overlay black white transparent current`.
 - Texto: `text-caption`(10/14) `text-label-s`(12/16) `text-label`(13/18) `text-action`(15/20) `text-body`(14/20) `text-title-s`(16/24) `text-title`(18/24) `text-heading`(20/28) `text-display`(28/34). **Não usar `text-sm`, `text-xs`, `text-lg` etc. — não existem.**
-- Fonte: `font-sans` (Inter), `font-display` (Playfair Display).
+- Fonte: `font-sans` (Public Sans), `font-display` (Bodoni Moda).
 - Espaço: escala numérica padrão do Tailwind (base 4px).
 - Z: `z-overlay` (1200), `z-toast` (1300), `z-10`.
 - Animações: `animate-gc-fade-in`, `animate-gc-slide-up`, `animate-gc-pulse`. Fundo decorativo: `bg-brand-gradient`.

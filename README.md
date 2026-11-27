@@ -1,6 +1,6 @@
 # DS-GoodCasting
 
-Design system da **Good Casting** em React 19 + Tailwind v4, documentado no Storybook 10. Estrutura clonada do [DS-Zara](https://kodatoamee.github.io/DS-SAE-PROJETOS-Design-System-Files-DS-ZARA/) (mesmos componentes, contrato e governança); identidade do brandbook Good Casting: preto, branco e Azul Tiffany `#81D8D0`, Playfair Display + Inter, logotipo oficial. Tons de apoio e feedback vêm do GC-DS2 e do app (`goodcasting-app`).
+Design system da **Good Casting** em React 19 + Tailwind v4, documentado no Storybook 10. Estrutura clonada do [DS-Zara](https://kodatoamee.github.io/DS-SAE-PROJETOS-Design-System-Files-DS-ZARA/) (mesmos componentes, contrato e governança); identidade do brandbook Good Casting: preto, branco e Azul Tiffany `#81D8D0`, logotipo oficial; tipo do DS: Bodoni Moda + Public Sans. Tons de apoio e feedback vêm do GC-DS2 e do app (`goodcasting-app`).
 
 ## Rodar
 
@@ -37,7 +37,7 @@ GOVERNANCA.md              contribuição, versionamento, métricas
 | Marca | Azul Tiffany `#81D8D0` · preto `#121212` / `#000` · branco; circuito `#00FEFE` (decorativo); noite `#0D2B3A` (fundo negativo) |
 | Texto de marca | `#057571` (links, AA 5,6:1) |
 | Feedback | erro `#DC3535` / `#C62828` texto · sucesso `#2CA54E` / `#1E7E3E` · atenção `#BCAA09` / `#8A6D00` · info `#3A75E9` |
-| Tipo | Playfair Display (títulos) + Inter (resto); 10 · 12 · 13 · 14 · 15 · 16 · 18 · 20 · 28 px |
+| Tipo | Bodoni Moda (títulos) + Public Sans (resto); 10 · 12 · 13 · 14 · 15 · 16 · 18 · 20 · 28 px |
 | Raio | 4 · 6 · 10 · 12 (controles) · 16 · 24 · pílula |
 | Espaço | base 4px |
 | Controles | botão 40 / 48 / 56, campo 40, toque 44 |
@@ -55,4 +55,4 @@ Com Tailwind v4 no app, importe `ds-goodcasting/theme.css` e declare `@source ".
 
 ## Fontes
 
-Inter e Playfair Display (Google Fonts, OFL). O Storybook carrega as duas em `.storybook/preview-head.html`; no app, carregue-as você (no Expo: `@expo-google-fonts/inter` e `@expo-google-fonts/playfair-display`, já no `goodcasting-app`).
+Public Sans e Bodoni Moda (Google Fonts, OFL). O Storybook carrega as duas em `.storybook/preview-head.html`; no app, carregue-as você (no Expo: `@expo-google-fonts/public-sans` e `@expo-google-fonts/bodoni-moda`).

@@ -18,7 +18,7 @@ const meta = {
     docs: {
       description: {
         component: `
-**O que é.** Botão quadrado só com ícone de traço 1px. Raio 0. Opcionalmente mostra um contador de 11px ao lado do ícone.
+**O que é.** Botão quadrado só com ícone de traço fino (React Icons). Opcionalmente mostra um contador de 11px ao lado do ícone.
 
 **Quando usar.** Ações recorrentes e reconhecíveis por ícone: abrir menu, pesquisar, fechar, salvar, notificações. \`ghost\` (padrão) em barras de topo; \`outline\` quando o botão precisa de contorno (ex.: +/− de quantidade).
 

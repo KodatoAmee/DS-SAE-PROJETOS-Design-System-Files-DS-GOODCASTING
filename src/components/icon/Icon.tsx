@@ -15,10 +15,28 @@ import {
   CiStar,
   CiUser,
 } from "react-icons/ci";
+import {
+  PiArrowRightLight,
+  PiCaretDownLight,
+  PiCaretLeftLight,
+  PiCaretRightLight,
+  PiCaretUpLight,
+  PiCheckLight,
+  PiMaskHappyLight,
+  PiMinusLight,
+  PiPlusLight,
+  PiUsersLight,
+  PiXLight,
+} from "react-icons/pi";
 import { cn } from "../../lib/cn";
+import { circumIcons } from "./circum";
 
-/** Ícones com par direto no Circum Icons (react-icons/ci). */
-const ciIcons = {
+/**
+ * Todos os ícones vêm do React Icons, em traço fino:
+ * Circum Icons (`react-icons/ci`) e, onde ele não tem par sem moldura,
+ * Phosphor Light (`react-icons/pi`).
+ */
+const icons = {
   menu: CiMenuBurger,
   search: CiSearch,
   bag: CiBag1,
@@ -30,39 +48,29 @@ const ciIcons = {
   pin: CiLocationOn,
   calendar: CiCalendar,
   clock: CiClock1,
-  users: CiUser,
+  users: PiUsersLight,
   heart: CiHeart,
   star: CiStar,
+  close: PiXLight,
+  plus: PiPlusLight,
+  minus: PiMinusLight,
+  check: PiCheckLight,
+  "chevron-down": PiCaretDownLight,
+  "chevron-up": PiCaretUpLight,
+  "chevron-left": PiCaretLeftLight,
+  "chevron-right": PiCaretRightLight,
+  "arrow-right": PiArrowRightLight,
+  mask: PiMaskHappyLight,
 } satisfies Record<string, IconType>;
 
-/**
- * Ícones de traço fino (1px), desenhados para o DS. Grade 20x20.
- * Mantidos porque o Circum Icons não tem versão sem moldura deles.
- */
-const paths = {
-  close: <path d="M4 4l12 12M16 4L4 16" />,
-  plus: <path d="M10 4v12M4 10h12" />,
-  minus: <path d="M4 10h12" />,
-  check: <path d="M4 10.5l4 4 8-9" />,
-  "chevron-down": <path d="M5 7.5l5 5 5-5" />,
-  "chevron-up": <path d="M5 12.5l5-5 5 5" />,
-  "chevron-left": <path d="M12.5 5l-5 5 5 5" />,
-  "chevron-right": <path d="M7.5 5l5 5-5 5" />,
-  "arrow-right": <path d="M3 10h14M12 5l5 5-5 5" />,
-  mask: (
-    <>
-      <path d="M4 4.5c4 1.2 8 1.2 12 0v5.5a6 6 0 01-12 0z" />
-      <path d="M7 9h1.5M11.5 9H13M8 12.5c1.2.8 2.8.8 4 0" />
-    </>
-  ),
-} as const;
+/** Nomes semânticos do DS + os 288 do Circum Icons com prefixo `ci-` (ex.: `ci-bag-1`). */
+const allIcons = { ...icons, ...circumIcons };
 
-type CiName = keyof typeof ciIcons;
-type PathName = keyof typeof paths;
-export type IconName = CiName | PathName;
-export const iconNames = [...Object.keys(ciIcons), ...Object.keys(paths)] as IconName[];
-
-const isCi = (name: IconName): name is CiName => name in ciIcons;
+export type IconName = keyof typeof allIcons;
+/** Ícones semânticos do DS (os usados pelos componentes). */
+export const iconNames = Object.keys(icons) as IconName[];
+/** Catálogo completo do Circum Icons disponível via `name="ci-…"`. */
+export const circumIconNames = Object.keys(circumIcons) as IconName[];
 
 export interface IconProps extends Omit<SVGProps<SVGSVGElement>, "name"> {
   name: IconName;
@@ -73,38 +81,16 @@ export interface IconProps extends Omit<SVGProps<SVGSVGElement>, "name"> {
 }
 
 export function Icon({ name, size = 20, label, className, ...rest }: IconProps) {
-  if (isCi(name)) {
-    const CiIcon = ciIcons[name];
-    return (
-      <CiIcon
-        size={size}
-        role={label ? "img" : undefined}
-        aria-label={label}
-        aria-hidden={label ? undefined : true}
-        focusable="false"
-        className={cn("shrink-0", className)}
-        {...rest}
-      />
-    );
-  }
-
+  const Glyph = allIcons[name];
   return (
-    <svg
-      viewBox="0 0 20 20"
-      width={size}
-      height={size}
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={1}
-      strokeLinecap="square"
+    <Glyph
+      size={size}
       role={label ? "img" : undefined}
       aria-label={label}
       aria-hidden={label ? undefined : true}
       focusable="false"
       className={cn("shrink-0", className)}
       {...rest}
-    >
-      {paths[name]}
-    </svg>
+    />
   );
 }

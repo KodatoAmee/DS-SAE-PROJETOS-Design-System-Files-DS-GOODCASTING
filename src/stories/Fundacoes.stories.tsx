@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { Logo } from "../components/brand";
-import { Icon, iconNames } from "../components/icon";
+import { cn } from "../lib/cn";
+import { Icon, circumIconNames, iconNames } from "../components/icon";
 
 const meta = {
   title: "Fundações",
@@ -11,7 +12,7 @@ const meta = {
     docs: {
       description: {
         component:
-          "Fundações do DS-GoodCasting. Marca do brandbook Good Casting (Azul Tiffany #81D8D0, preto, branco; Playfair Display + Inter); apoio e feedback do GC-DS2 / app. Fonte canônica: `tokens/tokens.json`; runtime: `src/styles/theme.css`.",
+          "Fundações do DS-GoodCasting. Marca do brandbook Good Casting (Azul Tiffany #81D8D0, preto, branco); tipo do DS: Bodoni Moda + Public Sans; apoio e feedback do GC-DS2 / app. Fonte canônica: `tokens/tokens.json`; runtime: `src/styles/theme.css`.",
       },
     },
   },
@@ -77,9 +78,9 @@ export const Cor: Story = {
   ),
 };
 
-const typeScale: { cls: string; name: string; spec: string; caps?: boolean }[] = [
-  { cls: "text-display font-display", name: "display", spec: "28/34 · Playfair" },
-  { cls: "text-heading font-display", name: "heading", spec: "20/28 · Playfair" },
+const typeScale: { cls: string; name: string; spec: string; display?: boolean }[] = [
+  { cls: "text-display font-display", name: "display", spec: "28/34", display: true },
+  { cls: "text-heading font-display", name: "heading", spec: "20/28", display: true },
   { cls: "text-title font-semibold", name: "title", spec: "18/24" },
   { cls: "text-title-s font-medium", name: "title-s", spec: "16/24" },
   { cls: "text-body", name: "body", spec: "14/20" },
@@ -89,30 +90,154 @@ const typeScale: { cls: string; name: string; spec: string; caps?: boolean }[] =
   { cls: "text-caption", name: "caption", spec: "10/14" },
 ];
 
+type FontPair = { serif: string; sans: string; serifStack: string; sansStack: string };
+
+/**
+ * Escala tipográfica com um par de fontes. Troca `--font-display` e `--font-sans`
+ * só dentro do bloco, então os tokens `font-display`/`font-sans` seguem valendo.
+ */
+function TypeSpecimen({ pair, title, note }: { pair: FontPair; title: string; note: string }) {
+  return (
+    <div
+      className="font-sans"
+      style={{ "--font-display": pair.serifStack, "--font-sans": pair.sansStack } as CSSProperties}
+    >
+      <Section title={title} note={note}>
+        <div className="mb-8 grid gap-4 md:grid-cols-2">
+          <div className="rounded-lg border border-line-subtle p-5">
+            <p className="font-display text-display">Aa Bb Cc 0123</p>
+            <p className="mt-2 text-label-s text-content-mid">Títulos · {pair.serif}</p>
+          </div>
+          <div className="rounded-lg border border-line-subtle p-5">
+            <p className="text-display font-normal">Aa Bb Cc 0123</p>
+            <p className="mt-2 text-label-s text-content-mid">Texto · {pair.sans}</p>
+          </div>
+        </div>
+        <div className="divide-y divide-line-subtle border-y border-line-subtle">
+          {typeScale.map((t) => (
+            <div key={t.name} className="grid grid-cols-[120px_160px_1fr] items-baseline gap-4 py-4">
+              <span className="text-label-s text-content-mid">{t.name}</span>
+              <span className="text-label-s text-content-mid">
+                {t.spec} · {t.display ? pair.serif : pair.sans}
+              </span>
+              <span className={t.cls}>Toda grande história começa por uma oportunidade.</span>
+            </div>
+          ))}
+        </div>
+        <div className="mt-8 flex gap-10">
+          {(["font-normal", "font-medium", "font-semibold"] as const).map((w, i) => (
+            <div key={w}>
+              <p className={`text-title ${w}`}>Aa Casting</p>
+              <p className="text-label-s text-content-mid">{[400, 500, 600][i]}</p>
+            </div>
+          ))}
+        </div>
+      </Section>
+    </div>
+  );
+}
+
+const pairs: Record<"atual" | "1" | "2" | "3" | "4" | "5", FontPair> = {
+  atual: {
+    serif: "Bodoni Moda",
+    sans: "Public Sans",
+    serifStack: '"Bodoni Moda", Georgia, "Times New Roman", serif',
+    sansStack: '"Public Sans", system-ui, -apple-system, "Segoe UI", Arial, sans-serif',
+  },
+  "1": {
+    serif: "Cormorant Garamond",
+    sans: "Jost",
+    serifStack: '"Cormorant Garamond", Georgia, serif',
+    sansStack: '"Jost", system-ui, sans-serif',
+  },
+  "2": {
+    serif: "Fraunces",
+    sans: "Alegreya Sans",
+    serifStack: '"Fraunces", Georgia, serif',
+    sansStack: '"Alegreya Sans", system-ui, sans-serif',
+  },
+  "3": {
+    serif: "Instrument Serif",
+    sans: "Instrument Sans",
+    serifStack: '"Instrument Serif", Georgia, serif',
+    sansStack: '"Instrument Sans", system-ui, sans-serif',
+  },
+  "4": {
+    serif: "Bodoni Moda",
+    sans: "Josefin Sans",
+    serifStack: '"Bodoni Moda", Georgia, serif',
+    sansStack: '"Josefin Sans", system-ui, sans-serif',
+  },
+  "5": {
+    serif: "Bodoni Moda",
+    sans: "Public Sans",
+    serifStack: '"Bodoni Moda", Georgia, serif',
+    sansStack: '"Public Sans", system-ui, sans-serif',
+  },
+};
+
 export const Tipografia: Story = {
   render: () => (
-    <Section
+    <TypeSpecimen
+      pair={pairs.atual}
       title="Tipografia"
-      note="Duas famílias, como no logotipo: Playfair Display (serifada clássica, GOOD: sofisticação, autoridade) em títulos; Inter (sem serifa, CASTING: clareza, modernidade) em todo o resto. 14px é a base; 400 texto, 500 ações, 600 títulos."
-    >
-      <div className="divide-y divide-line-subtle border-y border-line-subtle">
-        {typeScale.map((t) => (
-          <div key={t.name} className="grid grid-cols-[120px_80px_1fr] items-baseline gap-4 py-4">
-            <span className="text-label-s text-content-mid">{t.name}</span>
-            <span className="text-label-s text-content-mid">{t.spec}</span>
-            <span className={t.cls}>Toda grande história começa por uma oportunidade.</span>
-          </div>
-        ))}
-      </div>
-      <div className="mt-8 flex gap-10">
-        {(["font-normal", "font-medium", "font-semibold"] as const).map((w, i) => (
-          <div key={w}>
-            <p className={`text-title ${w}`}>Aa Casting</p>
-            <p className="text-label-s text-content-mid">{[400, 500, 600][i]}</p>
-          </div>
-        ))}
-      </div>
-    </Section>
+      note="Duas famílias: Bodoni Moda (serifada de alto contraste, ar de moda e fine art) em títulos; Public Sans (sem serifa neutra e legível) em todo o resto. 14px é a base; 400 texto, 500 ações, 600 títulos. O logotipo segue com as fontes do brandbook."
+    />
+  ),
+};
+
+export const Tipografia1: Story = {
+  name: "Tipografia - 1",
+  render: () => (
+    <TypeSpecimen
+      pair={pairs["1"]}
+      title="Tipografia - 1"
+      note="Candidato: Cormorant Garamond + Jost. Galeria clássica: serifa fina e caligráfica nos títulos, sem serifa geométrica (linhagem Futura) no texto."
+    />
+  ),
+};
+
+export const Tipografia2: Story = {
+  name: "Tipografia - 2",
+  render: () => (
+    <TypeSpecimen
+      pair={pairs["2"]}
+      title="Tipografia - 2"
+      note="Candidato: Fraunces + Alegreya Sans. Editorial e acolhedor: serifa suave e expressiva, sem serifa humanista com traço de pena. Alegreya Sans não tem peso 600 (usa 700)."
+    />
+  ),
+};
+
+export const Tipografia3: Story = {
+  name: "Tipografia - 3",
+  render: () => (
+    <TypeSpecimen
+      pair={pairs["3"]}
+      title="Tipografia - 3"
+      note="Candidato: Instrument Serif + Instrument Sans. Arte contemporânea: serifa estreita e elegante com sem serifa da mesma família. Instrument Serif só tem peso 400."
+    />
+  ),
+};
+
+export const Tipografia4: Story = {
+  name: "Tipografia - 4",
+  render: () => (
+    <TypeSpecimen
+      pair={pairs["4"]}
+      title="Tipografia - 4"
+      note="Candidato: Bodoni Moda + Josefin Sans. Moda e glamour: serifa de alto contraste e sem serifa geométrica vintage."
+    />
+  ),
+};
+
+export const Tipografia5: Story = {
+  name: "Tipografia - 5",
+  render: () => (
+    <TypeSpecimen
+      pair={pairs["5"]}
+      title="Tipografia - 5"
+      note="Candidato: Bodoni Moda + Public Sans. Serifa de alto contraste nos títulos e sem serifa neutra e legível no texto."
+    />
   ),
 };
 
@@ -194,7 +319,7 @@ export const Grade: Story = {
 
 export const Iconografia: Story = {
   render: () => (
-    <Section title="Iconografia" note="Traço 1px, terminação quadrada, grade 20x20, sem preenchimento. Decorativo por padrão; passe `label` quando o ícone for o único rótulo.">
+    <Section title="Iconografia" note="React Icons em traço fino: Circum Icons (`react-icons/ci`) e, onde ele não tem par sem moldura, Phosphor Light (`react-icons/pi`). 20px por padrão. Decorativo por padrão; passe `label` quando o ícone for o único rótulo.">
       <div className="grid grid-cols-3 gap-6 md:grid-cols-6">
         {iconNames.map((n) => (
           <div key={n} className="flex flex-col items-center gap-2 border border-line-subtle py-6">
@@ -203,38 +328,369 @@ export const Iconografia: Story = {
           </div>
         ))}
       </div>
+      <h3 className="mt-12 mb-1 text-title font-semibold">Circum Icons completo ({circumIconNames.length})</h3>
+      <p className="mb-6 max-w-[640px] text-body text-content-mid">
+        Todo o Circum Icons fica disponível no componente com o prefixo <code>ci-</code>, por exemplo{" "}
+        <code>{'<Icon name="ci-bag-1" />'}</code>. Use os nomes semânticos acima nos componentes do DS.
+      </p>
+      <div className="grid grid-cols-3 gap-3 md:grid-cols-6 lg:grid-cols-8">
+        {circumIconNames.map((n) => (
+          <div key={n} className="flex flex-col items-center gap-2 border border-line-subtle px-1 py-4">
+            <Icon name={n} />
+            <span className="w-full truncate text-center text-caption text-content-mid">{n}</span>
+          </div>
+        ))}
+      </div>
     </Section>
   ),
 };
+
+/* ---------- Marca (brandbook Good Casting, p. 10–21) ---------- */
+
+/** Rótulo de seção no estilo do brandbook: caixa alta em teal com fio até a borda. */
+function BrandLabel({ children }: { children: ReactNode }) {
+  return (
+    <div className="mb-4 flex items-center gap-4">
+      <span className="shrink-0 text-label-s font-semibold tracking-wide text-brand-text uppercase">{children}</span>
+      <span aria-hidden className="h-px flex-1 bg-brand-text/40" />
+    </div>
+  );
+}
+
+function BrandNote({ children }: { children: ReactNode }) {
+  return (
+    <p className="mt-4 flex max-w-[720px] items-start gap-3 text-label text-content-mid">
+      <span
+        aria-hidden
+        className="inline-flex size-6 shrink-0 items-center justify-center rounded-[100%] border border-brand-text text-label-s font-semibold text-brand-text"
+      >
+        !
+      </span>
+      <span>{children}</span>
+    </p>
+  );
+}
+
+function BrandBlock({ title, lead, children }: { title: string; lead: string; children: ReactNode }) {
+  return (
+    <section className="grid gap-8 border-t border-line-subtle py-12 lg:grid-cols-[280px_1fr]">
+      <div>
+        <h3 className="font-display text-heading">{title}</h3>
+        <p className="mt-1 text-title-s text-content-mid">{lead}</p>
+      </div>
+      <div className="min-w-0">{children}</div>
+    </section>
+  );
+}
+
+/** Unidade X da área de proteção, proporcional à largura do logotipo (altura do "G"). */
+const xUnit = (logoWidth: number) => Math.round(logoWidth * 0.14);
+
+function ProtectionArea({
+  width,
+  tone = "principal",
+  bg = "bg-base",
+}: {
+  width: number;
+  tone?: "principal" | "branco";
+  bg?: string;
+}) {
+  const x = xUnit(width);
+  return (
+    <div className={cn("relative inline-block border border-dashed border-brand-text", bg)} style={{ padding: x }}>
+      <Logo tone={tone} width={width} alt="" />
+      <span aria-hidden className="absolute left-1/2 -translate-x-1/2 text-label-s font-semibold text-brand-text" style={{ top: x / 2 - 8 }}>
+        X
+      </span>
+      <span aria-hidden className="absolute left-1/2 -translate-x-1/2 text-label-s font-semibold text-brand-text" style={{ bottom: x / 2 - 8 }}>
+        X
+      </span>
+      <span aria-hidden className="absolute top-1/2 -translate-y-1/2 text-label-s font-semibold text-brand-text" style={{ left: x / 2 - 4 }}>
+        X
+      </span>
+      <span aria-hidden className="absolute top-1/2 -translate-y-1/2 text-label-s font-semibold text-brand-text" style={{ right: x / 2 - 4 }}>
+        X
+      </span>
+    </div>
+  );
+}
+
+function Pending({ label }: { label: string }) {
+  return (
+    <div className="flex h-36 flex-col items-center justify-center gap-1 rounded-lg border border-dashed border-line-field p-4 text-center">
+      <span className="text-label font-medium">{label}</span>
+      <span className="text-label-s text-content-mid">Arquivo oficial pendente</span>
+    </div>
+  );
+}
+
+const wrongUses: { caption: string; tile: ReactNode }[] = [
+  { caption: "Não distorcer ou deformar.", tile: <Logo width={150} alt="" style={{ transform: "scaleX(0.7)" }} /> },
+  { caption: "Não alterar as cores.", tile: <Logo width={150} alt="" style={{ filter: "hue-rotate(110deg) saturate(3)" }} /> },
+  {
+    caption: "Não alterar a tipografia.",
+    tile: (
+      <span aria-hidden className="text-center leading-none">
+        <span className="block text-[44px] font-semibold italic" style={{ fontFamily: "Georgia, serif" }}>
+          Good
+        </span>
+        <span className="block text-label tracking-[0.4em]">CASTING</span>
+      </span>
+    ),
+  },
+  {
+    caption: "Não alterar a posição dos elementos.",
+    tile: (
+      <span aria-hidden className="flex flex-col items-start leading-none">
+        <span className="font-display text-[40px] font-bold">GOOD</span>
+        <span className="mt-1 text-label tracking-wide">CASTING</span>
+      </span>
+    ),
+  },
+  {
+    caption: "Não aplicar efeitos, sombras ou contornos.",
+    tile: <Logo width={150} alt="" style={{ filter: "drop-shadow(0 6px 6px rgb(0 0 0 / 0.55))" }} />,
+  },
+  { caption: "Não rodar o logotipo.", tile: <Logo width={140} alt="" style={{ transform: "rotate(-18deg)" }} /> },
+  {
+    caption: "Não aplicar sobre fundos com baixo contraste.",
+    tile: (
+      <span className="flex size-full items-center justify-center bg-[#3b4045]">
+        <Logo tone="branco" width={150} alt="" style={{ opacity: 0.55 }} />
+      </span>
+    ),
+  },
+  {
+    caption: "Não aplicar sobre imagens sem o devido contraste.",
+    tile: (
+      <span
+        className="flex size-full items-center justify-center bg-cover bg-center"
+        style={{ backgroundImage: "url(https://images.unsplash.com/photo-1742360401311-b8a56a428dbc?w=600&h=340&fit=crop)" }}
+      >
+        <Logo tone="branco" width={150} alt="" />
+      </span>
+    ),
+  },
+];
+
+const logoConcept = [
+  {
+    k: "GOOD",
+    words: "Elegância · Confiança · Credibilidade",
+    text: "A tipografia clássica transmite sofisticação, solidez e autoridade.",
+    cls: "font-display text-display",
+  },
+  {
+    k: "CASTING",
+    words: "Clareza · Especialização · Modernidade",
+    text: "Composição contemporânea que reforça o posicionamento na indústria audiovisual.",
+    cls: "text-display tracking-wide",
+  },
+  {
+    k: "CIRCUITO",
+    words: "Tecnologia · Conectividade · Inovação",
+    text: "Os traços de circuito representam a transformação digital e a ligação entre pessoas.",
+    cls: "text-display tracking-wide text-brand-text",
+  },
+];
+
+const minSizes = [
+  { k: "Impressão", min: "25 mm", rec: "40 mm", w: [120, 190] },
+  { k: "Digital", min: "120 px", rec: "200 px", w: [120, 200] },
+];
 
 export const Marca: Story = {
   render: () => (
     <Section
       title="Marca"
-      note="Logotipo oficial (brandbook p. 10–21). Usar só os arquivos oficiais; não distorcer, recolorir, girar nem aplicar sombra. Área de proteção = altura do G. Mínimo no DS 84px (o brandbook pede 120px); recomendado 200px."
+      note="Fonte: brandbook Good Casting (p. 10–21). Usar só os arquivos oficiais, via componente `Logo`. O logotipo segue as fontes do brandbook; a tipografia de interface do DS é Bodoni Moda + Public Sans."
     >
-      <div className="grid gap-6 md:grid-cols-3">
-        <div className="flex h-48 items-center justify-center rounded-lg border border-line-subtle bg-base p-8" data-theme="light">
-          <Logo width={200} />
+      <BrandBlock title="O logotipo" lead="O principal elemento de identificação da marca.">
+        <div className="grid items-center gap-10 md:grid-cols-2">
+          <div className="space-y-3 text-body text-content-mid">
+            <p>Representa a união entre tecnologia, criatividade e indústria audiovisual.</p>
+            <p>Uma marca moderna, inovadora e confiável, pensada para uma plataforma de alcance internacional.</p>
+            <p>Como principal elemento da marca, deve ser usado de forma consistente em todos os pontos de contato.</p>
+          </div>
+          <div className="flex items-center justify-center rounded-lg bg-night p-10">
+            <Logo tone="branco" width={280} />
+          </div>
         </div>
-        <div className="flex h-48 items-center justify-center rounded-lg bg-black p-8">
-          <Logo tone="branco" width={200} />
+        <p className="mt-3 text-label-s text-content-mid">Logotipo principal</p>
+      </BrandBlock>
+
+      <BrandBlock title="Monograma" lead="O símbolo da Good Casting.">
+        <div className="grid items-center gap-10 md:grid-cols-2">
+          <p className="text-body text-content-mid">
+            As iniciais G e D formam uma assinatura visual única, para comunicar simplicidade, inovação e confiança. É o
+            elemento de reconhecimento imediato em espaços pequenos (avatar, favicon, ícone do app).
+          </p>
+          <Pending label="Monograma GD · Casting®" />
         </div>
-        <div className="flex h-48 items-center justify-center rounded-lg bg-night p-8">
-          <Logo tone="branco" width={200} />
+      </BrandBlock>
+
+      <BrandBlock title="Conceito do logotipo" lead="Design com propósito: tradição, inovação e tecnologia.">
+        <div className="grid gap-6 md:grid-cols-3">
+          {logoConcept.map((c) => (
+            <div key={c.k} className="rounded-lg border border-line-subtle p-5">
+              <p className={c.cls}>{c.k}</p>
+              <p className="mt-3 text-label font-semibold">{c.words}</p>
+              <p className="mt-1 text-body text-content-mid">{c.text}</p>
+            </div>
+          ))}
         </div>
-      </div>
-      <p className="mt-4 text-label-s text-content-mid">Principal · Negativa (preto) · Negativa (noite)</p>
-      <div className="mt-10 grid max-w-[720px] gap-6 md:grid-cols-2">
-        <div>
-          <p className="font-display text-display">GOOD</p>
-          <p className="text-body text-content-mid">Playfair Display. Elegância, confiança, credibilidade.</p>
+      </BrandBlock>
+
+      <BrandBlock title="Construção e área de proteção" lead="Precisão em cada detalhe. Respeitar o espaço.">
+        <div className="grid items-center gap-10 md:grid-cols-[1fr_auto]">
+          <div className="space-y-3 text-body text-content-mid">
+            <p>
+              Estrutura geométrica: GOOD ocupa 6X de largura e 3X de altura; CASTING 1,5X; o circuito 1X. As proporções entre
+              símbolo, tipografia e espaçamentos não mudam.
+            </p>
+            <p>
+              A unidade <strong className="text-content">X</strong> é a altura da letra “G”. Nenhum texto, imagem ou elemento
+              gráfico entra na margem X em volta do logotipo ou do monograma.
+            </p>
+          </div>
+          <ProtectionArea width={240} />
         </div>
-        <div>
-          <p className="text-display tracking-wide">CASTING</p>
-          <p className="text-body text-content-mid">Inter. Clareza, especialização, modernidade.</p>
+        <BrandNote>No DS, a margem é calculada pela largura do logotipo: X ≈ 14% da largura (28px para 200px).</BrandNote>
+      </BrandBlock>
+
+      <BrandBlock title="Dimensão mínima" lead="Garantir legibilidade.">
+        <div className="grid gap-8 md:grid-cols-2">
+          {minSizes.map((g) => (
+            <div key={g.k}>
+              <BrandLabel>{g.k}</BrandLabel>
+              <div className="grid grid-cols-2 items-end gap-6">
+                {[
+                  { t: "Tamanho mínimo", v: g.min, w: g.w[0] },
+                  { t: "Tamanho recomendado", v: g.rec, w: g.w[1] },
+                ].map((sz) => (
+                  <div key={sz.t}>
+                    <p className="mb-3 text-label-s text-content-mid">{sz.t}</p>
+                    <Logo width={sz.w} alt="" />
+                    <div className="mt-3 flex items-center" style={{ width: sz.w }}>
+                      <span aria-hidden className="h-3 w-px bg-brand-text" />
+                      <span aria-hidden className="h-px flex-1 bg-brand-text" />
+                      <span aria-hidden className="h-3 w-px bg-brand-text" />
+                    </div>
+                    <p className="mt-1 text-label font-semibold text-brand-text">{sz.v}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
-      </div>
+        <BrandNote>
+          Valem para o logotipo principal (com tipografia); o monograma tem mínimo próprio. Exceção do DS: o Header usa 84px,
+          abaixo do mínimo do brandbook.
+        </BrandNote>
+      </BrandBlock>
+
+      <BrandBlock title="Versões do logotipo" lead="Consistência em qualquer aplicação.">
+        <div className="grid gap-8 md:grid-cols-2">
+          <div>
+            <BrandLabel>Versão principal</BrandLabel>
+            <div className="flex h-36 items-center justify-center rounded-lg border border-line-subtle bg-base" data-theme="light">
+              <Logo width={200} />
+            </div>
+          </div>
+          <div>
+            <BrandLabel>Versão negativa</BrandLabel>
+            <div className="flex h-36 items-center justify-center rounded-lg bg-black">
+              <Logo tone="branco" width={200} />
+            </div>
+          </div>
+          <div>
+            <BrandLabel>Versão monocromática</BrandLabel>
+            <Pending label="Logotipo monocromático" />
+          </div>
+          <div>
+            <BrandLabel>Versão horizontal</BrandLabel>
+            <Pending label="Monograma | Logotipo" />
+          </div>
+          <div>
+            <BrandLabel>Versão com símbolo</BrandLabel>
+            <Pending label="Monograma sobre o logotipo" />
+          </div>
+          <div>
+            <BrandLabel>Versão vertical</BrandLabel>
+            <Pending label="Logotipo vertical" />
+          </div>
+        </div>
+        <BrandNote>
+          Sempre que possível, use a versão principal sobre fundo claro. Negativa e monocromática só quando a principal não
+          garantir contraste.
+        </BrandNote>
+      </BrandBlock>
+
+      <BrandBlock title="Versões em branco" lead="Visibilidade em qualquer fundo.">
+        <BrandLabel>Logotipo em branco</BrandLabel>
+        <div className="grid gap-6 md:grid-cols-2">
+          <div className="flex h-44 items-center justify-center rounded-lg bg-black">
+            <Logo tone="branco" width={220} />
+          </div>
+          <div className="flex h-44 items-center justify-center rounded-lg bg-night">
+            <Logo tone="branco" width={220} />
+          </div>
+        </div>
+        <div className="mt-8">
+          <BrandLabel>Monograma em branco</BrandLabel>
+          <div className="grid gap-6 md:grid-cols-2">
+            <Pending label="Monograma sobre preto" />
+            <Pending label="Monograma sobre noite" />
+          </div>
+        </div>
+        <BrandNote>Só sobre fundos escuros ou de cor que garantam contraste. Sem efeitos, contornos ou sombras.</BrandNote>
+      </BrandBlock>
+
+      <BrandBlock title="Área de proteção nas versões" lead="Respeitar o espaço da marca.">
+        <div className="flex flex-wrap items-center gap-8">
+          <ProtectionArea width={180} />
+          <ProtectionArea width={180} tone="branco" bg="bg-black" />
+          <ProtectionArea width={180} tone="branco" bg="bg-night" />
+        </div>
+        <BrandNote>A área de proteção vale para todas as versões do logotipo e do monograma.</BrandNote>
+      </BrandBlock>
+
+      <BrandBlock title="Usos incorretos" lead="Preservar a integridade da marca.">
+        <BrandLabel>O que não fazer</BrandLabel>
+        <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {wrongUses.map((u) => (
+            <li key={u.caption}>
+              <div className="flex h-36 items-center justify-center overflow-hidden rounded-lg border border-line-subtle bg-base">
+                {u.tile}
+              </div>
+              <p className="mt-3 flex items-start gap-2 text-label text-content-mid">
+                <span
+                  aria-hidden
+                  className="inline-flex size-6 shrink-0 items-center justify-center rounded-[100%] border border-brand-text text-brand-text"
+                >
+                  <Icon name="close" size={14} />
+                </span>
+                <span>{u.caption}</span>
+              </p>
+            </li>
+          ))}
+        </ul>
+        <div className="mt-10">
+          <BrandLabel>Uso correto</BrandLabel>
+          <div className="grid gap-6 md:grid-cols-3">
+            <div className="flex h-32 items-center justify-center rounded-lg bg-night">
+              <Logo tone="branco" width={170} />
+            </div>
+            <div className="flex h-32 items-center justify-center rounded-lg bg-brand-text">
+              <Logo tone="branco" width={170} />
+            </div>
+            <div className="flex h-32 items-center justify-center rounded-lg border border-line-subtle bg-base" data-theme="light">
+              <Logo width={170} />
+            </div>
+          </div>
+        </div>
+        <BrandNote>A lista não é exaustiva. Use sempre as versões oficiais, respeitando cores, proporções e área de proteção.</BrandNote>
+      </BrandBlock>
     </Section>
   ),
 };
