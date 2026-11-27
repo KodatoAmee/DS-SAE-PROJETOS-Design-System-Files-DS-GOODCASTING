@@ -103,7 +103,7 @@ function Timeline() {
       <Header
         variant="solid"
         sticky
-        logo={<Logo width={84} />}
+        logo={<Logo tone="preto" width={84} />}
         menuOpen={menu}
         menuId="menu-principal"
         onMenuClick={() => setMenu(true)}

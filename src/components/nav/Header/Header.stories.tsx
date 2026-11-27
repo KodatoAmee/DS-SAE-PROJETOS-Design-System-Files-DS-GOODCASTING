@@ -4,10 +4,10 @@ import { Logo } from "../../brand";
 import { MenuDrawer } from "../MenuDrawer";
 import { Header, type HeaderAction, type HeaderProps } from "./Header";
 
-/** Logotipo oficial Good Casting. */
+/** Logotipo Good Casting, versão preta (monocromática). */
 const logo = (
   <a href="#" aria-label="Good Casting, início">
-    <Logo width={84} alt="" />
+    <Logo tone="preto" width={84} alt="" />
   </a>
 );
 

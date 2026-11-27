@@ -612,7 +612,9 @@ export const Marca: Story = {
           </div>
           <div>
             <BrandLabel>Versão monocromática</BrandLabel>
-            <Pending label="Logotipo monocromático" />
+            <div className="flex h-36 items-center justify-center rounded-lg border border-line-subtle bg-base" data-theme="light">
+              <Logo tone="preto" width={200} />
+            </div>
           </div>
           <div>
             <BrandLabel>Versão horizontal</BrandLabel>
