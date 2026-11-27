@@ -20,6 +20,13 @@ Formato [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/), versão [Se
 - `Breadcrumbs`: o item atual nunca é clicável (`href`/`onClick` ignorados, sem ponteiro).
 - `Logo`: mínimo de 120px para 84px (abaixo do brandbook) para o logo do Header.
 - Stories: foto de modelo no `CastingCard`, imagem conceitual no Detalhe do casting e fundo branco na Timeline.
+- Novo token `tiffany-link` (#057571; #81D8D0 no escuro). `Link` usa essa cor e fica Azul Tiffany (`brand`) no hover.
+- Hover dos itens com contorno (`Button` e `IconButton` `outline`, chips do `ChipSelector`): borda Azul Tiffany.
+- Cursor de mãozinha em todos os clicáveis (regra global em `theme.css`).
+- `Radio`: círculo e ponto com `border-radius: 100%`; legenda e descrições ficam na cor de desabilitado; story Desabilitado.
+- `Switch`: bolinha com `border-radius: 100%`.
+- `Select`: valor, rótulo e seta com 4px de recuo interno.
+- `ButtonGroup` `attached`: vão de 4px entre os botões (antes bordas sobrepostas); story Quantidade sem borda no número.
 
 ## [0.1.0] — 2026-11-25
 

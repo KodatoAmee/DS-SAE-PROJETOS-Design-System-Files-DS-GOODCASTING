@@ -67,6 +67,7 @@
   --gc-on-brand: var(--gc-ink);
   --gc-brand-soft: var(--gc-tiffany-soft);
   --gc-brand-text: var(--gc-teal-text);
+  --gc-tiffany-link: var(--gc-teal-text);
   --gc-circuit: #00fefe;
   --gc-night: var(--gc-navy);
   --gc-info: var(--gc-blue);
@@ -101,6 +102,7 @@
   --gc-on-brand: var(--gc-ink);
   --gc-brand-soft: var(--gc-tiffany-deep);
   --gc-brand-text: var(--gc-teal-text-dark);
+  --gc-tiffany-link: var(--gc-teal-text-dark);
   --gc-circuit: #00fefe;
   --gc-night: var(--gc-navy);
   --gc-info: var(--gc-blue);
@@ -142,6 +144,7 @@
   --color-black: var(--gc-black);
   --color-white: var(--gc-white);
   --color-brand-text: var(--gc-brand-text);
+  --color-tiffany-link: var(--gc-tiffany-link);
   --color-info: var(--gc-info);
   --color-info-text: var(--gc-info-text);
   --color-success: var(--gc-success);
@@ -248,6 +251,17 @@
   body {
     background: var(--gc-base);
     color: var(--gc-content);
+  }
+  /* Tudo que é clicável mostra a mãozinha (o preflight do Tailwind v4 deixa botões com seta). */
+  a[href],
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [role="tab"]:not(:disabled),
+  [role="switch"]:not(:disabled),
+  select:not(:disabled),
+  summary,
+  label[for] {
+    cursor: pointer;
   }
   @media (prefers-reduced-motion: reduce) {
     *,

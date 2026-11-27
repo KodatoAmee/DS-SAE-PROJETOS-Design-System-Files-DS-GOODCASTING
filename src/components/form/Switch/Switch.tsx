@@ -79,7 +79,7 @@ export function Switch({
       <span
         aria-hidden
         className={cn(
-          "absolute top-px left-px size-3 transition-transform duration-200 ease-gc",
+          "absolute top-px left-px size-3 rounded-[100%] transition-transform duration-200 ease-gc",
           on ? "translate-x-4 bg-on-inverse" : "translate-x-0 bg-inverse",
           disabled && !on && "bg-content-disabled",
         )}

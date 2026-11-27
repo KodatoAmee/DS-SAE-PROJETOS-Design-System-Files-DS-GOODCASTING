@@ -4,8 +4,8 @@ import { cn, focusRing } from "../../../lib/cn";
 
 export const linkVariants = cva(
   [
-    "inline font-normal text-content underline-offset-4 decoration-1",
-    "transition-opacity duration-200 ease-gc",
+    "inline font-normal text-tiffany-link underline-offset-4 decoration-1 hover:text-brand",
+    "transition-colors duration-200 ease-gc",
     focusRing,
   ],
   {
@@ -13,8 +13,8 @@ export const linkVariants = cva(
       variant: {
         /** Sem sublinhado, nem em repouso nem no hover. */
         default: "no-underline",
-        /** Sempre sublinhado; no hover perde opacidade. Use dentro de texto corrido. */
-        underline: "underline hover:opacity-60",
+        /** Sempre sublinhado. Use dentro de texto corrido. */
+        underline: "underline",
       },
       size: {
         /** 11px: rodapé, metadados, barras finas. */

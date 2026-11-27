@@ -7,7 +7,7 @@ export const buttonVariants = cva(
   [
     "inline-flex select-none items-center justify-center gap-2 rounded-control",
     "font-medium whitespace-nowrap",
-    "transition-[background-color,color,opacity] duration-200 ease-gc",
+    "transition-[background-color,border-color,color,opacity] duration-200 ease-gc",
     "disabled:pointer-events-none aria-disabled:pointer-events-none",
     focusRing,
   ],
@@ -22,7 +22,7 @@ export const buttonVariants = cva(
           "border border-brand bg-brand text-on-brand hover:opacity-85 disabled:border-content-disabled disabled:bg-content-disabled disabled:text-on-inverse",
         /** Contorno 1px, fundo da página. */
         secondary:
-          "border border-line bg-transparent text-content hover:bg-muted disabled:border-content-disabled disabled:text-content-disabled",
+          "border border-line bg-transparent text-content hover:border-brand disabled:border-content-disabled disabled:text-content-disabled",
         /** Só texto, sem sublinhado no hover. */
         tertiary:
           "border border-transparent bg-transparent text-content underline-offset-4 disabled:text-content-disabled",

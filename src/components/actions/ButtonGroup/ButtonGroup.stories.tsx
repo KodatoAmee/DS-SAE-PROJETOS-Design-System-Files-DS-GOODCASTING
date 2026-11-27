@@ -25,13 +25,13 @@ const meta = {
     docs: {
       description: {
         component: `
-**O que é.** Contêiner que alinha botões relacionados lado a lado ou empilhados. Com \`attached\` as bordas se colam (sobreposição de 1px, sem borda dupla) formando um bloco único.
+**O que é.** Contêiner que alinha botões relacionados lado a lado ou empilhados. Com \`attached\` os botões ficam a 4px um do outro, formando um bloco compacto.
 
 **Quando usar.** Pares de ação (Cancelar / Confirmar), seletores de quantidade (− 1 +) e conjuntos de opções equivalentes. \`vertical\` em gavetas e telas estreitas; \`fullWidth\` para ocupar a largura do contêiner.
 
 **Quando não usar.** Para escolher uma opção entre várias com estado, use \`ViewSelector\` ou um grupo de rádio. Para navegação, use links. Não agrupe ações sem relação entre si.
 
-**Anatomia.** Contêiner \`role="group"\` · filhos \`Button\` / \`IconButton\` (vão de 8px, ou bordas coladas em \`attached\`).
+**Anatomia.** Contêiner \`role="group"\` · filhos \`Button\` / \`IconButton\` (vão de 8px, ou 4px em \`attached\`).
 
 **Acessibilidade.** \`role="group"\`; passe \`aria-label\` (ou \`aria-labelledby\`) para nomear o conjunto. A ordem de Tab segue a ordem visual. Em \`attached\` o botão em hover/foco sobe de camada para o anel de foco não ficar coberto.
         `,
@@ -53,7 +53,7 @@ export const Quantidade: Story = {
   render: (args) => (
     <ButtonGroup {...args}>
       <IconButton variant="outline" size="s" icon="minus" label="Diminuir quantidade" />
-      <span className="inline-flex h-8 min-w-8 items-center justify-center border border-line px-2 text-action font-normal tabular-nums">
+      <span className="inline-flex h-8 min-w-8 items-center justify-center px-2 text-action font-normal tabular-nums">
         1
       </span>
       <IconButton variant="outline" size="s" icon="plus" label="Aumentar quantidade" />

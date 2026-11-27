@@ -17,7 +17,7 @@ const meta = {
     docs: {
       description: {
         component: `
-**O que é.** Âncora (\`<a>\`) de texto para navegar. Peso 300, cor do texto, sem cor de destaque e sem sublinhado no hover (na variante \`underline\`, o hover reduz a opacidade).
+**O que é.** Âncora (\`<a>\`) de texto para navegar. Peso 300, cor Tiffany Link (\`tiffany-link\`, #057571, contraste AA sobre branco); no hover vira Azul Tiffany (\`brand\`, #81D8D0).
 
 **Quando usar.** Navegar para outra página ou âncora: "Ajuda", "Ver tudo", termos legais, links dentro de parágrafos. \`caps\` para links que funcionam como rótulo ou ação; caixa normal dentro de texto corrido. \`underline\` quando o link precisa ser identificável sem hover (texto corrido, WCAG 1.4.1).
 

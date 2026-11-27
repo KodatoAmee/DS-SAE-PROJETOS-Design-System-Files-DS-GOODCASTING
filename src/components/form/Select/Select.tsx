@@ -69,7 +69,7 @@ export function Select({
           aria-describedby={ids.describedBy}
           className={cn(
             fieldControl,
-            "h-full cursor-pointer appearance-none pr-7",
+            "h-full cursor-pointer appearance-none pl-1 pr-8",
             label ? "pt-4.5" : "pt-0",
             empty && "text-content-low",
             // Lista aberta herda a cor do select em alguns navegadores: mantém as opções legíveis.
@@ -93,7 +93,7 @@ export function Select({
         {label && (
           <label
             htmlFor={ids.controlId}
-            className={cn(floatingLabel, disabled && "text-content-disabled")}
+            className={cn(floatingLabel, "left-1", disabled && "text-content-disabled")}
           >
             {label}
           </label>
@@ -102,7 +102,7 @@ export function Select({
           name="chevron-down"
           size={16}
           className={cn(
-            "pointer-events-none absolute right-0 bottom-1",
+            "pointer-events-none absolute right-1 bottom-1",
             disabled ? "text-content-disabled" : "text-content",
           )}
         />

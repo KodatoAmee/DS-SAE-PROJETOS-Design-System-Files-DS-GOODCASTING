@@ -7,7 +7,7 @@ export const iconButtonVariants = cva(
   [
     "inline-flex shrink-0 select-none items-center justify-center rounded-control",
     "font-normal text-content",
-    "transition-[background-color,color,opacity] duration-200 ease-gc",
+    "transition-[background-color,border-color,color,opacity] duration-200 ease-gc",
     "disabled:pointer-events-none disabled:text-content-disabled",
     focusRing,
   ],
@@ -18,7 +18,7 @@ export const iconButtonVariants = cva(
         ghost: "border border-transparent bg-transparent hover:opacity-60",
         /** Contorno 1px. Quantidade, fechar dentro de cartões. */
         outline:
-          "border border-line bg-transparent hover:bg-muted disabled:border-content-disabled",
+          "border border-line bg-transparent hover:border-brand disabled:border-content-disabled",
       },
       size: {
         /** 32px. */

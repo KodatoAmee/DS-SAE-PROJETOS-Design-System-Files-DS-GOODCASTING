@@ -102,7 +102,7 @@ export function Radio({
         <span
           aria-hidden
           className={cn(
-            "relative mt-1 flex size-4 shrink-0 items-center justify-center rounded-full border",
+            "relative mt-1 flex size-4 shrink-0 items-center justify-center rounded-[100%] border",
             "transition-colors duration-200 ease-gc",
             group?.invalid ? "border-danger" : "border-line",
             "group-has-checked/choice:border-line",
@@ -112,7 +112,7 @@ export function Radio({
         >
           <span
             className={cn(
-              "size-2 bg-inverse opacity-0 transition-opacity duration-200 ease-gc",
+              "size-2 rounded-[100%] bg-inverse opacity-0 transition-opacity duration-200 ease-gc",
               "group-has-checked/choice:opacity-100 group-has-disabled/choice:bg-content-disabled",
             )}
           />
@@ -130,7 +130,7 @@ export function Radio({
       </label>
       {/* Fora do <label>: entra só via aria-describedby, não no nome acessível. pl-7 = caixa 16 + gap 12. */}
       {description && (
-        <span id={descId} className={cn("pl-7", helperTextClass)}>
+        <span id={descId} className={cn("pl-7", helperTextClass, disabled && "text-content-disabled")}>
           {description}
         </span>
       )}
@@ -212,7 +212,7 @@ export function RadioGroup({
         className={cn("m-0 min-w-0 border-0 p-0", className)}
         {...rest}
       >
-        <legend id={legendId} className={cn(staticLabel, "mb-3 p-0", hideLegend && "sr-only")}>
+        <legend id={legendId} className={cn(staticLabel, "mb-3 p-0", disabled && "text-content-disabled", hideLegend && "sr-only")}>
           {legend}
         </legend>
         <div

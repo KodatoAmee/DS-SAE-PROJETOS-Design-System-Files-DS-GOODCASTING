@@ -90,4 +90,14 @@ export const Estados: Story = {
   ),
 };
 
+export const Desabilitado: Story = {
+  render: () => (
+    <RadioGroup legend="Formato do teste" defaultValue="presencial" disabled>
+      <Radio value="presencial" label="Teste presencial" description="Na produtora, em São Paulo" />
+      <Radio value="selftape" label="Self-tape" description="Envie o vídeo em até 48h" />
+      <Radio value="online" label="Chamada de vídeo" description="Horário marcado pela produtora" />
+    </RadioGroup>
+  ),
+};
+
 export const Playground: Story = { name: "Área de testes" };

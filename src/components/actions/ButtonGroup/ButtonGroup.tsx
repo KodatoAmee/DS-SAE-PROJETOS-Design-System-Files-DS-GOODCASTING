@@ -9,7 +9,7 @@ export const buttonGroupVariants = cva("flex", {
       /** Empilhados: filhos esticam para a mesma largura. */
       vertical: "flex-col items-stretch",
     },
-    /** Cola as bordas: sem vão e sem borda dupla (sobreposição de 1px). */
+    /** Bloco compacto: vão de 4px entre os botões. */
     attached: {
       true: "[&>*]:relative [&>*:hover]:z-10 [&>*:focus-visible]:z-10",
       false: "",
@@ -18,8 +18,7 @@ export const buttonGroupVariants = cva("flex", {
   },
   compoundVariants: [
     { attached: false, class: "gap-2" },
-    { attached: true, orientation: "horizontal", class: "[&>*:not(:first-child)]:-ml-px" },
-    { attached: true, orientation: "vertical", class: "[&>*:not(:first-child)]:-mt-px" },
+    { attached: true, class: "gap-1" },
     { fullWidth: true, orientation: "horizontal", class: "[&>*]:flex-1" },
   ],
   defaultVariants: { orientation: "horizontal", attached: false, fullWidth: false },

@@ -40,7 +40,7 @@ const chip = [
 ].join(" ");
 
 const chipOn = "border-brand bg-brand-soft text-content";
-const chipOff = "border-line-subtle bg-base text-content hover:border-content-mid";
+const chipOff = "border-line-subtle bg-base text-content hover:border-brand";
 
 /**
  * Chips de seleção: categorias de casting, perfis (ator, modelo, locutor), idiomas, gênero.
