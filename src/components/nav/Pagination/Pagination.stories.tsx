@@ -17,13 +17,13 @@ const meta = {
     docs: {
       description: {
         component: `
-**O que é.** Navegação entre páginas ou slides. Duas variantes: \`numbers\` (Anterior · 1 2 3 … · Próximo, ou compacta "1 / 6") e \`dots\` (pontos de 6px).
+**O que é.** Navegação entre páginas ou slides. Duas variantes: \`numbers\` (Anterior · 1 2 3 … · Próximo, ou compacta "1 / 6") e \`dots\` (pílulas de 18x6px).
 
 **Quando usar.** \`numbers\` em resultados e listagens longas. \`compact\` onde falta espaço (mobile, book do talento). \`dots\` em carrosséis de imagens com poucos itens (até ~8).
 
 **Quando não usar.** Em listagens com rolagem infinita ou "Ver mais". \`dots\` com muitas páginas: use \`compact\`.
 
-**Anatomia.** \`nav\` · Anterior · páginas (atual em \`font-medium\` + sublinhado) · reticências · Próximo. Em \`dots\`: alvo de 24x24 com ponto de 6px (único uso de \`rounded-full\` no sistema); atual preenchido, demais só contorno.
+**Anatomia.** \`nav\` · Anterior · páginas (atual em \`font-medium\` + sublinhado) · reticências · Próximo. Em \`dots\`: alvo de 24x24 com pílula de 18x6px (largura = 3x a altura, \`rounded-full\`), centralizada; contorno \`tiffany-link\` em todas, atual preenchida em \`tiffany-link\`, demais só contorno (hover preenche em \`brand\`).
 
 **Acessibilidade.** \`<nav aria-label="Paginação">\`. A página atual tem \`aria-current="page"\` (em \`dots\`, \`aria-current="true"\`, semântica de carrossel). Cada número/ponto tem nome "Página N de T" (\`getPageLabel\` personaliza). Anterior/Próximo ficam \`aria-disabled="true"\` nas pontas (seguem focáveis, então o foco não cai no body ao chegar à ponta pelo teclado; o clique é ignorado). Na versão compacta o texto "1 / 6" é anunciado como "Página 1 de 6" via \`aria-live\`. Com \`getPageHref\` os controles viram links reais. Controlado (\`page\` + \`onPageChange\`) ou não (\`defaultPage\`).
         `,

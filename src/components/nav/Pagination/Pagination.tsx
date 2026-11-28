@@ -145,7 +145,7 @@ export function Pagination({
             const isCurrent = n === current;
             return (
               <li key={n}>
-                {/* Alvo 24x24; ponto 6px (único uso de rounded-full no sistema). */}
+                {/* Alvo 24x24; pílula 18x6px (largura = 3x a altura), centralizada: 6px entre pílulas vizinhas. */}
                 <PageControl
                   {...shared}
                   page={n}
@@ -156,8 +156,8 @@ export function Pagination({
                   <span
                     aria-hidden
                     className={cn(
-                      "size-1.5 rounded-full border border-content transition-colors duration-200 ease-gc",
-                      isCurrent ? "bg-content" : "bg-transparent group-hover:bg-content-low",
+                      "h-1.5 w-[18px] rounded-full border border-tiffany-link transition-colors duration-200 ease-gc",
+                      isCurrent ? "bg-tiffany-link" : "bg-transparent group-hover:bg-brand",
                     )}
                   />
                 </PageControl>
