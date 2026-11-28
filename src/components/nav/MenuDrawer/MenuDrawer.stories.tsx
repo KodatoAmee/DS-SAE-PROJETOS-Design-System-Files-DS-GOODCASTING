@@ -54,7 +54,11 @@ const meta = {
   component: MenuDrawer,
   tags: ["autodocs"],
   args: { sections },
-  argTypes: { footer: { control: false }, open: { control: false } },
+  argTypes: {
+    footer: { control: false },
+    open: { control: false },
+    panelClassName: { control: "text" },
+  },
   parameters: {
     layout: "padded",
     docs: {
@@ -131,5 +135,13 @@ export const UmaSecao: Story = {
 
 export const Playground: Story = {
   name: "Área de testes",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "`panelClassName` estiliza o painel de navegação (Fechar, seções e links); experimente `bg-muted` no controle. `className` e os demais atributos vão para o diálogo, a camada de tela cheia e transparente que contém a navegação e o rodapé.",
+      },
+    },
+  },
   render: (args) => <Demo {...args} />,
 };

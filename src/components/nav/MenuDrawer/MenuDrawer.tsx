@@ -15,7 +15,8 @@
  * 1/3 em `lg`) e o overlay segue visível à direita. O `footer`, quando existe, ocupa a largura
  * toda da tela, ancorado embaixo, com o mesmo fundo. Os dois ficam dentro do mesmo diálogo: o
  * foco preso e o Escape valem para ambos, e clicar neles não fecha; só o overlay fecha.
- * `className` e `...rest` vão para o diálogo, a camada de tela cheia que contém os dois.
+ * `className` e `...rest` vão para o diálogo, a camada de tela cheia e transparente que contém
+ * os dois; para estilizar o painel de navegação (fundo, largura, respiro), use `panelClassName`.
  */
 import {
   useEffect,
@@ -97,6 +98,18 @@ export interface MenuDrawerProps
   onNavigate?: (link: MenuDrawerLink, section: MenuDrawerSection) => void;
   /** Fecha a gaveta ao clicar num link. Padrão: `true`. */
   closeOnNavigate?: boolean;
+  /**
+   * Classes do diálogo: a camada de tela cheia e transparente (`fixed inset-0`) que contém a
+   * navegação e o rodapé. Os demais atributos (`...rest`: `id`, `style`, `data-*`, `aria-*`,
+   * eventos) também vão para ela. Para estilizar o painel de navegação, use `panelClassName`.
+   */
+  className?: string;
+  /**
+   * Classes do painel de navegação (Fechar, seções e links; máx. 80% da tela), mescladas com
+   * `cn` às do componente. Ex.: `bg-muted` troca o fundo; `lg:w-1/4` troca a largura em `lg`.
+   * Não vale para o `footer`, que fica fora do painel.
+   */
+  panelClassName?: string;
 }
 
 export function MenuDrawer({
@@ -111,6 +124,7 @@ export function MenuDrawer({
   onNavigate,
   closeOnNavigate = true,
   className,
+  panelClassName,
   ...rest
 }: MenuDrawerProps) {
   const [isOpen, setOpen] = useControllableState({
@@ -264,6 +278,7 @@ export function MenuDrawer({
             "pointer-events-auto flex min-h-0 w-full max-w-4/5 flex-1 flex-col overflow-y-auto bg-base",
             "transition-transform duration-500 ease-gc md:w-1/2 lg:w-1/3",
             visible ? "translate-x-0" : "-translate-x-full",
+            panelClassName,
           )}
         >
           {/* Fechar à direita da navegação, alinhado ao respiro lateral dos links. */}

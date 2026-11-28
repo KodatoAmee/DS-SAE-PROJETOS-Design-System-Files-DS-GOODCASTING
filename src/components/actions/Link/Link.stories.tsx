@@ -25,7 +25,7 @@ const meta = {
 
 **Anatomia.** Texto · sublinhado deslocado 4px (em \`underline\`: 1px em repouso, 2px Tiffany no hover; em \`default\`: só no hover, 1px Tiffany) · texto oculto "(abre em nova janela)" quando \`external\`.
 
-**Acessibilidade.** Elemento \`<a href>\` nativo: Enter ativa, foco com anel de 1px. \`external\` adiciona \`target="_blank"\`, \`rel="noopener"\` e o aviso "(abre em nova janela)" só para leitores de tela. Em texto corrido prefira \`variant="underline"\`, pois cor sozinha não distingue o link.
+**Acessibilidade.** Elemento \`<a href>\` nativo: Enter ativa; foco visível com o anel do sistema (\`focusRing\`), de 2px \`brand-text\` deslocado 2px. \`external\` adiciona \`target="_blank"\`, \`rel="noopener"\` e o aviso "(abre em nova janela)" só para leitores de tela. Em texto corrido prefira \`variant="underline"\`, pois cor sozinha não distingue o link.
         `,
       },
     },

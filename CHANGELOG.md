@@ -10,6 +10,7 @@ Inclui quebras de compatibilidade (marcadas abaixo). Pela GOVERNANCA (Versioname
 - **Quebra de compatibilidade:** `peerDependencies` `react` e `react-dom` de `>=18` para `^19.0.0` (NC-008). No React 18 o `ref` não chega às props e os componentes com `ref` deixavam de repassá-lo sem erro; `>=18` aceitava também um React 20 nunca testado. Com React 18 no app, o npm agora acusa o conflito de peer na instalação.
 - `CastingCard`: raio de `rounded-lg` (16px) para `rounded-md` (10px), o raio de cartão do `CONTRATO.md` (NC-042, junto do NC-005).
 - `MenuDrawer` sem nenhuma linha: sem o divisor vertical entre seções e links, sem o traço sob a seção ativa e sem a borda do rodapé. Seções e links destacam com fundo Azul Tiffany 20% (`bg-brand/20`) e raio de 4px (`rounded-xs`) no hover e no selecionado; a seção ativa e o link com `aria-current` também ficam em peso 500, porque o fundo sozinho não basta como sinal (WCAG 1.4.1). Pedido fora da revisão de 28/11.
+- **Quebra de compatibilidade:** `MenuDrawer`: `className` e os demais atributos (`...rest`) vão para o diálogo, a camada de tela cheia e transparente que contém a navegação e o rodapé. Na 0.1.0 o diálogo era o próprio painel de navegação, então `className` estilizava o painel; para isso use agora `panelClassName` (ver Adicionado).
 - **Quebra de compatibilidade:** `Logo` e `Monogram` têm um `<span>` como raiz (`block`, `w-fit`) em todos os tons, antes `<img>`. `className`, `style`, `id`, `ref`, `hidden`, `data-*`, `aria-*` e eventos vão para o `<span>`; as `<img>` recebem só `src`, `alt`, `width` e os atributos de imagem `loading`, `decoding`, `crossOrigin`, `referrerPolicy` e `fetchPriority`. `onLoad` e `onError` saíram das props. Tipos novos: `LogoImageProps`, `LogoWrapperProps`, `MonogramImageProps` e `MonogramWrapperProps`.
 - **Quebra de compatibilidade:** `Logo` `tone="branco"` agora é a versão toda branca (brandbook p. 18). A versão anterior, branca com circuito ciano, passou a `tone="negativa"` (p. 17): quem usava `branco` e quer o circuito deve trocar para `negativa`.
 - **Quebra de compatibilidade:** o padrão do `Logo` passou de `principal` a `tone="auto"`: principal no tema claro, negativa no escuro, pelo `[data-theme]` mais próximo (funciona em ilhas de tema). Em `auto` o `<span>` contém duas `<img>` e o tema decide qual aparece; a oculta sai da árvore de acessibilidade. O `Monogram` segue o mesmo modelo, com padrão `auto` (antes `preto`): preto no claro, branco no escuro.
@@ -59,6 +60,7 @@ Inclui quebras de compatibilidade (marcadas abaixo). Pela GOVERNANCA (Versioname
 - Pacote: script `prepare` (`npm run build`) e campo `license: "UNLICENSED"`; segue `private: true` (NC-009). Antes o pacote saía sem `dist/lib` (`dist` está no `.gitignore`), e `main`, `types` e `./styles.css` apontavam para arquivos inexistentes. O `prepare` roda no `npm pack`, no `npm publish` e na instalação via git (com as dependências de desenvolvimento) e gera `dist/lib`. No repositório, `npm install` também passa a rodar o build.
 - `MetaItem` (parte interna dos cartões): prop `wrap`, que quebra a linha em vez de cortar com reticências.
 - `MenuDrawerLink.current`: marca a página atual com `aria-current="page"`, fundo Tiffany 20% e peso 500.
+- `MenuDrawer`: prop `panelClassName`, mesclada com `cn` às classes do painel de navegação (Fechar, seções e links; máx. 80% da tela). Ex.: `bg-muted` troca o fundo. Não vale para o `footer`, que fica fora do painel.
 
 ### Corrigido
 - `IconButton`: com `badge` acima de 99, o nome acessível agora usa o mesmo texto exibido ("Salvos, 99+"), não o número bruto (WCAG 2.5.3).
@@ -75,6 +77,8 @@ Inclui quebras de compatibilidade (marcadas abaixo). Pela GOVERNANCA (Versioname
 - Botão de salvar dos cards (`SaveToggle`): anel de foco em dois tons, halo `base` de 2px e contorno `brand-text` por fora, visível sobre qualquer foto (5,54:1 no claro, 12,67:1 no escuro). Com `focus-visible:opacity-100`, o esmaecimento do hover não apaga o anel.
 - `CardGrid` `kind="talents"`: a 320px a página rolava na horizontal e os cartões da 2ª coluna cobriam os da 1ª. O cartão agora encolhe com a coluna (`[&>*]:min-w-0` na `li`; NC-006, WCAG 1.4.10).
 - `CastingCard`: o prazo era cortado com reticências a 320px ("Encerra hoje às 1…"). Agora quebra a linha (`MetaItem` com `wrap`), a linha prazo/cachê também quebra (`flex-wrap`) e o cachê fica à direita (NC-007, WCAG 1.4.10).
+- `CastingCardSkeleton`: raio de `rounded-lg` (16px) para `rounded-md` (10px), o mesmo do `CastingCard` (NC-042). A capa segue sem raio próprio e é recortada pelo `overflow-hidden` do esqueleto.
+- `package-lock.json` sincronizado com o `package.json`: o registro da raiz passa a ter `license: "UNLICENSED"` e os peers `react` e `react-dom` `^19.0.0` (antes `>=18`). Nenhuma versão de dependência mudou.
 
 ### Documentação
 - Introdução: Propósito e Posicionamento; 6 traços de personalidade na ordem do brandbook (Inovadora, Humana, Confiável, Elegante, Visionária, Inclusiva; entrou Visionária); Valores, com a consequência de cada um no DS; Voz e texto.
@@ -82,6 +86,8 @@ Inclui quebras de compatibilidade (marcadas abaixo). Pela GOVERNANCA (Versioname
 - `README.md`: preto `#000000`, azul-noite `#022330` e azul-petróleo `#043C50`, contraste no Tiffany, mínimo do logotipo, `Monogram` e arquivos de referência na pasta `brand`.
 - `README.md` (Consumir) e Introdução (Uso): instalação via git (`npm install github:KodatoAmee/DS-SAE-PROJETOS-Design-System-Files-DS-GOODCASTING#<tag-ou-branch>`; `#main` até existir tag), requisitos (React 19; Tailwind v4 só com `theme.css`), import do CSS e tema no `<html>` com `data-theme` (NC-010).
 - Stories do `Link`: descrição e anatomia do hover novo; peso 400 (a descrição dizia 300).
+- Stories do `Link`: a Acessibilidade dizia anel de foco de 1px; agora diz o anel do sistema (`focusRing`), de 2px `brand-text` deslocado 2px, como no `CONTRATO.md`.
+- Stories do `MenuDrawer`: controle `panelClassName` e descrição da Área de testes (`panelClassName` no painel, `className` no diálogo).
 - Stories do `ChipSelector`: descrição do selecionado; Estados com escolha única vazia e selecionada, várias, opção desabilitada e erro; nova story Área de testes.
 
 **Pendências (aguardando a marca):** vetores oficiais (logotipo, monograma, malha hexagonal, versões horizontal, com símbolo e vertical), cor do circuito sobre fundo claro, nomes das fontes, mínimo do monograma, regra de fotografia, X da área de proteção (o texto da p. 14 diz altura do "G", ≈ 0,25 × a largura; o desenho da mesma página sugere ≈ 0,16).

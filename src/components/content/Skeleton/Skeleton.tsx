@@ -47,10 +47,10 @@ export interface CardSkeletonProps extends ComponentPropsWithoutRef<"div"> {
   ref?: Ref<HTMLDivElement>;
 }
 
-/** Esqueleto com a geometria do `CastingCard`: capa 16:9 + título + metadados + cachê. */
+/** Esqueleto com a geometria do `CastingCard`: raio de 10px (`rounded-md`), capa 16:9 + título + metadados + cachê. */
 export function CastingCardSkeleton({ className, ...rest }: CardSkeletonProps) {
   return (
-    <div aria-hidden className={cn("flex flex-col overflow-hidden rounded-lg border border-line-subtle", className)} {...rest}>
+    <div aria-hidden className={cn("flex flex-col overflow-hidden rounded-md border border-line-subtle", className)} {...rest}>
       <Skeleton variant="media" aspect="16/9" className="rounded-none" />
       <div className="flex flex-col gap-3 p-4">
         <div className={cn(pulse, "h-4 w-4/5")} />
