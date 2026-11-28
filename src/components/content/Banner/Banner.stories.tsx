@@ -8,7 +8,7 @@ const meta = {
   tags: ["autodocs"],
   args: {
     position: "inline",
-    children: "Novos castings de publicidade toda semana. Complete o perfil para receber convites.",
+    children: "Novos castings de publicidade toda semana. Complete o perfil para se candidatar.",
   },
   argTypes: {
     position: { control: "inline-radio", options: ["inline", "bottom"] },

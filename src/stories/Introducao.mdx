@@ -8,35 +8,90 @@ Design system da **Good Casting**: plataforma que conecta talentos, produtoras, 
 
 > Good Casting. Uma plataforma. Mil oportunidades.
 
+**Propósito.** Transformar a forma como o mercado de entretenimento descobre, conecta e valoriza talentos por meio da tecnologia.
+
+**Posicionamento.** Plataforma tecnológica que conecta talento e indústria de forma simples, inteligente e transparente.
+
+Missão e visão: brandbook, p. 5–6.
+
 ## Princípios (da personalidade da marca)
 
-1. **Elegante.** Preto, branco e um só acento: Azul Tiffany. Simplicidade, clareza, atenção ao detalhe.
-2. **Confiável.** Contraste AA garantido nos tokens; o Tiffany nunca leva texto branco.
-3. **Humana.** A tecnologia aproxima pessoas: linguagem clara, controles de 44px em toque, raios suaves.
-4. **Inovadora.** O circuito do logotipo é o único ornamento tecnológico; use com parcimónia.
-5. **Inclusiva.** Teclado, leitor de tela e `prefers-reduced-motion` em todo componente.
+1. **Inovadora.** Buscamos novas formas de resolver o casting: fluxo mais curto antes de ornamento. Circuito e malha hexagonal são os únicos grafismos tecnológicos; use com parcimônia.
+2. **Humana.** A tecnologia aproxima pessoas: linguagem clara, controles de 44px em toque, raios suaves.
+3. **Confiável.** Transparência e profissionalismo: cachê, prazo, vagas e estado da candidatura sempre visíveis; nenhuma promessa de trabalho.
+4. **Elegante.** Preto, branco e um só acento: Azul Tiffany. Simplicidade, clareza, atenção ao detalhe.
+5. **Visionária.** Pensar no futuro do casting, não só no presente: cada decisão vale para web e app, tema claro e escuro.
+6. **Inclusiva.** O talento não tem um único perfil: contraste AA nos tokens, teclado, leitor de tela e `prefers-reduced-motion` em todo componente; exemplos com perfis variados.
+
+## Valores (o que orienta cada decisão)
+
+{/* Tabela em JSX: o MDX do Storybook roda sem remark-gfm, então tabela em Markdown não renderiza. */}
+<table>
+  <thead>
+    <tr><th>Valor</th><th>Frase</th><th>Consequência no DS</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Inovação</td><td>Transformamos desafios em soluções.</td><td>Padrão novo só entra quando encurta um fluxo real (<code>SearchField</code>, <code>ChipSelector</code> e <code>ViewSelector</code> resolvem a descoberta de castings em poucos passos).</td></tr>
+    <tr><td>Humanização</td><td>A tecnologia aproxima pessoas e valoriza talentos.</td><td>Foto e nome do talento são o conteúdo principal do <code>TalentCard</code>; selos, idade e compatibilidade vêm depois.</td></tr>
+    <tr><td>Inclusão</td><td>Criamos oportunidades para todos.</td><td>Contraste AA, alvo mínimo de 24px (44px em toque) e nome acessível em todo controle; estado nunca só por cor (<code>StatusBadge</code> sempre tem texto).</td></tr>
+    <tr><td>Transparência</td><td>Agimos com clareza, ética e confiança.</td><td><code>FeeLabel</code> mostra o cachê "A definir" em vez de omiti-lo; <code>CastingCard</code> sempre exibe prazo, vagas e estado da candidatura.</td></tr>
+    <tr><td>Excelência</td><td>Buscamos qualidade em tudo o que fazemos.</td><td>Todo componente segue o <code>CONTRATO.md</code>: só tokens, estados documentados (desabilitado, erro, carregando) e story no Storybook antes de entrar no DS.</td></tr>
+    <tr><td>Colaboração</td><td>Conectamos talentos, marcas e indústria em um único ecossistema.</td><td>Os mesmos componentes servem os dois lados: <code>CastingCard</code> para quem se candidata, <code>TalentCard</code> para quem seleciona.</td></tr>
+  </tbody>
+</table>
+
+## Voz e texto
+
+Vale para rótulos, mensagens, exemplos das stories e documentação.
+
+1. **Não prometer trabalho, seleção, convite ou resultado.** A promessa é de processo: transparência, profissionalismo, inovação.
+2. **Frases curtas, afirmativas, com ponto final.** Uma ideia por frase.
+3. **A marca fala em "nós"; o usuário é "você".**
+4. **Vocabulário fixo:** talentos, produtoras, agências, marcas, diretores de casting. "Oportunidade", nunca "vaga garantida".
+5. **Sem superlativo nem exclamação.** Ênfase com negrito em uma palavra.
+6. **Assinatura sempre inteira:** "Good Casting. Uma plataforma. Mil oportunidades."
 
 ## Camadas
 
-| Camada | Arquivo | Papel |
-|---|---|---|
-| Tokens | `tokens/tokens.json` | Fonte canônica (W3C DTCG) |
-| Tema | `src/styles/theme.css` | Primitivas → semânticas por tema → `@theme` do Tailwind v4 |
-| Utilitários | `src/lib/cn.ts` | `cn()` e `focusRing` |
-| Componentes | `src/components/{brand,actions,form,nav,content}` | React 19 + `cva` |
+<table>
+  <thead>
+    <tr><th>Camada</th><th>Arquivo</th><th>Papel</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Tokens</td><td><code>tokens/tokens.json</code></td><td>Fonte canônica (W3C DTCG)</td></tr>
+    <tr><td>Tema</td><td><code>src/styles/theme.css</code></td><td>Primitivas → semânticas por tema → <code>@theme</code> do Tailwind v4</td></tr>
+    <tr><td>Utilitários</td><td><code>src/lib/cn.ts</code></td><td><code>cn()</code> e <code>focusRing</code></td></tr>
+    <tr><td>Componentes</td><td><code>{"src/components/{brand,actions,form,nav,content}"}</code></td><td>React 19 + <code>cva</code></td></tr>
+  </tbody>
+</table>
 
 ## Uso
+
+Requisitos: React 19 (`react` e `react-dom` `^19.0.0`) e, só se usar `theme.css`, Tailwind v4.
+
+O pacote é privado (não está no npm). Instale direto do GitHub; ainda não há tags, então use `#main` até existir a tag da versão:
+
+```powershell
+npm install github:KodatoAmee/DS-SAE-PROJETOS-Design-System-Files-DS-GOODCASTING#<tag-ou-branch>
+```
+
+Na instalação, o npm roda o `prepare` do DS (`npm run build`), que gera `dist/lib`.
 
 ```tsx
 import "ds-goodcasting/styles.css";          // sem Tailwind no app
 import { Button, Logo } from "ds-goodcasting";
 
-<div data-theme="light">
-  <Logo width={160} />
-  <Button variant="brand">Completar perfil</Button>
-</div>
+<Logo width={160} />
+<Button variant="brand">Completar perfil</Button>
 ```
 
-Com Tailwind v4 no app: importe `ds-goodcasting/theme.css` e adicione `@source "../node_modules/ds-goodcasting/dist/lib";`.
+Com Tailwind v4 no app, use o `theme.css` no lugar do `styles.css` (ele já importa o `tailwindcss`) e aponte o `@source` para os componentes, com caminho relativo ao arquivo CSS:
+
+```css
+@import "ds-goodcasting/theme.css";
+@source "../node_modules/ds-goodcasting/dist/lib";
+```
+
+O tema vai no `<html>`: `<html data-theme="light">` ou `<html data-theme="dark">`. Sem o atributo vale o claro. Um `data-theme` em outro elemento cria uma ilha de tema.
 
 Regras de contribuição em `GOVERNANCA.md`; contrato para quem escreve componente em `CONTRATO.md`.

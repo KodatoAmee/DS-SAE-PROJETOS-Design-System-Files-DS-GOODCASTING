@@ -70,13 +70,14 @@ export function CastingCard({
     <article
       aria-labelledby={titleId}
       className={cn(
-        "group/card relative flex flex-col overflow-hidden rounded-lg border border-line-subtle bg-surface text-content",
+        // Sem `overflow-hidden` aqui: cortaria o anel de foco do link (no ::after). Quem recorta é a mídia.
+        "group/card relative flex flex-col rounded-md border border-line-subtle bg-surface text-content",
         "transition-shadow duration-200 ease-gc hover:shadow-card",
         className,
       )}
       {...rest}
     >
-      <div className="relative">
+      <div className="relative overflow-hidden rounded-t-[inherit]">
         {renderMedia(cover, "16/9")}
         {category && (
           <span className="absolute top-3 left-3 rounded-full bg-base/90 px-2.5 py-0.5 text-label-s font-medium">
@@ -109,15 +110,16 @@ export function CastingCard({
         )}
 
         {((deadline && !expired) || fee) && (
-          <div className="mt-auto flex items-end justify-between gap-4 pt-1">
+          <div className="mt-auto flex flex-wrap items-end justify-between gap-x-4 gap-y-2 pt-1">
             {deadline && !expired ? (
-              <MetaItem icon="calendar" className={cn(deadline.urgent && "font-medium text-danger-text")}>
+              <MetaItem wrap icon="calendar" className={cn(deadline.urgent && "font-medium text-danger-text")}>
                 {deadline.text}
               </MetaItem>
             ) : (
               <span />
             )}
-            {fee && <FeeLabel align="end" {...fee} />}
+            {/* `ml-auto`: se quebrar para a linha de baixo, o cachê continua à direita. */}
+            {fee && <FeeLabel align="end" {...fee} className={cn("ml-auto", fee.className)} />}
           </div>
         )}
 

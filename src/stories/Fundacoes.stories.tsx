@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import type { CSSProperties, ReactNode } from "react";
-import { Logo, Monogram } from "../components/brand";
+import type { ComponentProps, CSSProperties, ReactNode } from "react";
+import { LOGO_MIN_WIDTH, Logo, Monogram } from "../components/brand";
 import { cn } from "../lib/cn";
 import { Icon, circumIconNames, iconNames } from "../components/icon";
 
@@ -48,7 +48,12 @@ const semanticColors: { token: string; cls: string; use: string }[] = [
   { token: "brand-text", cls: "bg-brand-text", use: "Texto de marca (AA)" },
   { token: "tiffany-link", cls: "bg-tiffany-link", use: "Tiffany Link: cor do componente Link (AA)" },
   { token: "circuit", cls: "bg-circuit", use: "Circuito do logotipo. Só decorativo" },
-  { token: "night", cls: "bg-night", use: "Fundo da versão negativa" },
+  { token: "night", cls: "bg-night", use: "Fundo alternativo das versões em branco do logotipo (p. 18)" },
+  {
+    token: "petrol",
+    cls: "bg-petrol",
+    use: "Azul-petróleo #043C50: fundo das versões em branco (p. 20–21); branco sobre ele 11,9:1. Medido no brandbook, não declarado",
+  },
   { token: "sheet", cls: "bg-sheet", use: "Folha do app" },
   { token: "success", cls: "bg-success", use: "Sucesso" },
   { token: "warning", cls: "bg-warning", use: "Atenção" },
@@ -63,7 +68,7 @@ export const Cor: Story = {
   render: () => (
     <Section
       title="Cor"
-      note="Preto, branco e Azul Tiffany (#81D8D0), como no brandbook. Tiffany não leva texto branco: use texto preto sobre ele (13:1) e `brand-text` (#057571) para links. Troque o tema na barra para ver as semânticas mudarem."
+      note="Preto, branco e Azul Tiffany (#81D8D0), como no brandbook. Tiffany não leva texto branco: use texto preto sobre ele (preto sobre Tiffany: 12,7:1) e `brand-text` (#057571) para links. Troque o tema na barra para ver as semânticas mudarem."
     >
       <div className="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-5">
         {semanticColors.map((c) => (
@@ -383,22 +388,45 @@ function BrandBlock({ title, lead, children }: { title: string; lead: string; ch
   );
 }
 
-/** Unidade X da área de proteção, proporcional à largura do logotipo (altura do "G"). */
-const xUnit = (logoWidth: number) => Math.round(logoWidth * 0.14);
+/**
+ * Unidade X da área de proteção, proporcional à largura do logotipo (altura do "G").
+ * Brandbook p. 14: X = altura do "G" do logotipo principal. Medido: o "G" tem 24,9% da largura do logotipo; o DS usa 25%.
+ */
+const xUnit = (logoWidth: number) => Math.round(logoWidth * 0.25);
 
-function ProtectionArea({
-  width,
-  tone = "principal",
-  bg = "bg-base",
-}: {
-  width: number;
-  tone?: "principal" | "branco";
-  bg?: string;
-}) {
-  const x = xUnit(width);
+/**
+ * Unidade X do monograma: altura do "G" do monograma (p. 20), na prática a altura da pílula GD.
+ * Medido na p. 20: 58,6% da largura do GD. No SVG do `Monogram` (pílula de 358 de altura num viewBox de 680 de
+ * largura, com folga lateral) isso dá ≈ 53% da largura do componente.
+ */
+const monogramXUnit = (monogramWidth: number) => Math.round(monogramWidth * 0.53);
+
+type LogoTone = NonNullable<ComponentProps<typeof Logo>["tone"]>;
+type MonogramTone = NonNullable<ComponentProps<typeof Monogram>["tone"]>;
+
+/**
+ * `theme` vira `data-theme` no contêiner. "light" (padrão) é a ilha de tema da versão principal sobre branco, para
+ * não virar preto sobre preto no tema escuro; use "dark" sobre preto, azul-noite ou petróleo, para o tracejado e os X ficarem legíveis.
+ */
+type ProtectionAreaProps = { width: number; bg?: string; theme?: "light" | "dark" } & (
+  | { mark?: "logo"; tone?: LogoTone }
+  | { mark: "monograma"; tone?: MonogramTone }
+);
+
+function ProtectionArea(props: ProtectionAreaProps) {
+  const { width, bg = "bg-base", theme = "light" } = props;
+  const x = props.mark === "monograma" ? monogramXUnit(width) : xUnit(width);
   return (
-    <div className={cn("relative inline-block border border-dashed border-brand-text", bg)} style={{ padding: x }}>
-      <Logo tone={tone} width={width} alt="" />
+    <div
+      className={cn("relative inline-block border border-dashed border-brand-text text-content", bg)}
+      style={{ padding: x }}
+      data-theme={theme}
+    >
+      {props.mark === "monograma" ? (
+        <Monogram tone={props.tone ?? "preto"} width={width} alt="" />
+      ) : (
+        <Logo tone={props.tone ?? "principal"} width={width} alt="" />
+      )}
       <span aria-hidden className="absolute left-1/2 -translate-x-1/2 text-label-s font-semibold text-brand-text" style={{ top: x / 2 - 8 }}>
         X
       </span>
@@ -412,6 +440,46 @@ function ProtectionArea({
         X
       </span>
     </div>
+  );
+}
+
+const formatX = (u: number) => `${String(u).replace(".", ",")}X`;
+
+/** Régua de cotas do módulo de construção (p. 13). Esquema sem escala: mostra a ordem e a proporção das cotas. */
+function ModuleRuler({
+  label,
+  segments,
+  vertical = false,
+  axis = false,
+}: {
+  label: string;
+  segments: { u: number; name?: string }[];
+  vertical?: boolean;
+  axis?: boolean;
+}) {
+  return (
+    <figure>
+      <figcaption className="mb-2 text-label-s text-content-mid">{label}</figcaption>
+      <div className={cn("relative flex", vertical ? "w-max flex-col" : "w-full max-w-[440px]")}>
+        {segments.map((s, i) => (
+          <div
+            key={i}
+            className={cn("relative flex min-w-0 items-center", vertical ? "gap-2 pl-5" : "flex-col pt-4")}
+            style={vertical ? { height: s.u * 28 } : { flex: `${s.u} 1 0` }}
+          >
+            <span aria-hidden className={cn("absolute bg-brand-text", vertical ? "inset-y-0 left-1.5 w-px" : "inset-x-0 top-1.5 h-px")} />
+            <span aria-hidden className={cn("absolute bg-brand-text", vertical ? "top-0 left-0 h-px w-3" : "top-0 left-0 h-3 w-px")} />
+            {i === segments.length - 1 && (
+              <span aria-hidden className={cn("absolute bg-brand-text", vertical ? "bottom-0 left-0 h-px w-3" : "top-0 right-0 h-3 w-px")} />
+            )}
+            <span className="text-label-s font-semibold text-brand-text">{formatX(s.u)}</span>
+            {s.name && <span className="text-label-s text-content-mid">{s.name}</span>}
+          </div>
+        ))}
+        {axis && <span aria-hidden className="absolute -top-3 left-1/2 h-7 border-l border-dashed border-brand-text" />}
+      </div>
+      {axis && <p className="mt-2 max-w-[440px] text-center text-label-s text-brand-text">eixo central</p>}
+    </figure>
   );
 }
 
@@ -451,7 +519,7 @@ const wrongUses: { caption: string; tile: ReactNode }[] = [
     caption: "Não aplicar efeitos, sombras ou contornos.",
     tile: <Logo width={150} alt="" style={{ filter: "drop-shadow(0 6px 6px rgb(0 0 0 / 0.55))" }} />,
   },
-  { caption: "Não rodar o logotipo.", tile: <Logo width={140} alt="" style={{ transform: "rotate(-18deg)" }} /> },
+  { caption: "Não girar o logotipo.", tile: <Logo width={140} alt="" style={{ transform: "rotate(-18deg)" }} /> },
   {
     caption: "Não aplicar sobre fundos com baixo contraste.",
     tile: (
@@ -489,21 +557,21 @@ const logoConcept = [
   {
     k: "CIRCUITO",
     words: "Tecnologia · Conectividade · Inovação",
-    text: "Os traços de circuito representam a transformação digital e a ligação entre pessoas.",
+    text: "Os grafismos inspirados em circuitos representam a transformação digital, a conexão entre pessoas e a evolução do processo de casting.",
     cls: "text-display tracking-wide text-brand-text",
   },
 ];
 
 const minSizes = [
   { k: "Impressão", min: "25 mm", rec: "40 mm", w: [120, 190] },
-  { k: "Digital", min: "120 px", rec: "200 px", w: [120, 200] },
+  { k: "Digital", min: `${LOGO_MIN_WIDTH} px`, rec: "200 px", w: [LOGO_MIN_WIDTH, 200] },
 ];
 
 export const Marca: Story = {
   render: () => (
     <Section
       title="Marca"
-      note="Fonte: brandbook Good Casting (p. 10–21). Usar só os arquivos oficiais, via componente `Logo`. O logotipo segue as fontes do brandbook; a tipografia de interface do DS é Bodoni Moda + Public Sans."
+      note="Fonte: brandbook Good Casting (p. 10–21). Usar só os arquivos de referência (substituir pelos vetores oficiais quando a marca fornecer), via componente `Logo`. O logotipo segue as fontes do brandbook; a tipografia de interface do DS é Bodoni Moda + Public Sans."
     >
       <BrandBlock title="O logotipo" lead="O principal elemento de identificação da marca.">
         <div className="grid items-center gap-10 md:grid-cols-2">
@@ -513,7 +581,7 @@ export const Marca: Story = {
             <p>Como principal elemento da marca, deve ser usado de forma consistente em todos os pontos de contato.</p>
           </div>
           <div className="flex items-center justify-center rounded-lg bg-night p-10">
-            <Logo tone="branco" width={280} />
+            <Logo tone="negativa" width={280} />
           </div>
         </div>
         <p className="mt-3 text-label-s text-content-mid">Logotipo principal</p>
@@ -526,7 +594,7 @@ export const Marca: Story = {
             elemento de reconhecimento imediato em espaços pequenos (avatar, favicon, ícone do app).
           </p>
           <div className="grid grid-cols-2 gap-4">
-            <div className="flex h-36 items-center justify-center rounded-lg border border-line-subtle bg-base" data-theme="light">
+            <div className="flex h-36 items-center justify-center rounded-lg border border-line-subtle bg-base text-content" data-theme="light">
               <Monogram tone="preto" width={110} />
             </div>
             <div className="flex h-36 items-center justify-center rounded-lg bg-black">
@@ -548,21 +616,80 @@ export const Marca: Story = {
         </div>
       </BrandBlock>
 
-      <BrandBlock title="Construção e área de proteção" lead="Precisão em cada detalhe. Respeitar o espaço.">
+      <BrandBlock title="Grafismos" lead="Malha e degradê.">
+        <div className="grid gap-8 md:grid-cols-2">
+          <div>
+            <BrandLabel>Malha hexagonal</BrandLabel>
+            <Pending label="Malha hexagonal (aguardando vetor oficial)" />
+            <BrandNote>
+              No canto superior esquerdo, ocupando até 15% da largura e 24% da altura da área, na cor <code>circuit</code>. Só
+              decorativa.
+            </BrandNote>
+          </div>
+          <div>
+            <BrandLabel>Degradê</BrandLabel>
+            <div
+              className="flex h-36 flex-col justify-between rounded-lg border border-line-subtle bg-brand-gradient p-4 text-label font-medium text-content"
+              data-theme="light"
+            >
+              <span>#FFFFFF</span>
+              <span>#9B9B9B</span>
+            </div>
+            <BrandNote>
+              Só decorativo, em telas institucionais. Texto sobre ele: apenas <code>content</code> (preto #000000, 7,6:1 na
+              base).
+            </BrandNote>
+          </div>
+        </div>
+      </BrandBlock>
+
+      <BrandBlock title="Construção" lead="Precisão em cada detalhe.">
+        <div className="grid gap-10 md:grid-cols-[1fr_auto]">
+          <div className="min-w-0 space-y-8">
+            <p className="text-body text-content-mid">
+              O logotipo é desenhado sobre um módulo geométrico que garante equilíbrio, legibilidade e consistência (p. 13). As
+              proporções entre símbolo, tipografia e espaçamentos não mudam.
+            </p>
+            <ModuleRuler label="Largura de GOOD: 6X" segments={[{ u: 2 }, { u: 2 }, { u: 2 }]} />
+            <ModuleRuler
+              label="Base: simétrica ao eixo central"
+              segments={[{ u: 1 }, { u: 1 }, { u: 3 }, { u: 1 }, { u: 3 }, { u: 1 }, { u: 1 }]}
+              axis
+            />
+          </div>
+          <ModuleRuler
+            vertical
+            label="Alturas, de cima para baixo"
+            segments={[
+              { u: 1, name: "margem" },
+              { u: 3, name: "GOOD" },
+              { u: 1, name: "respiro" },
+              { u: 1.5, name: "CASTING" },
+              { u: 1, name: "circuito" },
+            ]}
+          />
+        </div>
+        <BrandNote>
+          Esquema sem escala, só com as cotas da p. 13. O X do módulo é uma unidade de grade (GOOD mede 3X de altura) e não é o
+          X da área de proteção, que vale a altura inteira do “G” (p. 14).
+        </BrandNote>
+      </BrandBlock>
+
+      <BrandBlock title="Área de proteção" lead="Respeitar o espaço.">
         <div className="grid items-center gap-10 md:grid-cols-[1fr_auto]">
           <div className="space-y-3 text-body text-content-mid">
             <p>
-              Estrutura geométrica: GOOD ocupa 6X de largura e 3X de altura; CASTING 1,5X; o circuito 1X. As proporções entre
-              símbolo, tipografia e espaçamentos não mudam.
+              A unidade <strong className="text-content">X</strong> é a altura da letra “G” do logotipo principal (p. 14).
+              Nenhum texto, imagem ou elemento gráfico entra na margem X em volta do logotipo ou do monograma.
             </p>
-            <p>
-              A unidade <strong className="text-content">X</strong> é a altura da letra “G”. Nenhum texto, imagem ou elemento
-              gráfico entra na margem X em volta do logotipo ou do monograma.
-            </p>
+            <p>No monograma, X é a altura do “G” do próprio monograma (p. 20).</p>
           </div>
-          <ProtectionArea width={240} />
+          <ProtectionArea width={200} />
         </div>
-        <BrandNote>No DS, a margem é calculada pela largura do logotipo: X ≈ 14% da largura (28px para 200px).</BrandNote>
+        <BrandNote>
+          No DS, X sai da largura: 25% da largura do logotipo (50px para 200px; o “G” medido tem 24,9%) e 53% da largura do
+          monograma (a altura da pílula GD).
+        </BrandNote>
       </BrandBlock>
 
       <BrandBlock title="Dimensão mínima" lead="Garantir legibilidade.">
@@ -570,7 +697,10 @@ export const Marca: Story = {
           {minSizes.map((g) => (
             <div key={g.k}>
               <BrandLabel>{g.k}</BrandLabel>
-              <div className="grid grid-cols-2 items-end gap-6">
+              <div
+                className="flex flex-wrap items-end gap-x-8 gap-y-6 rounded-lg border border-line-subtle bg-base p-5 text-content"
+                data-theme="light"
+              >
                 {[
                   { t: "Tamanho mínimo", v: g.min, w: g.w[0] },
                   { t: "Tamanho recomendado", v: g.rec, w: g.w[1] },
@@ -591,8 +721,8 @@ export const Marca: Story = {
           ))}
         </div>
         <BrandNote>
-          Valem para o logotipo principal (com tipografia); o monograma tem mínimo próprio. Exceção do DS: o Header usa 84px,
-          abaixo do mínimo do brandbook.
+          Valem para o logotipo principal (com tipografia). Abaixo de 120 px (Header, avatar, favicon), use o Monogram. O
+          Header do DS usa o Monogram a 56 px. Mínimo do monograma: pendente da marca.
         </BrandNote>
       </BrandBlock>
 
@@ -600,19 +730,19 @@ export const Marca: Story = {
         <div className="grid gap-8 md:grid-cols-2">
           <div>
             <BrandLabel>Versão principal</BrandLabel>
-            <div className="flex h-36 items-center justify-center rounded-lg border border-line-subtle bg-base" data-theme="light">
+            <div className="flex h-36 items-center justify-center rounded-lg border border-line-subtle bg-base text-content" data-theme="light">
               <Logo width={200} />
             </div>
           </div>
           <div>
             <BrandLabel>Versão negativa</BrandLabel>
             <div className="flex h-36 items-center justify-center rounded-lg bg-black">
-              <Logo tone="branco" width={200} />
+              <Logo tone="negativa" width={200} />
             </div>
           </div>
           <div>
             <BrandLabel>Versão monocromática</BrandLabel>
-            <div className="flex h-36 items-center justify-center rounded-lg border border-line-subtle bg-base" data-theme="light">
+            <div className="flex h-36 items-center justify-center rounded-lg border border-line-subtle bg-base text-content" data-theme="light">
               <Logo tone="preto" width={200} />
             </div>
           </div>
@@ -662,8 +792,10 @@ export const Marca: Story = {
       <BrandBlock title="Área de proteção nas versões" lead="Respeitar o espaço da marca.">
         <div className="flex flex-wrap items-center gap-8">
           <ProtectionArea width={180} />
-          <ProtectionArea width={180} tone="branco" bg="bg-black" />
-          <ProtectionArea width={180} tone="branco" bg="bg-night" />
+          <ProtectionArea width={180} tone="branco" bg="bg-black" theme="dark" />
+          <ProtectionArea width={180} tone="branco" bg="bg-night" theme="dark" />
+          <ProtectionArea width={180} tone="branco" bg="bg-petrol" theme="dark" />
+          <ProtectionArea mark="monograma" width={120} tone="branco" bg="bg-black" theme="dark" />
         </div>
         <BrandNote>A área de proteção vale para todas as versões do logotipo e do monograma.</BrandNote>
       </BrandBlock>
@@ -673,7 +805,10 @@ export const Marca: Story = {
         <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {wrongUses.map((u) => (
             <li key={u.caption}>
-              <div className="flex h-36 items-center justify-center overflow-hidden rounded-lg border border-line-subtle bg-base">
+              <div
+                className="flex h-36 items-center justify-center overflow-hidden rounded-lg border border-line-subtle bg-base text-content"
+                data-theme="light"
+              >
                 {u.tile}
               </div>
               <p className="mt-3 flex items-start gap-2 text-label text-content-mid">
@@ -694,15 +829,15 @@ export const Marca: Story = {
             <div className="flex h-32 items-center justify-center rounded-lg bg-night">
               <Logo tone="branco" width={170} />
             </div>
-            <div className="flex h-32 items-center justify-center rounded-lg bg-brand-text">
+            <div className="flex h-32 items-center justify-center rounded-lg bg-petrol">
               <Logo tone="branco" width={170} />
             </div>
-            <div className="flex h-32 items-center justify-center rounded-lg border border-line-subtle bg-base" data-theme="light">
+            <div className="flex h-32 items-center justify-center rounded-lg border border-line-subtle bg-base text-content" data-theme="light">
               <Logo width={170} />
             </div>
           </div>
         </div>
-        <BrandNote>A lista não é exaustiva. Use sempre as versões oficiais, respeitando cores, proporções e área de proteção.</BrandNote>
+        <BrandNote>A lista não é exaustiva. Use sempre as versões do brandbook, respeitando cores, proporções e área de proteção.</BrandNote>
       </BrandBlock>
     </Section>
   ),

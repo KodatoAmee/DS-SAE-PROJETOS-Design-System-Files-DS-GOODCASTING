@@ -22,7 +22,7 @@ export type ToastTone = "default" | "error";
 
 /** Anel de foco sobre fundo invertido (mesma forma do `focusRing`, cor oposta). */
 const inverseFocusRing =
-  "outline-none focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-on-inverse";
+  "outline-hidden focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-on-inverse";
 
 export interface ToastAction {
   label: string;

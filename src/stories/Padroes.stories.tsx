@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
-import { Logo, Monogram } from "../components/brand";
+import { Monogram } from "../components/brand";
 import {
   Accordion,
   AccordionItem,
@@ -52,7 +52,7 @@ const sections = [
   },
   {
     id: "perfil",
-    label: "O meu perfil",
+    label: "Meu perfil",
     items: ["Dados pessoais", "Book de fotos", "Vídeos", "Agências"].map((l) => ({ label: l, href: "#" })),
   },
   {
@@ -103,7 +103,7 @@ function Timeline() {
       <Header
         variant="solid"
         sticky
-        logo={<Logo tone="preto" width={84} />}
+        logo={<Monogram width={56} alt="Good Casting" />}
         menuOpen={menu}
         menuId="menu-principal"
         onMenuClick={() => setMenu(true)}
@@ -118,11 +118,11 @@ function Timeline() {
       <main className="mx-auto max-w-[1280px] px-4 pb-12 lg:px-10">
         <div className="py-8">
           <h1 className="font-display text-display">Castings abertos</h1>
-          <p className="mt-1 text-body text-content-mid">Uma plataforma. Mil oportunidades.</p>
+          <p className="mt-1 text-body text-content-mid">Good Casting. Uma plataforma. Mil oportunidades.</p>
         </div>
 
-        <Banner title="Complete o seu perfil" actions={<Button variant="brand" size="s">Completar perfil</Button>} className="mb-6 bg-brand-soft">
-          Perfis com book e vídeo recebem até 3x mais convites.
+        <Banner title="Complete seu perfil" actions={<Button variant="brand" size="s">Completar perfil</Button>} className="mb-6 bg-brand-soft">
+          Book e vídeo ajudam quem seleciona a conhecer você.
         </Banner>
 
         <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
@@ -234,7 +234,7 @@ export const DetalheDoCasting: Story = {
             <p className="text-body text-content-mid">Produtora Luz Norte · São Paulo · Gravação 12–14 de março</p>
           </div>
           <Tabs
-            label="Secções do casting"
+            label="Seções do casting"
             items={[
               {
                 id: "sobre",
@@ -242,7 +242,7 @@ export const DetalheDoCasting: Story = {
                 content: (
                   <p className="max-w-[640px] pt-4 text-body">
                     Campanha nacional para televisão e redes sociais. Procuramos uma família natural e
-                    luminosa para um dia de praia. Gravação em exteriores, com direitos de imagem por 12
+                    luminosa para um dia de praia. Gravação em externas, com direitos de imagem por 12
                     meses no Brasil.
                   </p>
                 ),
@@ -276,7 +276,7 @@ export const DetalheDoCasting: Story = {
             <li className="flex justify-between"><span className="text-content-mid">Local</span><span>São Paulo</span></li>
           </ul>
           <Button variant="brand" size="l" fullWidth>
-            Candidatar-me
+            Quero me candidatar
           </Button>
           <Button variant="secondary" size="m" fullWidth iconStart="heart">
             Salvar casting
@@ -291,9 +291,9 @@ const talentos = [
   { name: "Ana Ribeiro", age: 38, location: "São Paulo", skills: ["Atriz", "Modelo"], match: 96, verified: true },
   { name: "Beatriz Costa", age: 41, location: "Rio de Janeiro", skills: ["Atriz", "Locução", "Inglês"], match: 91 },
   { name: "Carla Mendes", age: 36, location: "São Paulo", skills: ["Modelo"], match: 88, verified: true },
-  { name: "Diana Alves", age: 44, location: "Setúbal", skills: ["Atriz", "Dança", "Canto", "Francês"], match: 84 },
-  { name: "Eva Martins", age: 39, location: "Cascais", skills: ["Atriz"], match: 80 },
-  { name: "Filipa Rocha", age: 42, location: "São Paulo", skills: ["Modelo", "Influencer"], match: 77 },
+  { name: "Diana Alves", age: 44, location: "Salvador", skills: ["Atriz", "Dança", "Canto", "Francês"], match: 84 },
+  { name: "Eva Martins", age: 39, location: "Recife", skills: ["Atriz"], match: 80 },
+  { name: "Fernanda Rocha", age: 42, location: "São Paulo", skills: ["Modelo", "Influencer"], match: 77 },
 ];
 
 function Shortlist() {
@@ -335,7 +335,7 @@ export const CompletarPerfil: Story = {
     <form className="mx-auto max-w-[480px] space-y-8 py-6" onSubmit={(e) => e.preventDefault()}>
       <div className="space-y-1">
         <p className="text-label text-content-mid">Passo 2 de 4</p>
-        <h1 className="font-display text-display">Conte-nos sobre si</h1>
+        <h1 className="font-display text-display">Conte sobre você</h1>
         <div className="mt-4 h-1 overflow-hidden rounded-full bg-muted" aria-hidden>
           <div className="h-full w-1/2 rounded-full bg-brand" />
         </div>
@@ -365,7 +365,7 @@ export const CompletarPerfil: Story = {
           Anterior
         </Button>
         <Button type="submit" variant="brand" size="l" className="flex-1">
-          Seguinte
+          Próximo
         </Button>
       </div>
     </form>
@@ -377,9 +377,9 @@ export const IniciarSessao: Story = {
   parameters: { layout: "padded" },
   render: () => (
     <form className="mx-auto mt-10 max-w-[398px] space-y-6" onSubmit={(e) => e.preventDefault()}>
-      <Monogram tone="preto" width={120} className="mx-auto" />
+      <Monogram width={120} className="mx-auto" />
       <h1 className="pt-4 text-center font-display text-heading">Entrar na Good Casting</h1>
-      <TextField label="E-mail" type="email" placeholder="Digite o seu e-mail" autoComplete="email" />
+      <TextField label="E-mail" type="email" placeholder="Digite seu e-mail" autoComplete="email" />
       <TextField label="Senha" type="password" autoComplete="current-password" />
       <Button type="submit" fullWidth size="l">
         Entrar
@@ -388,7 +388,7 @@ export const IniciarSessao: Story = {
         Ainda não tem conta? <a href="#" className="text-brand-text underline underline-offset-2">Criar perfil</a>
       </p>
       <p className="pt-10 text-label text-content-mid">
-        Ao continuar, aceita os termos de uso e a política de privacidade.
+        Ao continuar, você aceita os termos de uso e a política de privacidade.
       </p>
     </form>
   ),

@@ -5,18 +5,21 @@ Lido por todo agente antes de escrever componente. Fonte da verdade dos valores:
 ## Linguagem visual (brandbook Good Casting + app)
 
 - Preto, branco e **Azul Tiffany `#81D8D0`** (`brand`). Tiffany nunca leva texto branco: texto sobre ele é `text-on-brand` (preto). Link e texto de marca: `text-brand-text` (`#057571`, AA).
-- Ciano do circuito (`circuit`, `#00fefe`) só decorativo (traços, pontos). Azul noite (`night`) só como fundo da versão negativa.
+- Ciano do circuito (`circuit`, `#00fefe`) só decorativo (traços, pontos). Azul-noite (`night`) e azul-petróleo (`petrol`) só como fundo alternativo das versões em branco do logotipo (brandbook: noite p. 18, petróleo p. 20–21).
 - Botão primário = preto sólido (`bg-inverse`). Destaque de marca = `variant="brand"` (Tiffany + texto preto). Secundário = contorno 1px `border-line`.
 - Raios: `rounded-xs`(4) checkbox · `rounded-sm`(6) · `rounded-md`(10) cartões e mídia · `rounded-control`(12) botões e controles · `rounded-lg`(16) modais e folhas · `rounded-xl`(24) · `rounded-full` pílulas, radio, switch.
 - Sombra só `shadow-card` (cartão elevado) e `shadow-overlay` (sobreposição). Nunca sombra no logotipo.
 - Tipo: **Public Sans** (`font-sans`) em tudo; **Bodoni Moda** (`font-display`) só em títulos editoriais (`text-heading`, `text-display`). Pesos: 400 texto, 500 ações e selecionado, 600 títulos Public Sans. Caixa normal (sem maiúsculas forçadas).
 - Campo = só linha inferior 1px `border-line-field`, rótulo 13px `text-content-low`, altura 40.
 - Movimento: `duration-200` hover/opacidade, `duration-300`–`duration-500` painéis, `ease-gc` (ease-in-out).
-- Logotipo: só via componente `Logo` (arquivos oficiais). Mínimo 84px no digital (o brandbook pede 120px; reduzido para caber no Header). Não distorcer, recolorir, girar ou aplicar efeitos.
+- Marca: só via componentes `Logo` e `Monogram` (arquivos de referência, de auto-trace e redesenho, até chegarem os vetores oficiais; o monograma é provisório). Não distorcer, recolorir, girar ou aplicar efeitos.
+  - Logotipo: mínimo 120 px (brandbook p. 15), recomendado 200 px. Abaixo disso (Header, avatar, favicon), use o `Monogram`. Mínimo do monograma: pendente da marca.
+  - Versão: `tone="auto"` por padrão (principal no tema claro, negativa no escuro). `negativa` (branco com circuito ciano) sobre preto; `branco` (tudo branco) só sobre preto, azul-noite ou azul-petróleo; `preto` quando a principal não garantir contraste sobre o fundo.
+  - Área de proteção: X = altura do "G". Nada invade essa margem em volta do `Logo` ou do `Monogram` (texto, ícone, borda ou outra imagem).
 
 ## Classes Tailwind disponíveis (só estas — o resto da paleta foi zerado)
 
-- Cor: `base surface muted sheet canvas content content-mid content-low content-disabled line line-subtle line-field inverse on-inverse inverse-hover brand on-brand brand-soft brand-text circuit night info info-text success success-text warning warning-text danger danger-text overlay black white transparent current`.
+- Cor: `base surface muted sheet canvas content content-mid content-low content-disabled line line-subtle line-field inverse on-inverse inverse-hover brand on-brand brand-soft brand-text circuit night petrol info info-text success success-text warning warning-text danger danger-text overlay black white transparent current`.
 - Texto: `text-caption`(10/14) `text-label-s`(12/16) `text-label`(13/18) `text-action`(15/20) `text-body`(14/20) `text-title-s`(16/24) `text-title`(18/24) `text-heading`(20/28) `text-display`(28/34). **Não usar `text-sm`, `text-xs`, `text-lg` etc. — não existem.**
 - Fonte: `font-sans` (Public Sans), `font-display` (Bodoni Moda).
 - Espaço: escala numérica padrão do Tailwind (base 4px).
@@ -34,6 +37,7 @@ Lido por todo agente antes de escrever componente. Fonte da verdade dos valores:
 - Sem dependências novas. Sem Radix, sem Headless UI. Implementar foco, teclado e ARIA à mão.
 - Props estendem os atributos HTML nativos do elemento raiz (`ComponentPropsWithoutRef<"button">` etc.) e repassam `...rest` e `className`.
 - Textos padrão em **português** (rótulos ARIA incluídos): "Fechar", "Abrir menu", "Pesquisar", "Anterior", "Próximo".
+- Redação de rótulos, mensagens e exemplos: siga Introdução › Voz e texto (`src/stories/Introducao.mdx`).
 - Componente controlado **e** não controlado quando houver estado (`value`/`defaultValue`/`onValueChange`, `open`/`defaultOpen`/`onOpenChange`).
 - Acessibilidade WCAG 2.2 AA: contraste já garantido pelos tokens; alvo mínimo 24x24 (AA 2.5.8), preferir 44 em toque; roles e `aria-*` corretos; `Escape` fecha sobreposições; foco preso em Modal/Drawer e devolvido ao gatilho; `prefers-reduced-motion` já tratado no tema.
 - Overlays (Modal, Drawer, MenuDrawer): `createPortal` para `document.body`, backdrop `bg-overlay` **irmão** do painel, `aria-modal="true"`, `role="dialog"`, rótulo via `aria-labelledby`. **Sempre** usar `src/lib/overlay.ts` (`useOverlay`, ou `pushOverlay`/`isTopOverlay`/`lockScroll`): nunca pilha ou trava de scroll própria.
@@ -56,7 +60,7 @@ src/components/<frente>/index.ts                // barril da frente: export * fr
 - `tags: ["autodocs"]`. `parameters.docs.description.component` com, em português: **O que é**, **Quando usar**, **Quando não usar**, **Anatomia**, **Acessibilidade**. Markdown simples.
 - Uma story por variante + uma de estados (hover/foco não dá para forçar; mostre desabilitado, erro, carregando, selecionado) + `Playground` com `args`.
 - Stories que só usam `render` sem args: tipar `type Story = StoryObj;` e meta `satisfies Meta`, senão o TS exige props obrigatórias.
-- Imagens: sem fotos de pessoas reais sem autorização. Use `MediaPlaceholder` ou `<div className="aspect-[3/4] rounded-md bg-muted" />`. Marca: só `Logo`.
+- Imagens: sem fotos de pessoas reais sem autorização. Use `MediaPlaceholder` ou `<div className="aspect-[3/4] rounded-md bg-muted" />`. Marca: só `Logo` e `Monogram`, no tom padrão (`auto`) salvo a regra de versão acima.
 
 ## Referência pronta
 

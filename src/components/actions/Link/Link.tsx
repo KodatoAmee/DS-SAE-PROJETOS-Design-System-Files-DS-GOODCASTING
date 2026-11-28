@@ -4,17 +4,17 @@ import { cn, focusRing } from "../../../lib/cn";
 
 export const linkVariants = cva(
   [
-    "inline font-normal text-tiffany-link underline-offset-4 decoration-1 hover:text-brand",
+    "inline font-normal text-brand-text underline-offset-4 decoration-1",
     "transition-colors duration-200 ease-gc",
     focusRing,
   ],
   {
     variants: {
       variant: {
-        /** Sem sublinhado, nem em repouso nem no hover. */
-        default: "no-underline",
-        /** Sempre sublinhado. Use dentro de texto corrido. */
-        underline: "underline",
+        /** Sem sublinhado em repouso; no hover ganha sublinhado Tiffany (`decoration-brand`). O texto não muda de cor. */
+        default: "no-underline hover:underline hover:decoration-brand",
+        /** Sempre sublinhado (1px, cor do texto); no hover o traço vai a 2px e fica Tiffany. Use dentro de texto corrido. */
+        underline: "underline hover:decoration-2 hover:decoration-brand",
       },
       size: {
         /** 11px: rodapé, metadados, barras finas. */

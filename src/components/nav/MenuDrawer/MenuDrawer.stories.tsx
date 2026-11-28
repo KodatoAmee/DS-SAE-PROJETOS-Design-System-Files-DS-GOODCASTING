@@ -9,7 +9,7 @@ const sections: MenuDrawerSection[] = [
     label: "Castings",
     items: [
       { label: "Novos", href: "#" },
-      { label: "Publicidade", href: "#" },
+      { label: "Publicidade", href: "#", current: true },
       { label: "Cinema", href: "#" },
       { label: "Televisão", href: "#" },
       { label: "Moda", href: "#" },
@@ -60,15 +60,15 @@ const meta = {
     docs: {
       description: {
         component: `
-**O que é.** Gaveta lateral esquerda com o menu principal: abas verticais de seção (Castings, Talentos, Produtoras…) e a lista de links da seção selecionada, em 13px maiúsculas. Tela cheia no mobile, metade em \`md\` e 1/3 a partir de \`lg\`.
+**O que é.** Gaveta lateral esquerda com o menu principal: abas verticais de seção (Castings, Talentos, Produtoras…) e a lista de links da seção selecionada, em 15px. A navegação ocupa no máximo 80% da largura da tela (no mobile sobra ao menos 20% de overlay à direita), metade em \`md\` e 1/3 a partir de \`lg\`. O \`footer\`, quando existe, ocupa a largura toda da tela, ancorado embaixo.
 
 **Quando usar.** Como destino do botão de menu do \`Header\`, para a árvore de seções da plataforma.
 
 **Quando não usar.** Para filtros ou detalhes de casting use um painel genérico (Drawer/Modal). Para 2 ou 3 links, prefira ações diretas no \`Header\`.
 
-**Anatomia.** Backdrop \`bg-overlay\` (irmão do painel) · painel \`bg-base\` · botão Fechar na mesma posição do hambúrguer · \`Tabs\` verticais · lista de links · \`footer\` opcional. Entra e sai com \`translate-x\` em 500ms \`ease-in-out\`.
+**Anatomia.** Backdrop \`bg-overlay\` (irmão do painel) · navegação \`bg-base\` (máx. 80% da tela) · botão Fechar no topo, à direita da navegação, 26px abaixo da borda superior · \`Tabs\` verticais · lista de links · \`footer\` opcional na largura toda da tela, com o mesmo fundo. Sem linhas nem bordas: seções e links destacam com fundo Tiffany 20% (\`bg-brand/20\`) e raio \`rounded-xs\` (4px) no hover e no selecionado (seção ativa e link com \`current\`). O selecionado também ganha peso 500. A navegação entra e sai com \`translate-x\` e o rodapé com \`translate-y\`, ambos em 500ms \`ease-in-out\` (instantâneo com \`prefers-reduced-motion\`).
 
-**Acessibilidade.** \`role="dialog"\`, \`aria-modal="true"\`, rotulado pelo título (padrão "Menu", visualmente oculto). Renderizado com \`createPortal\` no \`body\`. Foco vai para "Fechar" ao abrir, fica preso no painel (Tab/Shift+Tab) e volta ao gatilho ao fechar. \`Esc\` e clique no backdrop fecham. Scroll do \`body\` bloqueado enquanto aberto. As abas seguem o padrão WAI-ARIA (setas ↑/↓, Home/End). Controlado (\`open\` + \`onOpenChange\`) ou não controlado (\`defaultOpen\`).
+**Acessibilidade.** \`role="dialog"\`, \`aria-modal="true"\`, rotulado pelo título (padrão "Menu", visualmente oculto). Renderizado com \`createPortal\` no \`body\`. Foco vai para "Fechar" ao abrir, fica preso no menu, rodapé incluído (Tab/Shift+Tab) e volta ao gatilho ao fechar. \`Esc\` e clique no backdrop fecham; clicar na navegação ou no rodapé não fecha. Scroll do \`body\` bloqueado enquanto aberto. As abas seguem o padrão WAI-ARIA (setas ↑/↓, Home/End). O link com \`current\` recebe \`aria-current="page"\`. O fundo Tiffany 20% tem contraste baixo com o painel, então nunca é o único sinal: o selecionado também muda de peso (WCAG 1.4.1). Controlado (\`open\` + \`onOpenChange\`) ou não controlado (\`defaultOpen\`).
         `,
       },
     },

@@ -34,13 +34,17 @@ export interface ChipSelectorProps
 }
 
 const chip = [
-  "inline-flex min-h-10 items-center gap-1.5 rounded-full border px-4 text-label font-medium",
+  "inline-flex min-h-10 items-center gap-1 rounded-full border text-label font-medium",
   "transition-[background-color,border-color,color] duration-200 ease-gc",
   "aria-disabled:cursor-not-allowed aria-disabled:border-line-subtle aria-disabled:text-content-disabled",
 ].join(" ");
 
-const chipOn = "border-brand bg-brand-soft text-content";
-const chipOff = "border-line-subtle bg-base text-content hover:border-brand";
+/*
+ * Selecionado nos dois modos: ✓ + borda `inverse` sobre `brand-soft` (a cor não é a única pista, WCAG 1.4.1 e 1.4.11).
+ * O padding cede espaço ao ✓ (8 + 16 + 4 + 12 = 20 + 20): o chip não muda de largura ao alternar.
+ */
+const chipOn = "border-inverse bg-brand-soft pl-2 pr-3 text-content";
+const chipOff = "border-line-subtle bg-base px-5 text-content hover:border-line-field";
 
 /**
  * Chips de seleção: categorias de casting, perfis (ator, modelo, locutor), idiomas, gênero.
@@ -145,7 +149,7 @@ export function ChipSelector({
               onKeyDown={(event) => handleKeyDown(event, index)}
               className={cn(chip, on ? chipOn : chipOff, focusRing)}
             >
-              {multiple && on && <Icon name="check" size={16} />}
+              {on && <Icon name="check" size={16} />}
               {option.label ?? option.value}
             </button>
           );

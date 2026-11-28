@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
-import { Logo } from "../../brand";
+import { Monogram } from "../../brand";
 import { MenuDrawer } from "../MenuDrawer";
 import { Header, type HeaderAction, type HeaderProps } from "./Header";
 
-/** Logotipo Good Casting, versão preta (monocromática). */
+/** Monograma Good Casting, tom automático (preto no tema claro, branco no escuro). O logotipo completo pede no mínimo 120 px (brandbook, p. 15) e não cabe na barra de 48 px. */
 const logo = (
   <a href="#" aria-label="Good Casting, início">
-    <Logo tone="preto" width={84} alt="" />
+    <Monogram width={56} alt="" />
   </a>
 );
 

@@ -2,6 +2,7 @@
   "name": "ds-goodcasting",
   "version": "0.1.0",
   "private": true,
+  "license": "UNLICENSED",
   "description": "DS-GoodCasting: design system da Good Casting (React + Tailwind v4 + Storybook). Estrutura do DS-Zara, identidade do brandbook Good Casting.",
   "type": "module",
   "sideEffects": [
@@ -29,11 +30,12 @@
     "build": "vite build && tsc -p tsconfig.build.json",
     "build:tokens": "node scripts/build-tokens.mjs",
     "build-storybook": "storybook build --config-dir .storybook -o storybook-static",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "prepare": "npm run build"
   },
   "peerDependencies": {
-    "react": ">=18",
-    "react-dom": ">=18"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",

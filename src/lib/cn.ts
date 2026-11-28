@@ -30,4 +30,4 @@ export function cn(...inputs: ClassValue[]) {
 
 /** Anel de foco único do sistema: 2px, teal de texto (AA), deslocado 2px. */
 export const focusRing =
-  "outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-text";
+  "outline-hidden focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-text";

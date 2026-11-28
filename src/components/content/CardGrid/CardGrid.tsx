@@ -40,7 +40,8 @@ export function CardGrid({ kind = "castings", view = 2, className, children, ...
       {Children.map(children, (child) => {
         if (child === null || child === undefined || typeof child === "boolean") return null;
         if (isValidElement(child) && child.type === "li") return child;
-        return <li className="flex min-w-0 [&>*]:flex-1">{child}</li>;
+        // `[&>*]:min-w-0`: sem ele o cartão (filho flex) não encolhe abaixo do conteúdo e invade a coluna vizinha.
+        return <li className="flex min-w-0 [&>*]:min-w-0 [&>*]:flex-1">{child}</li>;
       })}
     </ul>
   );

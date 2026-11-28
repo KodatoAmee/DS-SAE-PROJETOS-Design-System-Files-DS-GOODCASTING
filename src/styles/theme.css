@@ -14,7 +14,8 @@
   --gc-teal-text: #057571;
   --gc-teal-text-dark: #81d8d0;
   --gc-circuit: #00fefe;
-  --gc-navy: #0d2b3a;
+  --gc-navy: #022330;
+  --gc-petrol: #043c50;
 
   /* Neutros */
   --gc-black: #000000;
@@ -53,23 +54,24 @@
   --gc-muted: var(--gc-gray-100);
   --gc-sheet: var(--gc-gray-150);
   --gc-canvas: var(--gc-gray-200);
-  --gc-content: var(--gc-ink);
+  --gc-content: var(--gc-black);
   --gc-content-mid: var(--gc-gray-600);
   --gc-content-low: var(--gc-gray-600);
   --gc-content-disabled: var(--gc-gray-500);
-  --gc-line: var(--gc-ink);
+  --gc-line: var(--gc-black);
   --gc-line-subtle: var(--gc-gray-300);
   --gc-line-field: var(--gc-gray-500);
-  --gc-inverse: var(--gc-ink);
+  --gc-inverse: var(--gc-black);
   --gc-on-inverse: var(--gc-white);
   --gc-inverse-hover: var(--gc-gray-800);
   --gc-brand: var(--gc-tiffany);
-  --gc-on-brand: var(--gc-ink);
+  --gc-on-brand: var(--gc-black);
   --gc-brand-soft: var(--gc-tiffany-soft);
   --gc-brand-text: var(--gc-teal-text);
   --gc-tiffany-link: var(--gc-teal-text);
   --gc-circuit: #00fefe;
   --gc-night: var(--gc-navy);
+  --gc-petrol: #043c50;
   --gc-info: var(--gc-blue);
   --gc-info-text: var(--gc-blue-text);
   --gc-success: var(--gc-green);
@@ -79,6 +81,10 @@
   --gc-danger: var(--gc-red);
   --gc-danger-text: var(--gc-red-text);
   --gc-overlay: rgb(0 0 0 / 0.5);
+
+  /* Logotipo e monograma com tone=auto: herdado do [data-theme] mais próximo, funciona em ilhas de tema. */
+  --gc-show-on-light: block;
+  --gc-show-on-dark: none;
 }
 
 [data-theme="dark"] {
@@ -96,15 +102,16 @@
   --gc-line-subtle: var(--gc-gray-dark-300);
   --gc-line-field: var(--gc-gray-500);
   --gc-inverse: var(--gc-white);
-  --gc-on-inverse: var(--gc-ink);
+  --gc-on-inverse: var(--gc-black);
   --gc-inverse-hover: var(--gc-tiffany-soft);
   --gc-brand: var(--gc-tiffany);
-  --gc-on-brand: var(--gc-ink);
+  --gc-on-brand: var(--gc-black);
   --gc-brand-soft: var(--gc-tiffany-deep);
   --gc-brand-text: var(--gc-teal-text-dark);
   --gc-tiffany-link: var(--gc-teal-text-dark);
   --gc-circuit: #00fefe;
   --gc-night: var(--gc-navy);
+  --gc-petrol: #043c50;
   --gc-info: var(--gc-blue);
   --gc-info-text: #7ebffd;
   --gc-success: var(--gc-green);
@@ -114,6 +121,10 @@
   --gc-danger: var(--gc-red);
   --gc-danger-text: var(--gc-red-text-dark);
   --gc-overlay: rgb(0 0 0 / 0.7);
+
+  /* Logotipo e monograma com tone=auto (ver tema claro). */
+  --gc-show-on-light: none;
+  --gc-show-on-dark: block;
 }
 
 /* Cores trocam por tema: precisam de `inline` para não congelarem no build. */
@@ -141,6 +152,7 @@
   --color-brand-soft: var(--gc-brand-soft);
   --color-circuit: var(--gc-circuit);
   --color-night: var(--gc-night);
+  --color-petrol: var(--gc-petrol);
   --color-black: var(--gc-black);
   --color-white: var(--gc-white);
   --color-brand-text: var(--gc-brand-text);
@@ -237,9 +249,9 @@
   }
 }
 
-/* Fundo do brandbook: branco -> cinza. Decorativo. */
+/* Fundo do brandbook: branco -> cinza. Decorativo. Espelha gradient.brand do tokens.json. */
 @utility bg-brand-gradient {
-  background-image: linear-gradient(180deg, #ffffff 0%, #a3a3a3 100%);
+  background-image: linear-gradient(180deg, #ffffff 0%, #9b9b9b 100%);
 }
 
 @layer base {

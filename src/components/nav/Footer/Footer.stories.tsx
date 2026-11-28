@@ -38,7 +38,7 @@ const columns: FooterColumn[] = [
   },
 ];
 
-const legal = "© 2026 Maison. Todos os direitos reservados. Texto legal de exemplo.";
+const legal = "© 2026 Good Casting. Todos os direitos reservados. Texto legal de exemplo.";
 
 const meta = {
   title: "Navegação/Footer",

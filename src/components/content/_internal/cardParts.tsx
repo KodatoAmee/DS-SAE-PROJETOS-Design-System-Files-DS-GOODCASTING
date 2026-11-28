@@ -23,9 +23,12 @@ export function renderMedia(media: ReactNode | MediaPlaceholderProps | undefined
   return media;
 }
 
-/** Link que cobre o cartão inteiro via ::after (um só ponto de tabulação). */
+/**
+ * Link que cobre o cartão inteiro via ::after (um só ponto de tabulação).
+ * O anel fica no ::after e sai 4px da caixa: nenhum ancestral até o cartão pode ter `overflow-hidden`.
+ */
 export const stretchedLink = [
-  "outline-none after:absolute after:inset-0 after:rounded-[inherit] after:content-['']",
+  "outline-none after:absolute after:inset-0 after:rounded-md after:content-['']",
   "focus-visible:after:outline focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-brand-text",
 ].join(" ");
 
@@ -58,6 +61,10 @@ export function SaveToggle({
         "relative z-10 inline-flex size-11 items-center justify-center rounded-full bg-base/90 text-content",
         "transition-opacity duration-200 ease-gc hover:opacity-80",
         focusRing,
+        // Anel de dois tons (fica sobre qualquer foto): halo `base` de 2px preenche o offset e o outline
+        // `brand-text` corre por fora dele, então o contraste do anel é sempre brand-text × base.
+        // `opacity-100` no foco: o hover não esmaece o anel.
+        "focus-visible:opacity-100 focus-visible:ring-2 focus-visible:ring-base",
         className,
       )}
     >
@@ -74,12 +81,32 @@ export function SaveToggle({
   );
 }
 
-/** Linha de metadado: ícone 16px + texto. */
-export function MetaItem({ icon, children, className }: { icon: IconName; children: ReactNode; className?: string }) {
+/**
+ * Linha de metadado: ícone 16px + texto. Corta com reticências por padrão;
+ * `wrap` quebra a linha em vez de cortar (use em informação essencial, como o prazo).
+ */
+export function MetaItem({
+  icon,
+  wrap = false,
+  children,
+  className,
+}: {
+  icon: IconName;
+  wrap?: boolean;
+  children: ReactNode;
+  className?: string;
+}) {
   return (
-    <span className={cn("inline-flex min-w-0 items-center gap-1 text-label text-content-mid", className)}>
-      <Icon name={icon} size={16} className="shrink-0" />
-      <span className="truncate">{children}</span>
+    <span
+      className={cn(
+        "inline-flex min-w-0 gap-1 text-label text-content-mid",
+        wrap ? "items-start" : "items-center",
+        className,
+      )}
+    >
+      {/* Na quebra, o ícone (16px) fica centrado na 1ª linha (18px). */}
+      <Icon name={icon} size={16} className={cn("shrink-0", wrap && "mt-px")} />
+      <span className={wrap ? "min-w-0 whitespace-normal break-words" : "truncate"}>{children}</span>
     </span>
   );
 }
